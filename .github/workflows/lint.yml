@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push: {}
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          uv pip install -e ".[dev]"
+          uv pip cache purge
+
+      - name: Run Ruff
+        run: ruff check .
+
+      - name: Run pytest with coverage
+        run: pytest
+        env:
+          PYTHONPATH: ${{ github.workspace }}
