@@ -1,4 +1,3 @@
-import pytest
 from app.func_for_test import func
 
 
