@@ -26,5 +26,5 @@ target-version = "py312"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-python_files = "*_test.py"
-python_functions = "*_test"
+python_files = "test_*.py"
+python_functions = "test_*"
