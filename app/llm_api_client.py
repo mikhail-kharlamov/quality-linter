@@ -1,6 +1,6 @@
 import openai
 
-from dtos import DirectoryDto, AutoReviewDto, CriteriaDto
+from dtos import AutoReviewDto, CriteriaDto, DirectoryDto
 from json_schema import JsonSchemaLoader
 
 

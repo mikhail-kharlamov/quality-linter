@@ -1,8 +1,10 @@
-from dtos import DirectoryDto, CriteriaDto, AutoReviewDto
+import os
+
+from load_dotenv import load_dotenv
+
 from app.llm_api_client import LlmApiClient
 from app.parser import Parser
-from load_dotenv import load_dotenv
-import os
+from dtos import AutoReviewDto, CriteriaDto, DirectoryDto
 
 
 class Reviewer:
