@@ -14,7 +14,7 @@ class Reviewer:
         self.parser = Parser()
 
     def __validate(self, review: AutoReviewDto, criteria: CriteriaDto) -> bool:
-        return True
+        return criteria.min_mark <= review.mark <= criteria.max_mark
 
     def review(self, path_to_code: str, criteria: CriteriaDto) -> AutoReviewDto:
         directory: DirectoryDto = self.parser.parse_directory(path_to_code)
