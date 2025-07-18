@@ -12,12 +12,12 @@ class Parser:
     def get_directory_from_json(self, path: str) -> DirectoryDto:
         """Получает структуру директории из JSON файла"""
         try:
-            with open(path, 'r', encoding='utf-8') as f:
+            with open(path, encoding='utf-8') as f:
                 data = json.load(f)
             return DirectoryDto(content=[FileDto.from_dict(file) for file in data])
         except Exception as e:
             logging.error(f"Ошибка при чтении JSON файла {path}: {str(e)}")
-            raise ValueError(f"Не удалось прочитать JSON файл: {str(e)}")
+            raise ValueError(f"Не удалось прочитать JSON файл: {str(e)}") from e
 
     def parse_directory(self, root_path: str) -> DirectoryDto:
         """Парсит локальную директорию и возвращает её структуру в виде DirectoryDto"""
