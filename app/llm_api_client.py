@@ -19,7 +19,8 @@ class LlmApiClient:
               "comments": [
                 {{
                   "path": "file path",
-                  "line": "line number",
+                  "start_line": "the first commenting line number",
+                  "end_line": "the last commenting line number",
                   "body": "detailed comment"
                 }}
               ]
@@ -38,12 +39,14 @@ class LlmApiClient:
               "comments": [
                 {{
                   "path": "src/main.py",
-                  "line": 42,
+                  "start_line": 42,
+                  "end_line": 42,
                   "body": "Potential SQL injection - use parameterized queries"
                 }},
                 {{
                   "path": "utils/helpers.py",
-                  "line": 15,
+                  "start_line": 15,
+                  "end_line": 27,
                   "body": "This loop can be optimized using list comprehension"
                 }}
               ]

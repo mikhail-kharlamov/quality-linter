@@ -1,0 +1,45 @@
+{
+    "mark": 75,
+    "comments": [
+        {
+            "path": "HW2/ConsoleApp1/ConsoleApp1/Program.cs",
+            "start_line": 1,
+            "end_line": 1,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "The file contains a BOM (Byte Order Mark) which can sometimes cause issues with certain editors. Consider removing it if not necessary for your environment."
+        },
+        {
+            "path": "HW2/ConsoleApp1/ConsoleApp1/Trie.cs",
+            "start_line": 7,
+            "end_line": 7,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Extra '>' character at the end of the XML comment. This can cause issues with documentation generation."
+        },
+        {
+            "path": "HW2/ConsoleApp1/ConsoleApp1/Trie.cs",
+            "start_line": 37,
+            "end_line": 37,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Accessing a dictionary with an assumption that the key exists can cause runtime exceptions. Use 'TryGetValue' to handle cases where the key might not be present."
+        },
+        {
+            "path": "HW2/ConsoleApp1/ConsoleApp1/Trie.cs",
+            "start_line": 87,
+            "end_line": 87,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "The 'size' property is private. Consider if it needs to be accessed outside the class. If not, the encapsulation is fine, otherwise consider exposing a public method or property."
+        },
+        {
+            "path": "HW2/ConsoleApp1/ConsoleApp1/Trie.cs",
+            "start_line": 47,
+            "end_line": 47,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "The 'DeleteRecursively' method returns a tuple that might be hard to understand at a glance. Consider using a named tuple or a separate class to make the code more readable and self-explanatory."
+        }
+    ]
+}

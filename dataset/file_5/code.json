@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Tests.cs",
+        "extension": "cs",
+        "is_binary": false,
+        "path": "HW6/parseTree/parseTree/parseTree.Tests/Tests.cs",
+        "content": "﻿namespace Tests;\n\nusing ParseTree;\n\npublic class Tests\n{\n    [Test]\n    public void ParseTreeExtractTreeFromStringAndEvaluateSimpleDataTest()\n    {\n        var tree = new ParseTree();\n        tree.ExtractTreeFromString(\"(+ 3 (* 2 2))\");\n        var value = tree.Evaluate();\n        Assert.That(value, Is.EqualTo(7));\n    }\n    \n    [Test]\n    public void ParseTreeExtractTreeFromStringAndEvaluateWithAllOfTheOperatorsTest()\n    {\n        var tree = new ParseTree();\n        tree.ExtractTreeFromString(\"(+ 3 (* (/ 10 5) (- 12 10)))\");\n        var value = tree.Evaluate();\n        Assert.That(value, Is.EqualTo(7));\n    }\n}"
+    },
+    {
+        "name": "InvalidLiteralException.cs",
+        "extension": "cs",
+        "is_binary": false,
+        "path": "HW6/parseTree/parseTree/parseTree/InvalidLiteralException.cs",
+        "content": "namespace ParseTree;\n\npublic class InvalidLiteralException : Exception\n{\n    \n}"
+    },
+    {
+        "name": "InvalidOperatorException.cs",
+        "extension": "cs",
+        "is_binary": false,
+        "path": "HW6/parseTree/parseTree/parseTree/InvalidOperatorException.cs",
+        "content": "using System.Runtime.Serialization;\n\nnamespace ParseTree;\n\npublic class InvalidOperatorException : Exception\n{\n    public InvalidOperatorException()\n    {\n    }\n\n    protected InvalidOperatorException(SerializationInfo info, StreamingContext context) : base(info, context)\n    {\n    }\n\n    public InvalidOperatorException(string? message) : base(message)\n    {\n    }\n\n    public InvalidOperatorException(string? message, Exception? innerException) : base(message, innerException)\n    {\n    }\n}"
+    },
+    {
+        "name": "OperandNode.cs",
+        "extension": "cs",
+        "is_binary": false,
+        "path": "HW6/parseTree/parseTree/parseTree/OperandNode.cs",
+        "content": "namespace ParseTree;\n\nusing Node;\n\npublic class OperandNode : Node\n{\n    private int Value { get; set; }\n\n    public void SetValue(int value)\n    {\n        this.Value = value;\n    }\n\n    public override int Evaluate() => this.Value;\n\n    public override string Print() => this.Value.ToString();\n}"
+    },
+    {
+        "name": "OperatorNode.cs",
+        "extension": "cs",
+        "is_binary": false,
+        "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
+        "content": "using parseTree;\n\nnamespace ParseTree;\n\nusing Node;\n\npublic class OperatorNode : Node\n{\n    private char Operator { get; set; }\n    \n    public Node? LeftChild { get; set; }\n    public Node? RightChild { get; set; }\n\n    public void SetOperation(char operation, Node operand1, Node operand2)\n    {\n        this.Operator = operation;\n        this.LeftChild = operand1;\n        this.RightChild = operand2;\n    }\n\n    public override int Evaluate()\n    {\n        var leftValue = this.LeftChild is null ? throw new Exception() : this.LeftChild.Evaluate();\n        var rightValue = this.RightChild is null ? throw new Exception() : this.RightChild.Evaluate();\n        return Operator switch\n        {\n            '+' => leftValue + rightValue,\n            '-' => leftValue - rightValue,\n            '*' => leftValue * rightValue,\n            '/' => leftValue / rightValue,\n            _ => throw new InvalidOperatorException()\n        };\n    }\n\n    public override string Print() => this.LeftChild != null && this.RightChild != null ? \n        $\"( {Operator} {this.LeftChild.Print()} {this.RightChild.Print()} )\" : \n        throw new ChildIsNullReferenceException();\n}"
+    },
+    {
+        "name": "ParseTree.cs",
+        "extension": "cs",
+        "is_binary": false,
+        "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
+        "content": "namespace ParseTree;\n\nusing Node;\n\npublic class ParseTree\n{\n    private Node? Root { get; set; }\n\n    private (Node, int) BuildTree(string input, int index)\n    {\n        if (index >= input.Length)\n        {\n            throw new IndexOutOfRangeException();\n        }\n        \n        if (input[index] == ' ' || input[index] == ')')\n        {\n            index++;\n            var node = BuildTree(input, index);\n            return node;\n        }\n\n        if (input[index] == '(')\n        {\n            index++;\n            var operation = input[index];\n            if (!\"+-*/\".Contains(operation))\n            {\n                throw new InvalidOperatorException();\n            }\n\n            var node = new OperatorNode();\n            index++;\n            var (leftChild, leftChildIndex) = BuildTree(input, index);\n            var (rightChild, rightChildIndex) = BuildTree(input, leftChildIndex);\n            node.SetOperation(operation, leftChild, rightChild);\n            return (node, rightChildIndex);\n        }\n\n        if (\"0123456789\".Contains(input[index]))\n        {\n            var number = input[index].ToString();\n            index++;\n            while (input[index] != ' ' && input[index] != ')')\n            {\n                number += input[index];\n                index++;\n            }\n\n            var node = new OperandNode();\n            node.SetValue(int.Parse(number));\n            return (node, index);\n        }\n        \n        throw new InvalidLiteralException();\n    }\n\n    public void ExtractTreeFromString(string input)\n    {\n        var (node, index) = BuildTree(input, 0);\n        Root = node;\n    }\n\n    public void ExtractTreeFromFile()\n    {\n        \n    }\n\n    public void PrintTree()\n    {\n        Root?.Print();\n    }\n\n    public int Evaluate()\n    {\n        return Root?.Evaluate() ?? 0;\n    }\n}"
+    },
+    {
+        "name": "project.packagespec.json",
+        "extension": "json",
+        "is_binary": false,
+        "path": "HW6/parseTree/parseTree/parseTree/obj/project.packagespec.json",
+        "content": "﻿\"restore\":{\"projectUniqueName\":\"/Users/mikhailkharlamov/Documents/SPbU/Course1/CSharp-Homeworks/HW6/parseTree/parseTree/parseTree/parseTree.csproj\",\"projectName\":\"parseTree\",\"projectPath\":\"/Users/mikhailkharlamov/Documents/SPbU/Course1/CSharp-Homeworks/HW6/parseTree/parseTree/parseTree/parseTree.csproj\",\"outputPath\":\"/Users/mikhailkharlamov/Documents/SPbU/Course1/CSharp-Homeworks/HW6/parseTree/parseTree/parseTree/obj/\",\"projectStyle\":\"PackageReference\",\"originalTargetFrameworks\":[\"net9.0\"],\"sources\":{\"https://api.nuget.org/v3/index.json\":{}},\"frameworks\":{\"net9.0\":{\"targetAlias\":\"net9.0\",\"projectReferences\":{}}},\"warningProperties\":{\"warnAsError\":[\"NU1605\"]},\"restoreAuditProperties\":{\"enableAudit\":\"true\",\"auditLevel\":\"low\",\"auditMode\":\"direct\"},\"SdkAnalysisLevel\":\"9.0.200\"}\"frameworks\":{\"net9.0\":{\"targetAlias\":\"net9.0\",\"dependencies\":{\"Microsoft.NET.Test.Sdk\":{\"target\":\"Package\",\"version\":\"[17.12.0, )\"},\"NUnit\":{\"target\":\"Package\",\"version\":\"[4.2.2, )\"},\"NUnit.Analyzers\":{\"target\":\"Package\",\"version\":\"[4.4.0, )\"},\"NUnit3TestAdapter\":{\"target\":\"Package\",\"version\":\"[4.6.0, )\"},\"coverlet.collector\":{\"target\":\"Package\",\"version\":\"[6.0.2, )\"}},\"imports\":[\"net461\",\"net462\",\"net47\",\"net471\",\"net472\",\"net48\",\"net481\"],\"assetTargetFallback\":true,\"warn\":true,\"frameworkReferences\":{\"Microsoft.NETCore.App\":{\"privateAssets\":\"all\"}},\"runtimeIdentifierGraphPath\":\"/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json\"}}"
+    }
+]

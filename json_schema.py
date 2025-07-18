@@ -33,7 +33,12 @@ class JsonSchemaLoader:
                                 "description": "Path to the file being commented",
                                 "type": "string"
                             },
-                            "line": {
+                            "start_line": {
+                                "description": "Line number in the file",
+                                "type": "integer",
+                                "minimum": 0
+                            },
+                            "end_line": {
                                 "description": "Line number in the file",
                                 "type": "integer",
                                 "minimum": 0
@@ -43,7 +48,7 @@ class JsonSchemaLoader:
                                 "type": "string"
                             }
                         },
-                        "required": ["path", "line", "body"],
+                        "required": ["path", "start_line", "end_line", "body"],
                         "additionalProperties": False
                     }
                 }

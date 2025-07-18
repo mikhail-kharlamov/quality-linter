@@ -1,0 +1,45 @@
+{
+    "mark": 85,
+    "comments": [
+        {
+            "path": "Lazy/Lazy/MultiThreadLazy.cs",
+            "start_line": 15,
+            "end_line": 15,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Consider specifying initial and maximum counts for the semaphore (1, 1) explicitly for clarity."
+        },
+        {
+            "path": "Lazy/Lazy/MultiThreadLazy.cs",
+            "start_line": 23,
+            "end_line": 23,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Avoid nesting semaphore.WaitOne() inside if checks for better readability. Consider restructuring code to minimize critical section size."
+        },
+        {
+            "path": "Lazy/Lazy/SingleThreadLazy.cs",
+            "start_line": 26,
+            "end_line": 26,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "The exception is stored but not used in the Get method. Consider if storing is necessary when throwing immediately."
+        },
+        {
+            "path": "Lazy/LazyTests/LazyTests.cs",
+            "start_line": 18,
+            "end_line": 18,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Resetting supplierRunsCounter after each test method could avoid test method dependency. Ensure state is independent for accurate tests."
+        },
+        {
+            "path": "Lazy/LazyTests/LazyTests.cs",
+            "start_line": 37,
+            "end_line": 37,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Using Assert.Multiple is beneficial, consider if more conditions should be enclosed to capture all failings with safer test reporting."
+        }
+    ]
+}
