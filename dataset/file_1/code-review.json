@@ -1,0 +1,42 @@
+[
+    {
+        "path": "HW8/calculator/calculator/calculator/Calculator.cs",
+        "start_line": 28,
+        "end_line": 28,
+        "original_start_line": 28,
+        "original_end_line": 28,
+        "body": "Можно было свойством сделать, тут же нет сложной логики"
+    },
+    {
+        "path": "HW8/calculator/calculator/calculator/MainWindowViewModel.cs",
+        "start_line": 73,
+        "end_line": 73,
+        "original_start_line": 73,
+        "original_end_line": 73,
+        "body": "Тут компилятор в целом недоволен Вашим кодом, стоило бы проверок навставлять"
+    },
+    {
+        "path": "HW8/calculator/calculator/calculator/calculator.csproj",
+        "start_line": 1,
+        "end_line": 1,
+        "original_start_line": 1,
+        "original_end_line": 1,
+        "body": "Проект и директорию с проектом по стайлгайду называют с заглавной"
+    },
+    {
+        "path": "HW8/calculator/calculator/сalculator.Tests/Tests.cs",
+        "start_line": 45,
+        "end_line": 45,
+        "original_start_line": 45,
+        "original_end_line": 45,
+        "body": "Тестов как-то негусто. Деления не 0, например, нет."
+    },
+    {
+        "path": "HW8/calculator/calculator/сalculator.Tests/сalculator.Tests.csproj",
+        "start_line": 19,
+        "end_line": 19,
+        "original_start_line": 19,
+        "original_end_line": 19,
+        "body": "И тоже нужен StyleCop в тесты"
+    }
+]
