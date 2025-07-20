@@ -1,0 +1,392 @@
+diff --git 
+
+diff --git a/HW2/ConsoleApp1/.gitignore b/HW2/ConsoleApp1/.gitignore
+new file mode 100644
+index 0000000..05e102a
+--- /dev/null
++++ b/HW2/ConsoleApp1/.gitignore
+@@ -0,0 +1,51 @@
++# Compiled Object files
++[Bb]in/
++[Oo]bj/
++
++# Visual Studio files
++.vs/
++*.suo
++*.user
++*.bak
++*.csproj.user
++*.sln.docstates
++
++# Build results
++*.exe
++*.dll
++*.pdb
++*.map
++*.aps
++*.metadb
++*.unitypackage
++*.orig
++*.swp
++*.lock
++*.log
++
++# NuGet Packages
++packages/
++*.nupkg
++
++# OS generated files # Операционные системы
++.DS_Store # macOS
++Thumbs.db # Windows
++
++# Temporary files
++tmp/
++temp/
++[Tt]emp/
++
++# Rider files
++.idea/
++
++# Secret keys and api keys
++*.config # Общие конфигурационные файлы (осторожно! лучше исключать только specific config файлы с секретами)
++appsettings.Development.json # Sensitive data during development
++
++# Unity files (если используете Unity)
++Library/
++Temp/
++UnityPackageManager/
++ProjectSettings/
++UserSettings/
+
+
+diff --git a/HW2/ConsoleApp1/ConsoleApp1.sln b/HW2/ConsoleApp1/ConsoleApp1.sln
+new file mode 100644
+index 0000000..39f814b
+--- /dev/null
++++ b/HW2/ConsoleApp1/ConsoleApp1.sln
+@@ -0,0 +1,22 @@
++﻿
++Microsoft Visual Studio Solution File, Format Version 12.00
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{31F3E122-1E5C-4C3C-A041-9272CB06FBAC}"
++EndProject
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{E08735EA-A95A-469F-8977-BC4FFF38E0BB}"
++EndProject
++Global
++	GlobalSection(SolutionConfigurationPlatforms) = preSolution
++		Debug|Any CPU = Debug|Any CPU
++		Release|Any CPU = Release|Any CPU
++	EndGlobalSection
++	GlobalSection(ProjectConfigurationPlatforms) = postSolution
++		{31F3E122-1E5C-4C3C-A041-9272CB06FBAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
++		{31F3E122-1E5C-4C3C-A041-9272CB06FBAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
++		{31F3E122-1E5C-4C3C-A041-9272CB06FBAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
++		{31F3E122-1E5C-4C3C-A041-9272CB06FBAC}.Release|Any CPU.Build.0 = Release|Any CPU
++		{E08735EA-A95A-469F-8977-BC4FFF38E0BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
++		{E08735EA-A95A-469F-8977-BC4FFF38E0BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
++		{E08735EA-A95A-469F-8977-BC4FFF38E0BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
++		{E08735EA-A95A-469F-8977-BC4FFF38E0BB}.Release|Any CPU.Build.0 = Release|Any CPU
++	EndGlobalSection
++EndGlobal
+
+
+diff --git a/HW2/ConsoleApp1/ConsoleApp1/ConsoleApp1.csproj b/HW2/ConsoleApp1/ConsoleApp1/ConsoleApp1.csproj
+new file mode 100644
+index 0000000..85b4959
+--- /dev/null
++++ b/HW2/ConsoleApp1/ConsoleApp1/ConsoleApp1.csproj
+@@ -0,0 +1,10 @@
++﻿<Project Sdk="Microsoft.NET.Sdk">
++
++    <PropertyGroup>
++        <OutputType>Exe</OutputType>
++        <TargetFramework>net9.0</TargetFramework>
++        <ImplicitUsings>enable</ImplicitUsings>
++        <Nullable>enable</Nullable>
++    </PropertyGroup>
++
++</Project>
+
+
+diff --git a/HW2/ConsoleApp1/ConsoleApp1/Program.cs b/HW2/ConsoleApp1/ConsoleApp1/Program.cs
+new file mode 100644
+index 0000000..e5dff12
+--- /dev/null
++++ b/HW2/ConsoleApp1/ConsoleApp1/Program.cs
+@@ -0,0 +1,3 @@
++﻿// See https://aka.ms/new-console-template for more information
++
++Console.WriteLine("Hello, World!");
+\ No newline at end of file
+
+
+diff --git a/HW2/ConsoleApp1/ConsoleApp1/Trie.cs b/HW2/ConsoleApp1/ConsoleApp1/Trie.cs
+new file mode 100644
+index 0000000..19f85cd
+--- /dev/null
++++ b/HW2/ConsoleApp1/ConsoleApp1/Trie.cs
+@@ -0,0 +1,156 @@
++namespace TrieDataStructure;
++
++/// <summary>
++/// Class of data structure Trie.
++/// </summary>>
++public class Trie
++{
++    private Node _root = new Node();
++    
++    private int size { get; set; }
++    
++    /// <summary>
++    /// Adds element to the trie.
++    /// </summary>>
++    /// <param name="element">Element to add.</param>
++    /// <returns>True if element hasn't been in trie before.</returns>
++    public bool Add(string element)
++    {
++        var node = this._root;
++        foreach (var letter in element)
++        {
++            if (!node.Children.ContainsKey(letter))
++            {
++                node.Children[letter] = new Node();
++            }
++            node = node.Children[letter];
++        }
++
++        if (node.IsTerminal)
++        {
++            return false;
++        }
++        node.IsTerminal = true;
++        this.size++;
++        return true;
++    }
++
++    /// <summary>
++    /// Checks is the element in trie.
++    /// </summary>>
++    /// <param name="element">Element to check.</param>
++    /// <returns>True if element in trie.</returns>
++    public bool Contains(string element)
++    {
++        var node = this._root;
++        foreach (var letter in element)
++        {
++            if (!node.Children.ContainsKey(letter))
++            {
++                return false;
++            }
++            node = node.Children[letter];
++        }
++        return node.IsTerminal;
++    }
++
++    /// <summary>
++    /// Removes element from the trie.
++    /// </summary>>
++    /// <param name="element">Element to remove.</param>
++    /// <returns>True if element really has been in trie.</returns>
++    public bool Remove(string element)
++    {
++        var (isElementInTree, isChildHasChildren) = DeleteRecursively(this._root, element, 0);
++        if (isElementInTree)
++        {
++            this.size--;
++        }
++        return isElementInTree;
++    }
++
++    private (bool, bool) DeleteRecursively(Node node, string element, int numberOfLetter)
++    {
++        if (node.IsTerminal && node.Children.Count == 0 && element.Length == numberOfLetter)
++        {
++            return (true, false);
++        }
++        if (node.IsTerminal && element.Length == numberOfLetter)
++        {
++            node.IsTerminal = false;
++            return (true, true);
++        } 
++        if (node.Children.Count == 0 && element.Length == numberOfLetter)
++        {
++            return (false, false);
++        }
++        var letter = element[numberOfLetter];
++        var children = node.Children[letter];
++        var (isElementInTree, isChildHasChildren) = DeleteRecursively(children, element, numberOfLetter + 1);
++        if (!isElementInTree)
++        {
++            return (false, false);
++        }
++
++        if (!isChildHasChildren)
++        {
++            node.Children.Remove(element[numberOfLetter]);
++        }
++        return (isElementInTree, node.Children.Count != 0);
++    }
++    
++    /// <summary>
++    /// Counts how many elements starts with prefix.
++    /// </summary>>
++    /// <param name="prefix">Prefix for counting words.</param>
++    /// <returns>Count of elements that starts with this prefix.</returns>
++    public int HowManyStartsWithPrefix(string prefix)
++    {
++        var node = this._root;
++        foreach (var letter in prefix)
++        {
++            if (!node.Children.ContainsKey(letter))
++            {
++                return 0;
++            }
++            node = node.Children[letter];
++        }
++
++        var count =  PrefixCounterRecursively(node);
++        if (node.IsTerminal)
++        {
++            count++;
++        }
++        return count;
++    }
++
++    private int PrefixCounterRecursively(Node node)
++    {
++        if (node.Children.Count == 0)
++        {
++            return node.IsTerminal? 1 : 0;
++        }
++
++        var counter = 0;
++        foreach (var childNode in node.Children.Values)
++        {
++            counter += PrefixCounterRecursively(childNode);
++        }
++        return counter;
++    }
++    
++    /// <summary>
++    /// Checks the size of the trie.
++    /// </summary>>
++    /// <returns>How many elements in trie.</returns>
++    public int Size()
++    {
++        return this.size;
++    }
++
++    private class Node
++    {
++        public bool IsTerminal { set; get; }
++        public Dictionary<char, Node> Children { get; } = new();
++    }
++}
+\ No newline at end of file
+
+
+diff --git a/HW2/ConsoleApp1/Tests/Tests.cs b/HW2/ConsoleApp1/Tests/Tests.cs
+new file mode 100644
+index 0000000..4c29b26
+--- /dev/null
++++ b/HW2/ConsoleApp1/Tests/Tests.cs
+@@ -0,0 +1,63 @@
++﻿namespace TrieDataStructure.Test;
++
++public class Tests
++{
++    [Test]
++    public void AddAndContainsTest()
++    {
++        var TestTrie = new Trie();
++        TestTrie.Add("he");
++        var isElementInTrie = TestTrie.Contains("he");
++        Assert.That(isElementInTrie, Is.True);
++    }
++
++    [Test]
++    public void AddAndContainsTwoElementsTest()
++    {
++        var TestTrie = new Trie();
++        TestTrie.Add("he");
++        TestTrie.Add("hers");
++        Assert.That(TestTrie.Contains("he"), Is.True);
++        Assert.That(TestTrie.Contains("hers"), Is.True);
++    }
++
++    [Test]
++    public void AddAndRemoveTest()
++    {
++        var testTrie = new Trie();
++        testTrie.Add("he");
++        testTrie.Add("hers");
++        Assert.That(testTrie.Remove("he"), Is.True);
++        Assert.That(testTrie.Contains("he"), Is.False);
++        Assert.That(testTrie.Contains("hers"), Is.True);
++        Assert.That(testTrie.Remove("hers"), Is.True);
++        Assert.That(testTrie.Contains("hers"), Is.False);
++    }
++
++    [Test]
++    public void HowManyStartsWithPrefixTest()
++    {
++        var testTrie = new Trie();
++        testTrie.Add("he");
++        testTrie.Add("hers");
++        testTrie.Add("hell");
++        testTrie.Add("help");
++        testTrie.Add("she");
++        Assert.That(testTrie.HowManyStartsWithPrefix("he"), Is.EqualTo(4));
++    }
++
++    [Test]
++    public void SizeTest()
++    {
++        var testTrie = new Trie();
++        testTrie.Add("he");
++        testTrie.Add("hers");
++        testTrie.Add("hell");
++        testTrie.Add("help");
++        testTrie.Add("she");
++        Assert.That(testTrie.Size, Is.EqualTo(5));
++        testTrie.Remove("help");
++        testTrie.Remove("he");
++        Assert.That(testTrie.Size, Is.EqualTo(3));
++    }
++}
+\ No newline at end of file
+
+
+diff --git a/HW2/ConsoleApp1/Tests/Tests.csproj b/HW2/ConsoleApp1/Tests/Tests.csproj
+new file mode 100644
+index 0000000..faf0828
+--- /dev/null
++++ b/HW2/ConsoleApp1/Tests/Tests.csproj
+@@ -0,0 +1,28 @@
++﻿<Project Sdk="Microsoft.NET.Sdk">
++
++    <PropertyGroup>
++        <TargetFramework>net9.0</TargetFramework>
++        <LangVersion>latest</LangVersion>
++        <ImplicitUsings>enable</ImplicitUsings>
++        <Nullable>enable</Nullable>
++        <IsPackable>false</IsPackable>
++        <RootNamespace>TestProject1</RootNamespace>
++    </PropertyGroup>
++
++    <ItemGroup>
++        <PackageReference Include="coverlet.collector" Version="6.0.2"/>
++        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0"/>
++        <PackageReference Include="NUnit" Version="4.2.2"/>
++        <PackageReference Include="NUnit.Analyzers" Version="4.4.0"/>
++        <PackageReference Include="NUnit3TestAdapter" Version="4.6.0"/>
++    </ItemGroup>
++
++    <ItemGroup>
++        <Using Include="NUnit.Framework"/>
++    </ItemGroup>
++
++    <ItemGroup>
++      <ProjectReference Include="..\ConsoleApp1\ConsoleApp1.csproj" />
++    </ItemGroup>
++
++</Project>

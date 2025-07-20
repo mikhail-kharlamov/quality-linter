@@ -1,0 +1,763 @@
+diff --git 
+
+diff --git a/HW8/calculator/calculator/calculator.sln b/HW8/calculator/calculator/calculator.sln
+new file mode 100644
+index 0000000..5679662
+--- /dev/null
++++ b/HW8/calculator/calculator/calculator.sln
+@@ -0,0 +1,22 @@
++﻿
++Microsoft Visual Studio Solution File, Format Version 12.00
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "calculator", "calculator\calculator.csproj", "{2934DBC3-84C5-408D-9532-2A35A23D69D1}"
++EndProject
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "сalculator.Tests", "сalculator.Tests\сalculator.Tests.csproj", "{A1B4C260-DCB8-4FB9-A7EB-7462C44C0A83}"
++EndProject
++Global
++	GlobalSection(SolutionConfigurationPlatforms) = preSolution
++		Debug|Any CPU = Debug|Any CPU
++		Release|Any CPU = Release|Any CPU
++	EndGlobalSection
++	GlobalSection(ProjectConfigurationPlatforms) = postSolution
++		{2934DBC3-84C5-408D-9532-2A35A23D69D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
++		{2934DBC3-84C5-408D-9532-2A35A23D69D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
++		{2934DBC3-84C5-408D-9532-2A35A23D69D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
++		{2934DBC3-84C5-408D-9532-2A35A23D69D1}.Release|Any CPU.Build.0 = Release|Any CPU
++		{A1B4C260-DCB8-4FB9-A7EB-7462C44C0A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
++		{A1B4C260-DCB8-4FB9-A7EB-7462C44C0A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
++		{A1B4C260-DCB8-4FB9-A7EB-7462C44C0A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
++		{A1B4C260-DCB8-4FB9-A7EB-7462C44C0A83}.Release|Any CPU.Build.0 = Release|Any CPU
++	EndGlobalSection
++EndGlobal
+
+
+diff --git a/HW8/calculator/calculator/calculator/App.axaml b/HW8/calculator/calculator/calculator/App.axaml
+new file mode 100644
+index 0000000..ce81df9
+--- /dev/null
++++ b/HW8/calculator/calculator/calculator/App.axaml
+@@ -0,0 +1,10 @@
++<Application xmlns="https://github.com/avaloniaui"
++             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
++             x:Class="Calculator.App">
++    <Application.Styles>
++        <FluentTheme />
++        <Style Selector="Window.background">
++            <Setter Property="Background" Value="#1E1E1E"/>
++        </Style>
++    </Application.Styles>
++</Application>
+
+
+diff --git a/HW8/calculator/calculator/calculator/App.axaml.cs b/HW8/calculator/calculator/calculator/App.axaml.cs
+new file mode 100644
+index 0000000..1bf510d
+--- /dev/null
++++ b/HW8/calculator/calculator/calculator/App.axaml.cs
+@@ -0,0 +1,23 @@
++using Avalonia;
++using Avalonia.Controls.ApplicationLifetimes;
++using Avalonia.Markup.Xaml;
++
++namespace Calculator
++{
++    public partial class App : Application
++    {
++        public override void Initialize()
++        {
++            AvaloniaXamlLoader.Load(this);
++        }
++
++        public override void OnFrameworkInitializationCompleted()
++        {
++            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
++            {
++                desktop.MainWindow = new MainWindow();
++            }
++            base.OnFrameworkInitializationCompleted();
++        }
++    }
++}
+\ No newline at end of file
+
+
+diff --git a/HW8/calculator/calculator/calculator/Calculator.cs b/HW8/calculator/calculator/calculator/Calculator.cs
+new file mode 100644
+index 0000000..009295d
+--- /dev/null
++++ b/HW8/calculator/calculator/calculator/Calculator.cs
+@@ -0,0 +1,155 @@
++// <copyright file="SparseVector.cs" company="Mikhail Kharlamov">
++// Copyright (c) Mikhail Kharlamov. All rights reserved.
++// </copyright>
++
++namespace Calculator;
++
++/// <summary>
++/// Represents the core logic for a calculator with basic arithmetic operations.
++/// Maintains calculator state and performs calculations.
++/// </summary>
++public class CalculatorLogic
++{
++    private string displayValue = "0";
++
++    private double number = 0;
++
++    private char? operation = null;
++
++    private string buffer = "";
++
++    /// <summary>
++    /// Gets the current display value of the calculator.
++    /// </summary>
++    /// <returns>The string representation of the current display value.</returns>
++    /// <remarks>
++    /// Returns "0" if the display value is empty.
++    /// </remarks>
++    public string GetDisplay() => string.IsNullOrEmpty(this.displayValue) ? "0" : this.displayValue;
++
++    /// <summary>
++    /// Adds a digit to the current input buffer
++    /// </summary>
++    /// <param name="digit">The digit character to add (0-9).</param>
++    /// <exception cref="ArgumentException">Thrown if the input is not a valid digit.</exception>
++    public void AddDigit(char digit)
++    {
++        if (this.displayValue != "0")
++        {
++            this.buffer += digit.ToString();
++        }
++        else
++        {
++            this.buffer = digit.ToString();
++        }
++        this.displayValue = this.buffer;
++    }
++
++    /// <summary>
++    /// Sets the arithmetic operation to perform.
++    /// </summary>
++    /// <param name="operation">The operation character (+, -, *, /, =).</param>
++    /// <exception cref="ArgumentException">Thrown if the operation is not supported.</exception>
++    public void SetOperator(char operation)
++    {
++        if (!string.IsNullOrEmpty(this.buffer))
++        {
++            if (this.operation is null)
++            {
++                this.number = double.Parse(this.buffer);
++            }
++            else
++            {
++                var newNumber = double.Parse(this.buffer);
++                switch (this.operation)
++                {
++                    case '+':
++                        this.number += newNumber;
++                        break;
++                    case '-':
++                        this.number -= newNumber;
++                        break;
++                    case '*':
++                        this.number *= newNumber;
++                        break;
++                    case '/':
++                        this.number /= newNumber;
++                        break;
++                }
++            }
++        }
++
++        this.displayValue = this.number.ToString();
++        this.buffer = "";
++        if (operation != '=')
++        {
++            this.operation = operation;
++        }
++        else
++        {
++            this.operation = null;
++        }
++    }
++
++    /// <summary>
++    /// Resets the calculator to its initial state.
++    /// </summary>
++    public void Clear()
++    {
++        this.displayValue = "0";
++        this.number = 0;
++        this.operation = null;
++        this.buffer = "";
++    }
++
++    /// <summary>
++    /// Performs special calculator operations.
++    /// </summary>
++    /// <param name="operator">The special operation to perform (",", "+/-", "%").</param>
++    /// <exception cref="ArgumentException">Thrown if the operator is not supported.</exception>
++    public void SetServiceOperator(string @operator)
++    {
++        switch (@operator)
++        {
++            case ",":
++                if (!this.buffer.Contains(','))
++                {
++                    this.buffer += ",";
++                }
++                break;
++            case "+/-":
++                if (!this.buffer.Contains('-'))
++                {
++                    this.buffer = "-" + this.buffer;
++                }
++                else
++                {
++                    this.buffer = this.buffer.Substring(1);
++                }
++                break;
++            case "%":
++                this.SetOperator('/');
++                foreach (var digit in "100")
++                {
++                    this.AddDigit(digit);
++                }
++                this.SetOperator('=');
++                return;
++        }
++
++        if (this.buffer == ",")
++        {
++            this.displayValue += this.buffer;
++            this.buffer = this.displayValue;
++        }
++        else if (this.buffer == "-")
++        {
++            this.buffer += this.displayValue;
++            this.displayValue = this.buffer;
++        }
++        else
++        {
++            this.displayValue = this.buffer;
++        }
++    }
++}
+\ No newline at end of file
+
+
+diff --git a/HW8/calculator/calculator/calculator/MainWindow.axaml b/HW8/calculator/calculator/calculator/MainWindow.axaml
+new file mode 100644
+index 0000000..1ad44cc
+--- /dev/null
++++ b/HW8/calculator/calculator/calculator/MainWindow.axaml
+@@ -0,0 +1,130 @@
++<Window xmlns="https://github.com/avaloniaui"
++        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
++        xmlns:vm="using:Calculator"
++        x:Class="Calculator.MainWindow"
++        Title="Calculator"
++        Width="300" Height="500"
++        CanResize="False"
++        WindowStartupLocation="CenterScreen"
++        TransparencyLevelHint="None"
++        Background="Transparent"
++        FontFamily="SF Pro Display, Segoe UI, Arial">
++    
++    <Design.DataContext>
++        <vm:MainWindowViewModel />
++    </Design.DataContext>
++
++    <Window.DataContext>
++        <vm:MainWindowViewModel />
++    </Window.DataContext>
++
++    <Border CornerRadius="20" 
++            Background="#2C2C2E" 
++            Margin="10"
++            BoxShadow="0 10 20 #00000030">
++        
++        <StackPanel Margin="15" Spacing="15">
++            <Border CornerRadius="10" Background="#1C1C1E" Padding="15">
++                <TextBlock Text="{Binding Display}" 
++                           FontSize="48"
++                           FontWeight="Light"
++                           Foreground="White"
++                           HorizontalAlignment="Right"
++                           VerticalAlignment="Bottom"
++                           TextAlignment="Right"/>
++            </Border>
++            
++            <UniformGrid Columns="4" Rows="5" Margin="0 10 0 0">
++                <Button Content="C" Command="{Binding ClearCommand}" 
++                        Classes="GrayButton"/>
++                <Button Content="+/-" Command="{Binding ServiceCommand}"
++                        Classes="GrayButton" CommandParameter="+/-"/>
++                <Button Content="%" Command="{Binding ServiceCommand}" 
++                        Classes="GrayButton" CommandParameter="%"/>
++                <Button Content="÷" Command="{Binding OperatorCommand}" 
++                        Classes="OrangeButton" CommandParameter="/"/>
++                
++                <Button Content="7" Command="{Binding DigitCommand}" 
++                        Classes="DarkButton" CommandParameter="7"/>
++                <Button Content="8" Command="{Binding DigitCommand}" 
++                        Classes="DarkButton" CommandParameter="8"/>
++                <Button Content="9" Command="{Binding DigitCommand}" 
++                        Classes="DarkButton" CommandParameter="9"/>
++                <Button Content="×" Command="{Binding OperatorCommand}" 
++                        Classes="OrangeButton" CommandParameter="*"/>
++                
++                <Button Content="4" Command="{Binding DigitCommand}" 
++                        Classes="DarkButton" CommandParameter="4"/>
++                <Button Content="5" Command="{Binding DigitCommand}" 
++                        Classes="DarkButton" CommandParameter="5"/>
++                <Button Content="6" Command="{Binding DigitCommand}" 
++                        Classes="DarkButton" CommandParameter="6"/>
++                <Button Content="-" Command="{Binding OperatorCommand}" 
++                        Classes="OrangeButton" CommandParameter="-"/>
++                
++                <Button Content="1" Command="{Binding DigitCommand}" 
++                        Classes="DarkButton" CommandParameter="1"/>
++                <Button Content="2" Command="{Binding DigitCommand}" 
++                        Classes="DarkButton" CommandParameter="2"/>
++                <Button Content="3" Command="{Binding DigitCommand}" 
++                        Classes="DarkButton" CommandParameter="3"/>
++                <Button Content="+" Command="{Binding OperatorCommand}" 
++                        Classes="OrangeButton" CommandParameter="+"/>
++                
++                <Button Content="0" Command="{Binding DigitCommand}" 
++                        Classes="DarkButton" Grid.ColumnSpan="2"
++                        CommandParameter="0"/>
++                <Button Content="," Command="{Binding ServiceCommand}" 
++                        Classes="DarkButton" CommandParameter=","/>
++                <Button Content="=" Command="{Binding OperatorCommand}" 
++                        Classes="OrangeButton" CommandParameter="="/>
++            </UniformGrid>
++        </StackPanel>
++    </Border>
++
++    <Window.Styles>
++        <Style Selector="Button">
++            <Setter Property="HorizontalContentAlignment" Value="Center"/>
++            <Setter Property="VerticalContentAlignment" Value="Center"/>
++            <Setter Property="FontSize" Value="28"/>
++            <Setter Property="Foreground" Value="White"/>
++            <Setter Property="BorderThickness" Value="0"/>
++            <Setter Property="CornerRadius" Value="50"/>
++            <Setter Property="Width" Value="60"/>
++            <Setter Property="Height" Value="60"/>
++            <Setter Property="Margin" Value="5"/>
++            <Setter Property="Padding" Value="0"/>
++        </Style>
++        
++        <Style Selector="Button.GrayButton">
++            <Setter Property="Background" Value="#A5A5A5"/>
++            <Setter Property="Foreground" Value="Black"/>
++            <Setter Property="HorizontalContentAlignment" Value="Center"/>
++            <Setter Property="VerticalContentAlignment" Value="Center"/>
++        </Style>
++        
++        <Style Selector="Button.DarkButton">
++            <Setter Property="Background" Value="#333333"/>
++            <Setter Property="HorizontalContentAlignment" Value="Center"/>
++            <Setter Property="VerticalContentAlignment" Value="Center"/>
++        </Style>
++        
++        <Style Selector="Button.OrangeButton">
++            <Setter Property="Background" Value="#FF9F0A"/>
++            <Setter Property="HorizontalContentAlignment" Value="Center"/>
++            <Setter Property="VerticalContentAlignment" Value="Center"/>
++        </Style>
++        
++        <Style Selector="Button:pointerover">
++            <Setter Property="Opacity" Value="0.8"/>
++            <Setter Property="HorizontalContentAlignment" Value="Center"/>
++            <Setter Property="VerticalContentAlignment" Value="Center"/>
++        </Style>
++        
++        <Style Selector="Button:pressed">
++            <Setter Property="Opacity" Value="0.6"/>
++            <Setter Property="HorizontalContentAlignment" Value="Center"/>
++            <Setter Property="VerticalContentAlignment" Value="Center"/>
++        </Style>
++    </Window.Styles>
++</Window>
+\ No newline at end of file
+
+
+diff --git a/HW8/calculator/calculator/calculator/MainWindow.axaml.cs b/HW8/calculator/calculator/calculator/MainWindow.axaml.cs
+new file mode 100644
+index 0000000..25f43d0
+--- /dev/null
++++ b/HW8/calculator/calculator/calculator/MainWindow.axaml.cs
+@@ -0,0 +1,11 @@
++namespace Calculator;
++
++using Avalonia.Controls;
++
++public partial class MainWindow : Window
++{
++    public MainWindow()
++    {
++        InitializeComponent();
++    }
++}
+\ No newline at end of file
+
+
+diff --git a/HW8/calculator/calculator/calculator/MainWindowViewModel.cs b/HW8/calculator/calculator/calculator/MainWindowViewModel.cs
+new file mode 100644
+index 0000000..bb08cb9
+--- /dev/null
++++ b/HW8/calculator/calculator/calculator/MainWindowViewModel.cs
+@@ -0,0 +1,110 @@
++// <copyright file="SparseVector.cs" company="Mikhail Kharlamov">
++// Copyright (c) Mikhail Kharlamov. All rights reserved.
++// </copyright>
++
++namespace Calculator;
++
++using System.ComponentModel;
++using System.Runtime.CompilerServices;
++using System.Windows.Input;
++
++/// <summary>
++/// ViewModel class for the calculator's main window, implementing INotifyPropertyChanged
++/// to support data binding and command handling.
++/// </summary>
++public class MainWindowViewModel : INotifyPropertyChanged
++{
++    private readonly CalculatorLogic calculator = new();
++
++    private string display = "0";
++    
++    /// <summary>
++    /// Gets or sets the current display value of the calculator.
++    /// </summary>
++    /// <value>
++    /// The string representation of the current calculator display.
++    /// </value>
++    /// <remarks>
++    /// Implements property change notification for data binding.
++    /// </remarks>
++    public string Display
++    {
++        get => this.display;
++        set
++        {
++            if (this.display != value)
++            {
++                this.display = value;
++                OnPropertyChanged();
++            }
++        }
++    }
++
++    /// <summary>
++    /// Command for handling digit button presses (0-9).
++    /// </summary>
++    public ICommand DigitCommand { get; }
++    
++    /// <summary>
++    /// Command for handling arithmetic operator button presses (+, -, *, /, =).
++    /// </summary>
++    public ICommand OperatorCommand { get; }
++    
++    /// <summary>
++    /// Command for handling the clear (C) button press.
++    /// </summary>
++    public ICommand ClearCommand { get; }
++    
++    /// <summary>
++    /// Command for handling special service operations (decimal point, sign change, percentage).
++    /// </summary>
++    public ICommand ServiceCommand { get; }
++
++    /// <summary>
++    /// Initializes a new instance of the MainWindowViewModel class.
++    /// </summary>
++    /// <remarks>
++    /// Sets up all command handlers and initializes calculator state.
++    /// </remarks>
++    public MainWindowViewModel()
++    {
++        DigitCommand = new RelayCommand(param =>
++        {
++            this.calculator.AddDigit(param.ToString()[0]);
++            this.Display = calculator.GetDisplay();
++        });
++
++        OperatorCommand = new RelayCommand(param =>
++        {
++            this.calculator.SetOperator(param.ToString()[0]);
++            this.Display = calculator.GetDisplay();
++        });
++
++        ClearCommand = new RelayCommand(_ =>
++        {
++            this.calculator.Clear();
++            this.Display = calculator.GetDisplay();
++        });
++
++        ServiceCommand = new RelayCommand(param =>
++        {
++            this.calculator.SetServiceOperator(param.ToString());
++            this.Display = calculator.GetDisplay();
++        });
++    }
++
++    /// <summary>
++    /// Occurs when a property value changes.
++    /// </summary>
++    public event PropertyChangedEventHandler? PropertyChanged;
++    
++    /// <summary>
++    /// Raises the PropertyChanged event.
++    /// </summary>
++    /// <param name="name">The name of the property that changed.</param>
++    /// <remarks>
++    /// Uses CallerMemberName attribute to automatically get property name if not specified.
++    /// </remarks>
++    private void OnPropertyChanged([CallerMemberName] string? name = null) =>
++        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
++}
+\ No newline at end of file
+
+
+diff --git a/HW8/calculator/calculator/calculator/Program.cs b/HW8/calculator/calculator/calculator/Program.cs
+new file mode 100644
+index 0000000..351a3f8
+--- /dev/null
++++ b/HW8/calculator/calculator/calculator/Program.cs
+@@ -0,0 +1,45 @@
++// <copyright file="SparseVector.cs" company="Mikhail Kharlamov">
++// Copyright (c) Mikhail Kharlamov. All rights reserved.
++// </copyright>
++
++using Avalonia;
++
++namespace Calculator;
++
++/// <summary>
++/// The main entry point class for the Calculator application.
++/// </summary>
++internal class Program
++{
++    /// <summary>
++    /// The main entry method for the application.
++    /// </summary>
++    /// <param name="args">Command line arguments passed to the application.</param>
++    /// <remarks>
++    /// This method configures and starts the Avalonia application using classic desktop lifetime.
++    /// The <see cref="STAThreadAttribute"/> ensures the application runs in single-threaded
++    /// apartment mode, which is required for some Windows components.
++    /// </remarks>
++    [STAThread]
++    public static void Main(string[] args) =>
++        BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
++
++    /// <summary>
++    /// Configures and builds the Avalonia application.
++    /// </summary>
++    /// <returns>
++    /// An <see cref="AppBuilder"/> instance configured for the Calculator application.
++    /// </returns>
++    /// <remarks>
++    /// This method:
++    /// <list type="bullet">
++    /// <item><description>Configures the application using the <see cref="App"/> class.</description></item>
++    /// <item><description>Uses platform detection to determine the appropriate runtime settings.</description></item>
++    /// <item><description>Sets up logging to trace output.</description></item>
++    /// </list>
++    /// </remarks>
++    public static AppBuilder BuildAvaloniaApp()
++        => AppBuilder.Configure<App>()
++            .UsePlatformDetect()
++            .LogToTrace();
++}
+\ No newline at end of file
+
+
+diff --git a/HW8/calculator/calculator/calculator/RelayCommand.cs b/HW8/calculator/calculator/calculator/RelayCommand.cs
+new file mode 100644
+index 0000000..c6fdb15
+--- /dev/null
++++ b/HW8/calculator/calculator/calculator/RelayCommand.cs
+@@ -0,0 +1,62 @@
++// <copyright file="SparseVector.cs" company="Mikhail Kharlamov">
++// Copyright (c) Mikhail Kharlamov. All rights reserved.
++// </copyright>
++
++namespace Calculator;
++
++using System.Windows.Input;
++
++/// <summary>
++/// Implementation of <see cref="ICommand"/> that delegates execution to specified actions.
++/// </summary>
++/// <remarks>
++/// This command implementation is commonly used in MVVM (Model-View-ViewModel) patterns
++/// to bind UI actions to ViewModel methods while maintaining separation of concerns.
++/// </remarks>
++public class RelayCommand : ICommand
++{
++    private readonly Action<object?> execute;
++    private readonly Func<object?, bool>? canExecute;
++
++    /// <summary>
++    /// Initializes a new instance of the <see cref="RelayCommand"/> class.
++    /// </summary>
++    /// <param name="execute">The action to execute when the command is invoked.</param>
++    /// <param name="canExecute">Optional predicate to determine if the command can execute.</param>
++    /// <exception cref="ArgumentNullException">Thrown when the execute action is null.</exception>
++    public RelayCommand(Action<object?> execute, Func<object?, bool>? canExecute = null)
++    {
++        this.execute = execute;
++        this.canExecute = canExecute;
++    }
++
++    /// <summary>
++    /// Determines whether the command can execute in its current state.
++    /// </summary>
++    /// <param name="parameter">Data used by the command. Can be null.</param>
++    /// <returns>
++    /// true if this command can be executed; otherwise, false.
++    /// Returns true if no canExecute predicate was provided to the constructor.
++    /// </returns>
++    public bool CanExecute(object? parameter) => this.canExecute?.Invoke(parameter) ?? true;
++
++    /// <summary>
++    /// Executes the command.
++    /// </summary>
++    /// <param name="parameter">Data used by the command. Can be null.</param>
++    public void Execute(object? parameter) => this.execute(parameter);
++
++    /// <summary>
++    /// Occurs when changes occur that affect whether the command should execute.
++    /// </summary>
++    public event EventHandler? CanExecuteChanged;
++    
++    /// <summary>
++    /// Raises the <see cref="CanExecuteChanged"/> event to indicate
++    /// the command's ability to execute has changed.
++    /// </summary>
++    /// <remarks>
++    /// Call this method when conditions affecting the command's executability change.
++    /// </remarks>
++    public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
++}
+\ No newline at end of file
+
+
+diff --git a/HW8/calculator/calculator/calculator/calculator.csproj b/HW8/calculator/calculator/calculator/calculator.csproj
+new file mode 100644
+index 0000000..804986a
+--- /dev/null
++++ b/HW8/calculator/calculator/calculator/calculator.csproj
+@@ -0,0 +1,17 @@
++﻿<Project Sdk="Microsoft.NET.Sdk">
++
++    <PropertyGroup>
++        <OutputType>Exe</OutputType>
++        <TargetFramework>net9.0</TargetFramework>
++        <ImplicitUsings>enable</ImplicitUsings>
++        <Nullable>enable</Nullable>
++    </PropertyGroup>
++
++    <ItemGroup>
++      <PackageReference Include="Avalonia" Version="11.3.0" />
++      <PackageReference Include="Avalonia.Desktop" Version="11.3.0" />
++      <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.0" />
++      <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.0" />
++    </ItemGroup>
++
++</Project>
+
+
+diff --git "a/HW8/calculator/calculator/\321\201alculator.Tests/Tests.cs" "b/HW8/calculator/calculator/\321\201alculator.Tests/Tests.cs"
+new file mode 100644
+index 0000000..b4043d1
+--- /dev/null
++++ "b/HW8/calculator/calculator/\321\201alculator.Tests/Tests.cs"
+@@ -0,0 +1,45 @@
++﻿// <copyright file="SparseVector.cs" company="Mikhail Kharlamov">
++// Copyright (c) Mikhail Kharlamov. All rights reserved.
++// </copyright>
++
++namespace Calculator.Tests;
++
++using Calculator;
++
++public class Tests
++{
++    private CalculatorLogic calculator;
++
++    [SetUp]
++    public void Setup()
++    {
++        this.calculator = new CalculatorLogic();
++    }
++
++    [Test]
++    public void CalculatorLogicSimpleArithmeticTest()
++    {
++        this.calculator.AddDigit('2');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("2"));
++        this.calculator.AddDigit('3');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("23"));
++        this.calculator.SetOperator('+');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("23"));
++        this.calculator.AddDigit('3');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("3"));
++        this.calculator.SetOperator('-');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("26"));
++        this.calculator.AddDigit('5');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("5"));
++        this.calculator.SetOperator('/');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("21"));
++        this.calculator.AddDigit('3');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("3"));
++        this.calculator.SetOperator('*');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("7"));
++        this.calculator.AddDigit('2');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("2"));
++        this.calculator.SetOperator('=');
++        Assert.That(this.calculator.GetDisplay(), Is.EqualTo("14"));
++    }
++}
+\ No newline at end of file
+
+
+diff --git "a/HW8/calculator/calculator/\321\201alculator.Tests/\321\201alculator.Tests.csproj" "b/HW8/calculator/calculator/\321\201alculator.Tests/\321\201alculator.Tests.csproj"
+new file mode 100644
+index 0000000..51ee31e
+--- /dev/null
++++ "b/HW8/calculator/calculator/\321\201alculator.Tests/\321\201alculator.Tests.csproj"
+@@ -0,0 +1,29 @@
++﻿<Project Sdk="Microsoft.NET.Sdk">
++
++    <PropertyGroup>
++        <TargetFramework>net9.0</TargetFramework>
++        <LangVersion>latest</LangVersion>
++        <ImplicitUsings>enable</ImplicitUsings>
++        <Nullable>enable</Nullable>
++        <IsPackable>false</IsPackable>
++        <RootNamespace>Calculator.Tests</RootNamespace>
++    </PropertyGroup>
++
++    <ItemGroup>
++        <PackageReference Include="Avalonia" Version="11.3.0" />
++        <PackageReference Include="coverlet.collector" Version="6.0.2"/>
++        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0"/>
++        <PackageReference Include="NUnit" Version="4.2.2"/>
++        <PackageReference Include="NUnit.Analyzers" Version="4.4.0"/>
++        <PackageReference Include="NUnit3TestAdapter" Version="4.6.0"/>
++    </ItemGroup>
++
++    <ItemGroup>
++        <Using Include="NUnit.Framework"/>
++    </ItemGroup>
++
++    <ItemGroup>
++      <ProjectReference Include="..\calculator\calculator.csproj" />
++    </ItemGroup>
++
++</Project>
