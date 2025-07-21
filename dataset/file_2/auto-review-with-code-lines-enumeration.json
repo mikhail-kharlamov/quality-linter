@@ -1,0 +1,61 @@
+{
+    "mark": 85,
+    "comments": [
+        {
+            "path": "CW2/Button/App.axaml.cs",
+            "start_line": 18,
+            "end_line": 18,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Consider checking if 'MainWindow' is null before assigning it to 'desktop.MainWindow' to avoid potential null reference exceptions."
+        },
+        {
+            "path": "CW2/Button/Button.csproj",
+            "start_line": 5,
+            "end_line": 5,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "TargetFramework 'net9.0' is not a valid framework identifier. Please ensure this is a supported framework."
+        },
+        {
+            "path": "CW2/Button/MainWindow.axaml.cs",
+            "start_line": 9,
+            "end_line": 9,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Typo in documentation: remove the extra '>' at the end of the comment line."
+        },
+        {
+            "path": "CW2/Button/MainWindow.axaml.cs",
+            "start_line": 44,
+            "end_line": 44,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Typo in documentation: remove the extra '>' at the end of the comment line."
+        },
+        {
+            "path": "CW2/Button/MainWindow.axaml.cs",
+            "start_line": 54,
+            "end_line": 54,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Typo in documentation: remove the extra '>' at the end of the comment line."
+        },
+        {
+            "path": "CW2/Button/MainWindow.axaml.cs",
+            "start_line": 80,
+            "end_line": 82,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "There is a logical error in the while loop condition 'mouseY > y + EscapeButton.Bounds.Height / 2', which should be 'mouseY > y - EscapeButton.Bounds.Height / 2' to correctly escape from the logic loop."
+        },
+        {
+            "path": "CW2/Button/MainWindow.axaml.cs",
+            "start_line": 77,
+            "end_line": 77,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "The 'Random' instance should be initialized outside of the method to prevent generating repeated sequences on quick successive calls."
+        }
+    ]
+}

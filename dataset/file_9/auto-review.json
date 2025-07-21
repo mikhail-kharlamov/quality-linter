@@ -1,61 +1,61 @@
 {
-    "mark": 88,
-    "comments": [
-        {
-            "path": "SkipList/SkipList/SkipList.cs",
-            "start_line": 33,
-            "end_line": 33,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Potential issue: Using 'Comparer<T>.Default' directly in the constructor can lead to runtime exceptions for types that do not implement IComparable. Consider providing an error message or documentation note about this limitation."
-        },
-        {
-            "path": "SkipList/SkipList/SkipList.cs",
-            "start_line": 32,
-            "end_line": 32,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Suggestion: Consider using a 'IComparer<T>' rather than 'Comparer<T>' as the parameter type for more flexibility."
-        },
-        {
-            "path": "SkipList/SkipList/SkipList.cs",
-            "start_line": 76,
-            "end_line": 76,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Minor typo: 'occurrecne' should be 'occurrence'."
-        },
-        {
-            "path": "SkipList/SkipList/SkipList.cs",
-            "start_line": 213,
-            "end_line": 213,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Potential issue: The 'MoveNext' method does not handle cases where 'current' is null after 'current = current.Next;'. Consider adding a null check."
-        },
-        {
-            "path": "SkipList/SkipListTests/SkipListTests.cs",
-            "start_line": 23,
-            "end_line": 23,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Typo: 'SKipList' should be 'SkipList'."
-        },
-        {
-            "path": "SkipList/SkipListTests/SkipListTests.cs",
-            "start_line": 5,
-            "end_line": 5,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Consider adding more tests for edge cases, such as adding duplicate elements or handling null values if applicable."
-        },
-        {
-            "path": "SkipList/SkipListTests/SkipListTests.cs",
-            "start_line": 47,
-            "end_line": 47,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Error: Incorrect initialization syntax for 'SkipList'. Correctly initialize collections in constructor calls by using 'new List<int> { ... }' or similar."
-        }
-    ]
+  "mark": 88,
+  "comments": [
+    {
+      "path": "SkipList/SkipList/SkipList.cs",
+      "start_line": 33,
+      "end_line": 33,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Potential issue: Using 'Comparer<T>.Default' directly in the constructor can lead to runtime exceptions for types that do not implement IComparable. Consider providing an error message or documentation note about this limitation."
+    },
+    {
+      "path": "SkipList/SkipList/SkipList.cs",
+      "start_line": 32,
+      "end_line": 32,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Suggestion: Consider using a 'IComparer<T>' rather than 'Comparer<T>' as the parameter type for more flexibility."
+    },
+    {
+      "path": "SkipList/SkipList/SkipList.cs",
+      "start_line": 76,
+      "end_line": 76,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Minor typo: 'occurrecne' should be 'occurrence'."
+    },
+    {
+      "path": "SkipList/SkipList/SkipList.cs",
+      "start_line": 213,
+      "end_line": 213,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Potential issue: The 'MoveNext' method does not handle cases where 'current' is null after 'current = current.Next;'. Consider adding a null check."
+    },
+    {
+      "path": "SkipList/SkipListTests/SkipListTests.cs",
+      "start_line": 23,
+      "end_line": 23,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Typo: 'SKipList' should be 'SkipList'."
+    },
+    {
+      "path": "SkipList/SkipListTests/SkipListTests.cs",
+      "start_line": 5,
+      "end_line": 5,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Consider adding more tests for edge cases, such as adding duplicate elements or handling null values if applicable."
+    },
+    {
+      "path": "SkipList/SkipListTests/SkipListTests.cs",
+      "start_line": 47,
+      "end_line": 47,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Error: Incorrect initialization syntax for 'SkipList'. Correctly initialize collections in constructor calls by using 'new List<int> { ... }' or similar."
+    }
+  ]
 }

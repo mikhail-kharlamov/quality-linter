@@ -1,53 +1,53 @@
 {
-    "mark": 78,
-    "comments": [
-        {
-            "path": "HW8/calculator/calculator/calculator/Calculator.cs",
-            "start_line": 21,
-            "end_line": 21,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Consider validating or handling non-numeric characters before parsing buffer to double to prevent exceptions."
-        },
-        {
-            "path": "HW8/calculator/calculator/calculator/Calculator.cs",
-            "start_line": 33,
-            "end_line": 51,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Division by zero will lead to an exception. Consider adding a check to safely handle this case."
-        },
-        {
-            "path": "HW8/calculator/calculator/calculator/MainWindowViewModel.cs",
-            "start_line": 40,
-            "end_line": 40,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Property change notification can be improved by using the [CallerMemberName] attribute to simplify the OnPropertyChanged call."
-        },
-        {
-            "path": "HW8/calculator/calculator/calculator/MainWindowViewModel.cs",
-            "start_line": 69,
-            "end_line": 78,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "RelayCommand is used without showing its definition or implementation. Consider including it in the code if custom or referencing where it's implemented."
-        },
-        {
-            "path": "HW8/calculator/calculator/сalculator.Tests/Tests.cs",
-            "start_line": 14,
-            "end_line": 14,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Setup could be streamlined by using setup initializer rather than creating the calculator instance in each test."
-        },
-        {
-            "path": "HW8/calculator/calculator/сalculator.Tests/Tests.cs",
-            "start_line": 21,
-            "end_line": 25,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Test is missing boundary cases, such as negative numbers and zero division. Consider adding more test cases for comprehensive test coverage."
-        }
-    ]
+  "mark": 78,
+  "comments": [
+    {
+      "path": "HW8/calculator/calculator/calculator/Calculator.cs",
+      "start_line": 21,
+      "end_line": 21,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Consider validating or handling non-numeric characters before parsing buffer to double to prevent exceptions."
+    },
+    {
+      "path": "HW8/calculator/calculator/calculator/Calculator.cs",
+      "start_line": 33,
+      "end_line": 51,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Division by zero will lead to an exception. Consider adding a check to safely handle this case."
+    },
+    {
+      "path": "HW8/calculator/calculator/calculator/MainWindowViewModel.cs",
+      "start_line": 40,
+      "end_line": 40,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Property change notification can be improved by using the [CallerMemberName] attribute to simplify the OnPropertyChanged call."
+    },
+    {
+      "path": "HW8/calculator/calculator/calculator/MainWindowViewModel.cs",
+      "start_line": 69,
+      "end_line": 78,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "RelayCommand is used without showing its definition or implementation. Consider including it in the code if custom or referencing where it's implemented."
+    },
+    {
+      "path": "HW8/calculator/calculator/сalculator.Tests/Tests.cs",
+      "start_line": 14,
+      "end_line": 14,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Setup could be streamlined by using setup initializer rather than creating the calculator instance in each test."
+    },
+    {
+      "path": "HW8/calculator/calculator/сalculator.Tests/Tests.cs",
+      "start_line": 21,
+      "end_line": 25,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Test is missing boundary cases, such as negative numbers and zero division. Consider adding more test cases for comprehensive test coverage."
+    }
+  ]
 }

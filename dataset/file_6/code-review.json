@@ -1,98 +1,98 @@
 [
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/PriorityQueue.Tests.csproj",
-        "start_line": 17,
-        "end_line": 17,
-        "original_start_line": 17,
-        "original_end_line": 17,
-        "body": "Надо было ещё StyleCop подключить"
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/Tests.cs",
-        "start_line": 19,
-        "end_line": 19,
-        "original_start_line": 19,
-        "original_end_line": 19,
-        "body": "Это делается во всех тестах, можно было бы вынести в SetUp"
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/Tests.cs",
-        "start_line": 22,
-        "end_line": 22,
-        "original_start_line": 22,
-        "original_end_line": 22,
-        "body": "Нет теста на равные приоритеты. А надо проверять всё, что явно требовалось в условии"
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-        "start_line": 1,
-        "end_line": 1,
-        "original_start_line": 1,
-        "original_end_line": 1,
-        "body": "- Надо шапку с информацией о лицензии"
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-        "start_line": 3,
-        "end_line": 3,
-        "original_start_line": 3,
-        "original_end_line": 3,
-        "body": "Надо комментарии к каждому классу и каждому публичному методу/свойству/событию.\r\n\r\nИ надо, чтобы мне не надо было это писать, то есть надо подключить StyleCop"
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-        "start_line": 5,
-        "end_line": 5,
-        "original_start_line": 5,
-        "original_end_line": 5,
-        "body": "private-свойства — вещь довольно бессмысленная, потому что они ничем не лучше полей, но добавляют уровень косвенности обращения (имеют прямо настоящий геттер-сеттер, не имеют адреса в памяти и т.п.). Короче, это надо было сделать полями просто."
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-        "start_line": 18,
-        "end_line": 18,
-        "original_start_line": 18,
-        "original_end_line": 18,
-        "body": "А как без именованных полей кортежа можно запомнить, кто из них значение, а кто приоритет? :)"
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-        "start_line": 16,
-        "end_line": 16,
-        "original_start_line": 16,
-        "original_end_line": 16,
-        "body": "Метод очень странно называется, я так и не понял, кто из них Key и почему он Increase"
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-        "start_line": 14,
-        "end_line": 14,
-        "original_start_line": 14,
-        "original_end_line": 14,
-        "body": "Метод, удваивающий размер кучи, называется ResetHeap()? Какая-то беда с неймингом."
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-        "start_line": 20,
-        "end_line": 20,
-        "original_start_line": 20,
-        "original_end_line": 20,
-        "body": "TODO indeed! Просто Exception бросать нельзя, его потом поймать корректно невозможно. Тут бы больше подошло InvalidOperationException."
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/PriorityQueue.cs",
-        "start_line": 5,
-        "end_line": 5,
-        "original_start_line": 5,
-        "original_end_line": 5,
-        "body": "Не уверен, что этот класс даёт что-то сверх BinaryHeap, так что не уверен, что он нужен."
-    },
-    {
-        "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/PriorityQueue.cs",
-        "start_line": 12,
-        "end_line": 12,
-        "original_start_line": 12,
-        "original_end_line": 12,
-        "body": "Более агрессивно используйте `=>`"
-    }
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/PriorityQueue.Tests.csproj",
+    "start_line": 17,
+    "end_line": 17,
+    "original_start_line": 17,
+    "original_end_line": 17,
+    "body": "Надо было ещё StyleCop подключить"
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/Tests.cs",
+    "start_line": 19,
+    "end_line": 19,
+    "original_start_line": 19,
+    "original_end_line": 19,
+    "body": "Это делается во всех тестах, можно было бы вынести в SetUp"
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/Tests.cs",
+    "start_line": 22,
+    "end_line": 22,
+    "original_start_line": 22,
+    "original_end_line": 22,
+    "body": "Нет теста на равные приоритеты. А надо проверять всё, что явно требовалось в условии"
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+    "start_line": 1,
+    "end_line": 1,
+    "original_start_line": 1,
+    "original_end_line": 1,
+    "body": "- Надо шапку с информацией о лицензии"
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+    "start_line": 3,
+    "end_line": 3,
+    "original_start_line": 3,
+    "original_end_line": 3,
+    "body": "Надо комментарии к каждому классу и каждому публичному методу/свойству/событию.\r\n\r\nИ надо, чтобы мне не надо было это писать, то есть надо подключить StyleCop"
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+    "start_line": 5,
+    "end_line": 5,
+    "original_start_line": 5,
+    "original_end_line": 5,
+    "body": "private-свойства — вещь довольно бессмысленная, потому что они ничем не лучше полей, но добавляют уровень косвенности обращения (имеют прямо настоящий геттер-сеттер, не имеют адреса в памяти и т.п.). Короче, это надо было сделать полями просто."
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+    "start_line": 18,
+    "end_line": 18,
+    "original_start_line": 18,
+    "original_end_line": 18,
+    "body": "А как без именованных полей кортежа можно запомнить, кто из них значение, а кто приоритет? :)"
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+    "start_line": 16,
+    "end_line": 16,
+    "original_start_line": 16,
+    "original_end_line": 16,
+    "body": "Метод очень странно называется, я так и не понял, кто из них Key и почему он Increase"
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+    "start_line": 14,
+    "end_line": 14,
+    "original_start_line": 14,
+    "original_end_line": 14,
+    "body": "Метод, удваивающий размер кучи, называется ResetHeap()? Какая-то беда с неймингом."
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+    "start_line": 20,
+    "end_line": 20,
+    "original_start_line": 20,
+    "original_end_line": 20,
+    "body": "TODO indeed! Просто Exception бросать нельзя, его потом поймать корректно невозможно. Тут бы больше подошло InvalidOperationException."
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/PriorityQueue.cs",
+    "start_line": 5,
+    "end_line": 5,
+    "original_start_line": 5,
+    "original_end_line": 5,
+    "body": "Не уверен, что этот класс даёт что-то сверх BinaryHeap, так что не уверен, что он нужен."
+  },
+  {
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/PriorityQueue.cs",
+    "start_line": 12,
+    "end_line": 12,
+    "original_start_line": 12,
+    "original_end_line": 12,
+    "body": "Более агрессивно используйте `=>`"
+  }
 ]

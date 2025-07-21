@@ -1,114 +1,114 @@
 [
-    {
-        "path": "SkipList/SkipList/SkipList.cs",
-        "start_line": 70,
-        "end_line": 70,
-        "original_start_line": 69,
-        "original_end_line": 69,
-        "body": "Здесь и ниже модификаторов видимости не хватает"
-    },
-    {
-        "path": "SkipList/SkipList/SkipList.cs",
-        "start_line": 0,
-        "end_line": 0,
-        "original_start_line": 300,
-        "original_end_line": 300,
-        "body": "Зачем public?\r\nЕсли делать public, то надо в отдельный файл вынести. А если это private-вложенный тип, то ок"
-    },
-    {
-        "path": "SkipList/SkipList/SkipList.cs",
-        "start_line": 0,
-        "end_line": 0,
-        "original_start_line": 91,
-        "original_end_line": 94,
-        "body": "```suggestion\r\n    IEnumerator IEnumerable.GetEnumerator()\r\n        => GetEnumerator();\r\n```\r\nАналогично ниже"
-    },
-    {
-        "path": "SkipList/SkipList/SkipList.cs",
-        "start_line": 0,
-        "end_line": 0,
-        "original_start_line": 127,
-        "original_end_line": 130,
-        "body": "```suggestion\r\n    void IList<T>.Insert(int position, T item)\r\n        => throw new NotSupportedException();\r\n```"
-    },
-    {
-        "path": "SkipList/SkipList/SkipList.cs",
-        "start_line": 105,
-        "end_line": 105,
-        "original_start_line": 119,
-        "original_end_line": 119,
-        "body": "То есть на каждое добавление элемента будет создаваться +1 уровень у skip list?\r\n\r\nЕсли так, то надо какой-нибудь (а лучше умной) константой его размер ограничивать, чтобы производительность не страдала.\r\nДа и глубина рекурсии, используемой в Add, ограничена, так что при большом количестве элементов всё может сломаться"
-    },
-    {
-        "path": "SkipList/SkipList/SkipList.cs",
-        "start_line": 0,
-        "end_line": 0,
-        "original_start_line": 232,
-        "original_end_line": 232,
-        "body": "```suggestion\r\n        var result = false;\r\n```"
-    },
-    {
-        "path": "SkipList/SkipList/SkipList.cs",
-        "start_line": 0,
-        "end_line": 0,
-        "original_start_line": 267,
-        "original_end_line": 267,
-        "body": "это магическое число надо в константу вынести"
-    },
-    {
-        "path": "SkipList/SkipListTests/SkipListTests.cs",
-        "start_line": 0,
-        "end_line": 0,
-        "original_start_line": 4,
-        "original_end_line": 6,
-        "body": "```suggestion\r\n{\r\n    [Test]\r\n```"
-    },
-    {
-        "path": "SkipList/SkipListTests/SkipListTests.cs",
-        "start_line": 64,
-        "end_line": 64,
-        "original_start_line": 62,
-        "original_end_line": 62,
-        "body": "Здесь еще стоит Count проверить"
-    },
-    {
-        "path": "SkipList/SkipListTests/SkipListTests.cs",
-        "start_line": 61,
-        "end_line": 61,
-        "original_start_line": 59,
-        "original_end_line": 59,
-        "body": "Еще надо добавить тест, в котором элементы SkipList будут с помощью foreach перебираться"
-    },
-    {
-        "path": "SkipList/SkipList/SkipList.cs",
-        "start_line": 70,
-        "end_line": 70,
-        "original_start_line": 69,
-        "original_end_line": 69,
-        "body": "Когда я добавляю модификатор видимости, компилятор ругается ([cs0106](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0106?f1url=%3FappId%3Droslyn%26k%3Dk(CS0106))). Нужно не явно реализовывать?"
-    },
-    {
-        "path": "SkipList/SkipList/SkipList.cs",
-        "start_line": 105,
-        "end_line": 105,
-        "original_start_line": 119,
-        "original_end_line": 119,
-        "body": "У меня элемент поднимается с самого низа, каждый раз переходя на новый уровень с вероятностью 0.5 и если он поднялся на самый вверх и хочет еще то создается небольше одного уровня. Если уровней много, то новый элемент почти никогда не поднимется так высоко. Насколько я понял, при такой реализации должно быть примерно логарифм уровней. "
-    },
-    {
-        "path": "SkipList/SkipList/SkipList.cs",
-        "start_line": 70,
-        "end_line": 70,
-        "original_start_line": 69,
-        "original_end_line": 69,
-        "body": "Окей, тогда пусть так остается"
-    },
-    {
-        "path": "SkipList/SkipListTests/SkipListTests.cs",
-        "start_line": 31,
-        "end_line": 31,
-        "original_start_line": 31,
-        "original_end_line": 31,
-        "body": "```suggestion\r\n        foreach (var element in list)\r\n\r\n```"
-    }
+  {
+    "path": "SkipList/SkipList/SkipList.cs",
+    "start_line": 70,
+    "end_line": 70,
+    "original_start_line": 69,
+    "original_end_line": 69,
+    "body": "Здесь и ниже модификаторов видимости не хватает"
+  },
+  {
+    "path": "SkipList/SkipList/SkipList.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 300,
+    "original_end_line": 300,
+    "body": "Зачем public?\r\nЕсли делать public, то надо в отдельный файл вынести. А если это private-вложенный тип, то ок"
+  },
+  {
+    "path": "SkipList/SkipList/SkipList.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 91,
+    "original_end_line": 94,
+    "body": "```suggestion\r\n    IEnumerator IEnumerable.GetEnumerator()\r\n        => GetEnumerator();\r\n```\r\nАналогично ниже"
+  },
+  {
+    "path": "SkipList/SkipList/SkipList.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 127,
+    "original_end_line": 130,
+    "body": "```suggestion\r\n    void IList<T>.Insert(int position, T item)\r\n        => throw new NotSupportedException();\r\n```"
+  },
+  {
+    "path": "SkipList/SkipList/SkipList.cs",
+    "start_line": 105,
+    "end_line": 105,
+    "original_start_line": 119,
+    "original_end_line": 119,
+    "body": "То есть на каждое добавление элемента будет создаваться +1 уровень у skip list?\r\n\r\nЕсли так, то надо какой-нибудь (а лучше умной) константой его размер ограничивать, чтобы производительность не страдала.\r\nДа и глубина рекурсии, используемой в Add, ограничена, так что при большом количестве элементов всё может сломаться"
+  },
+  {
+    "path": "SkipList/SkipList/SkipList.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 232,
+    "original_end_line": 232,
+    "body": "```suggestion\r\n        var result = false;\r\n```"
+  },
+  {
+    "path": "SkipList/SkipList/SkipList.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 267,
+    "original_end_line": 267,
+    "body": "это магическое число надо в константу вынести"
+  },
+  {
+    "path": "SkipList/SkipListTests/SkipListTests.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 4,
+    "original_end_line": 6,
+    "body": "```suggestion\r\n{\r\n    [Test]\r\n```"
+  },
+  {
+    "path": "SkipList/SkipListTests/SkipListTests.cs",
+    "start_line": 64,
+    "end_line": 64,
+    "original_start_line": 62,
+    "original_end_line": 62,
+    "body": "Здесь еще стоит Count проверить"
+  },
+  {
+    "path": "SkipList/SkipListTests/SkipListTests.cs",
+    "start_line": 61,
+    "end_line": 61,
+    "original_start_line": 59,
+    "original_end_line": 59,
+    "body": "Еще надо добавить тест, в котором элементы SkipList будут с помощью foreach перебираться"
+  },
+  {
+    "path": "SkipList/SkipList/SkipList.cs",
+    "start_line": 70,
+    "end_line": 70,
+    "original_start_line": 69,
+    "original_end_line": 69,
+    "body": "Когда я добавляю модификатор видимости, компилятор ругается ([cs0106](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0106?f1url=%3FappId%3Droslyn%26k%3Dk(CS0106))). Нужно не явно реализовывать?"
+  },
+  {
+    "path": "SkipList/SkipList/SkipList.cs",
+    "start_line": 105,
+    "end_line": 105,
+    "original_start_line": 119,
+    "original_end_line": 119,
+    "body": "У меня элемент поднимается с самого низа, каждый раз переходя на новый уровень с вероятностью 0.5 и если он поднялся на самый вверх и хочет еще то создается небольше одного уровня. Если уровней много, то новый элемент почти никогда не поднимется так высоко. Насколько я понял, при такой реализации должно быть примерно логарифм уровней. "
+  },
+  {
+    "path": "SkipList/SkipList/SkipList.cs",
+    "start_line": 70,
+    "end_line": 70,
+    "original_start_line": 69,
+    "original_end_line": 69,
+    "body": "Окей, тогда пусть так остается"
+  },
+  {
+    "path": "SkipList/SkipListTests/SkipListTests.cs",
+    "start_line": 31,
+    "end_line": 31,
+    "original_start_line": 31,
+    "original_end_line": 31,
+    "body": "```suggestion\r\n        foreach (var element in list)\r\n\r\n```"
+  }
 ]

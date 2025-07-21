@@ -1,0 +1,37 @@
+{
+    "mark": 82,
+    "comments": [
+        {
+            "path": "HW7/FilterMapFold/FilterMapFold.Tests/Tests.cs",
+            "start_line": 31,
+            "end_line": 31,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Consider renaming this method to better reflect that the predicate does not filter the collection, e.g., `FilterNonMatchingPredicateTest`."
+        },
+        {
+            "path": "HW7/FilterMapFold/FilterMapFold/Map.cs",
+            "start_line": 5,
+            "end_line": 5,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "The method allows side effects within the provided function. If side effects are unintended, consider documenting this behavior or restricting inputs."
+        },
+        {
+            "path": "HW7/FilterMapFold/FilterMapFold/Tests.cs",
+            "start_line": 78,
+            "end_line": 81,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Ensure document details of the custom exception `EmptyCollectionFoldException` for better understanding and maintainability."
+        },
+        {
+            "path": "HW7/FilterMapFold/FilterMapFold/FilterMapFold.csproj",
+            "start_line": 5,
+            "end_line": 5,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "The TargetFramework is set to `net9.0`, which is currently a non-existent version. Update to a stable framework version like `net6.0` or `net7.0` for compatibility."
+        }
+    ]
+}

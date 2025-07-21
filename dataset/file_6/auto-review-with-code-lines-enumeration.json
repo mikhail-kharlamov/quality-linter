@@ -1,0 +1,53 @@
+{
+    "mark": 60,
+    "comments": [
+        {
+            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/Tests.cs",
+            "start_line": 20,
+            "end_line": 20,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Consider specifying the type of exception expected in Assert.Throws to make the test more precise and informative."
+        },
+        {
+            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+            "start_line": 20,
+            "end_line": 20,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Throw a more specific exception with a descriptive message, e.g., ArgumentException, to improve error handling and debugging."
+        },
+        {
+            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+            "start_line": 52,
+            "end_line": 52,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Throw a more specific exception with a descriptive message, e.g., InvalidOperationException, to improve error handling and debugging."
+        },
+        {
+            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+            "start_line": 32,
+            "end_line": 44,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "It seems HeapSize is increased too late which could lead to incorrect behavior. Consider incrementing HeapSize before inserting into the array to prevent inserting in the wrong index."
+        },
+        {
+            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+            "start_line": 44,
+            "end_line": 45,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Using an init value of (0,0) in this.Heap[this.HeapSize] could lead to incorrect calculations. Consider initializing with a meaningful default or refactoring."
+        },
+        {
+            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+            "start_line": 60,
+            "end_line": 79,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Heapify should maintain the heap structure correctly. Ensure elements are being moved correctly and consider boundary checks to avoid unintended index errors."
+        }
+    ]
+}
