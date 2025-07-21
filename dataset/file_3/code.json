@@ -1,30 +1,30 @@
 [
-    {
-        "name": "Tests.cs",
-        "extension": "cs",
-        "is_binary": false,
-        "path": "HW7/FilterMapFold/FilterMapFold.Tests/Tests.cs",
-        "content": "﻿namespace FilterMapFold.Tests;\n\nusing FilterMapFold.Exceptions;\n\npublic class Tests\n{\n    [SetUp]\n    public void Setup()\n    {\n    }\n\n    [Test]\n    public void FilterFunctionOrdinaryDataTest()\n    {\n        var collection = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };\n        var resultCollection = new int[] { 0, 2, 4, 6, 8 };\n        var predicate = new Func<int, bool>(i => i % 2 == 0);\n        Assert.That(HigherOrderFunctions.Filter(collection, predicate), Is.EquivalentTo(resultCollection));\n    }\n\n    [Test]\n    public void FilterEmptyCollectionTest()\n    {\n        var collection = new int[] { };\n        var resultCollection = new int[] { };\n        var predicate = new Func<int, bool>(i => i % 2 == 0);\n        Assert.That(HigherOrderFunctions.Filter(collection, predicate), Is.EquivalentTo(resultCollection));\n    }\n\n    [Test]\n    public void FilterEmptyPredicateTest() //TODO rename method\n    {\n        var collection = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };\n        var resultCollection = new int[] { };\n        var predicate = new Func<int, bool>(i => i % 11 == 0);\n        Assert.That(HigherOrderFunctions.Filter(collection, predicate), Is.EquivalentTo(resultCollection));\n    }\n    \n    [Test]\n    public void MapFunctionOrdinaryDataTest()\n    {\n        var collection = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };\n        var resultCollection = new int[] { 0, 2, 4, 6, 8, 10, 12, 14, 16, 18 };\n        var function = new Func<int, int>(i => i * 2);\n        Assert.That(HigherOrderFunctions.Map(collection, function), Is.EquivalentTo(resultCollection));\n    }\n\n    [Test]\n    public void MapEmptyCollectionTest()\n    {\n        var collection = new int[] { };\n        var resultCollection = new int[] { };\n        var function = new Func<int, int>(i => i * 2);\n        Assert.That(HigherOrderFunctions.Map(collection, function), Is.EquivalentTo(resultCollection));\n    }\n    \n    [Test]\n    public void FoldFunctionOrdinaryDataTest()\n    {\n        var collection = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };\n        var function = new Func<int, int, int>((x, y) => x + y);\n        Assert.That(HigherOrderFunctions.Fold(collection, function), Is.EqualTo(45));\n    }\n\n    [Test]\n    public void FoldFunctionStringDataTest()\n    {\n        var collection = new string[] { \"a\", \"b\", \"c\", \"d\", \"e\", \"f\" };\n        var function = new Func<string, string, string>((x, y) => $\"{x}{y}\");\n        Assert.That(HigherOrderFunctions.Fold(collection, function), Is.EquivalentTo(\"abcdef\"));\n    }\n\n    [Test]\n    public void FoldEmptyCollectionTest()\n    {\n        var collection = new int[] { };\n        var function = new Func<int, int, int>((x, y) => x + y);\n        Assert.Throws<EmptyCollectionFoldException>(() =>\n        {\n            HigherOrderFunctions.Fold(collection, function);\n        });\n    }\n}"
-    },
-    {
-        "name": "FilterMapFold.csproj",
-        "extension": "csproj",
-        "is_binary": false,
-        "path": "HW7/FilterMapFold/FilterMapFold/FilterMapFold.csproj",
-        "content": "﻿<Project Sdk=\"Microsoft.NET.Sdk\">\n\n    <PropertyGroup>\n        <OutputType>Exe</OutputType>\n        <TargetFramework>net9.0</TargetFramework>\n        <ImplicitUsings>enable</ImplicitUsings>\n        <Nullable>enable</Nullable>\n    </PropertyGroup>\n\n</Project>\n"
-    },
-    {
-        "name": "Fold.cs",
-        "extension": "cs",
-        "is_binary": false,
-        "path": "HW7/FilterMapFold/FilterMapFold/Fold.cs",
-        "content": "namespace FilterMapFold;\n\nusing FilterMapFold.Exceptions;\n\npublic static partial class HigherOrderFunctions\n{\n    public static T Fold<T>(IEnumerable<T> source, Func<T, T, T> function)\n    {\n        if (!source.Any())\n        {\n            throw new EmptyCollectionFoldException();\n        }\n        var collection = source.ToList();\n        var result = collection[0];\n        for (var i = 1; i < collection.Count; i++)\n        {\n            result = function(result, collection[i]);\n        }\n        return result;\n    }\n}"
-    },
-    {
-        "name": "Map.cs",
-        "extension": "cs",
-        "is_binary": false,
-        "path": "HW7/FilterMapFold/FilterMapFold/Map.cs",
-        "content": "namespace FilterMapFold;\n\npublic static partial class HigherOrderFunctions\n{\n    public static IEnumerable<T> Map<T>(this IEnumerable<T> source, Func<T, T> func)\n    {\n        foreach (var item in source)\n        {\n            yield return func(item);\n        }\n    }\n}"
-    }
+  {
+    "name": "Tests.cs",
+    "extension": "cs",
+    "is_binary": false,
+    "path": "HW7/FilterMapFold/FilterMapFold.Tests/Tests.cs",
+    "content": "﻿namespace FilterMapFold.Tests;\n\nusing FilterMapFold.Exceptions;\n\npublic class Tests\n{\n    [SetUp]\n    public void Setup()\n    {\n    }\n\n    [Test]\n    public void FilterFunctionOrdinaryDataTest()\n    {\n        var collection = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };\n        var resultCollection = new int[] { 0, 2, 4, 6, 8 };\n        var predicate = new Func<int, bool>(i => i % 2 == 0);\n        Assert.That(HigherOrderFunctions.Filter(collection, predicate), Is.EquivalentTo(resultCollection));\n    }\n\n    [Test]\n    public void FilterEmptyCollectionTest()\n    {\n        var collection = new int[] { };\n        var resultCollection = new int[] { };\n        var predicate = new Func<int, bool>(i => i % 2 == 0);\n        Assert.That(HigherOrderFunctions.Filter(collection, predicate), Is.EquivalentTo(resultCollection));\n    }\n\n    [Test]\n    public void FilterEmptyPredicateTest() //TODO rename method\n    {\n        var collection = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };\n        var resultCollection = new int[] { };\n        var predicate = new Func<int, bool>(i => i % 11 == 0);\n        Assert.That(HigherOrderFunctions.Filter(collection, predicate), Is.EquivalentTo(resultCollection));\n    }\n    \n    [Test]\n    public void MapFunctionOrdinaryDataTest()\n    {\n        var collection = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };\n        var resultCollection = new int[] { 0, 2, 4, 6, 8, 10, 12, 14, 16, 18 };\n        var function = new Func<int, int>(i => i * 2);\n        Assert.That(HigherOrderFunctions.Map(collection, function), Is.EquivalentTo(resultCollection));\n    }\n\n    [Test]\n    public void MapEmptyCollectionTest()\n    {\n        var collection = new int[] { };\n        var resultCollection = new int[] { };\n        var function = new Func<int, int>(i => i * 2);\n        Assert.That(HigherOrderFunctions.Map(collection, function), Is.EquivalentTo(resultCollection));\n    }\n    \n    [Test]\n    public void FoldFunctionOrdinaryDataTest()\n    {\n        var collection = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };\n        var function = new Func<int, int, int>((x, y) => x + y);\n        Assert.That(HigherOrderFunctions.Fold(collection, function), Is.EqualTo(45));\n    }\n\n    [Test]\n    public void FoldFunctionStringDataTest()\n    {\n        var collection = new string[] { \"a\", \"b\", \"c\", \"d\", \"e\", \"f\" };\n        var function = new Func<string, string, string>((x, y) => $\"{x}{y}\");\n        Assert.That(HigherOrderFunctions.Fold(collection, function), Is.EquivalentTo(\"abcdef\"));\n    }\n\n    [Test]\n    public void FoldEmptyCollectionTest()\n    {\n        var collection = new int[] { };\n        var function = new Func<int, int, int>((x, y) => x + y);\n        Assert.Throws<EmptyCollectionFoldException>(() =>\n        {\n            HigherOrderFunctions.Fold(collection, function);\n        });\n    }\n}"
+  },
+  {
+    "name": "FilterMapFold.csproj",
+    "extension": "csproj",
+    "is_binary": false,
+    "path": "HW7/FilterMapFold/FilterMapFold/FilterMapFold.csproj",
+    "content": "﻿<Project Sdk=\"Microsoft.NET.Sdk\">\n\n    <PropertyGroup>\n        <OutputType>Exe</OutputType>\n        <TargetFramework>net9.0</TargetFramework>\n        <ImplicitUsings>enable</ImplicitUsings>\n        <Nullable>enable</Nullable>\n    </PropertyGroup>\n\n</Project>\n"
+  },
+  {
+    "name": "Fold.cs",
+    "extension": "cs",
+    "is_binary": false,
+    "path": "HW7/FilterMapFold/FilterMapFold/Fold.cs",
+    "content": "namespace FilterMapFold;\n\nusing FilterMapFold.Exceptions;\n\npublic static partial class HigherOrderFunctions\n{\n    public static T Fold<T>(IEnumerable<T> source, Func<T, T, T> function)\n    {\n        if (!source.Any())\n        {\n            throw new EmptyCollectionFoldException();\n        }\n        var collection = source.ToList();\n        var result = collection[0];\n        for (var i = 1; i < collection.Count; i++)\n        {\n            result = function(result, collection[i]);\n        }\n        return result;\n    }\n}"
+  },
+  {
+    "name": "Map.cs",
+    "extension": "cs",
+    "is_binary": false,
+    "path": "HW7/FilterMapFold/FilterMapFold/Map.cs",
+    "content": "namespace FilterMapFold;\n\npublic static partial class HigherOrderFunctions\n{\n    public static IEnumerable<T> Map<T>(this IEnumerable<T> source, Func<T, T> func)\n    {\n        foreach (var item in source)\n        {\n            yield return func(item);\n        }\n    }\n}"
+  }
 ]

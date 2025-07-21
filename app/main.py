@@ -23,7 +23,7 @@ def main():
     for i in range(1, 11):
         path = paths_to_code + str(i)
 
-        with open(path + "/auto-review.json", 'w', encoding="utf-8") as f:
+        with open(path + "/auto-review-with-code-lines-enumeration.json", 'w', encoding="utf-8") as f:
             review_result = reviewer.review(path + "/code.json", criteria).to_dict()
             try:
                 json.dump(review_result, f, ensure_ascii=False, indent=4)

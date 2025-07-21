@@ -1,0 +1,53 @@
+{
+    "mark": 85,
+    "comments": [
+        {
+            "path": "SkipList/SkipList/SkipList.cs",
+            "start_line": 13,
+            "end_line": 13,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Consider using a thread-safe random number generator, such as `System.Random.Shared` for improved performance and thread safety."
+        },
+        {
+            "path": "SkipList/SkipList/SkipList.cs",
+            "start_line": 116,
+            "end_line": 116,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Spelling error in docstring: \"occurrecne\" should be \"occurrence\"."
+        },
+        {
+            "path": "SkipList/SkipList/SkipList.cs",
+            "start_line": 233,
+            "end_line": 233,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "`downNode` variable defined but not used effectively. Consider not assigning `null` explicitly as `var downNode = node.Down == null ? null : Add(node.Down, key);`."
+        },
+        {
+            "path": "SkipList/SkipList/SkipList.cs",
+            "start_line": 308,
+            "end_line": 308,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Unnecessary null check for `current.Key` following \"InvalidOperationException\". If `current` is valid, it should not contain a null `Key`. Consider ensuring `Key` cannot be set to null elsewhere."
+        },
+        {
+            "path": "SkipList/SkipListTests/SkipListTests.cs",
+            "start_line": 47,
+            "end_line": 47,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Incorrect array initialization syntax. Use `new List<int> {1, 2, 1000, 100, -1, 0}` instead of array initialization style."
+        },
+        {
+            "path": "SkipList/SkipListTests/SkipListTests.cs",
+            "start_line": 116,
+            "end_line": 116,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Incorrect array initialization syntax. Use `new List<int> {1, 2, 1000, 100, -1, 0}` instead of array initialization style."
+        }
+    ]
+}

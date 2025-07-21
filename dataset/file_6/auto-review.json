@@ -1,69 +1,69 @@
 {
-    "mark": 70,
-    "comments": [
-        {
-            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-            "start_line": 10,
-            "end_line": 14,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "The ResetHeap method doubles the size of the heap but does not handle the case where memory allocation might fail if the array becomes too large. Consider adding bounds checking or using a data structure that dynamically manages memory more efficiently."
-        },
-        {
-            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-            "start_line": 19,
-            "end_line": 23,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Throwing a generic Exception without a message makes debugging difficult. Consider using a more specific exception type with a descriptive message to indicate why the exception is thrown (e.g., InvalidArgumentException)."
-        },
-        {
-            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-            "start_line": 33,
-            "end_line": 42,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "There is an off-by-one error when adding elements to the heap. Arrays are zero-indexed, but you are using 1-based logic (e.g., inserting the first element at index 0, and subsequent increases fail because of 0-based indexing mix-up). Correctly manage the 0-based index by adjusting how elements are inserted and managed."
-        },
-        {
-            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-            "start_line": 46,
-            "end_line": 48,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "ExtractMaximum throws a generic Exception. Use a more specific exception type, and provide a useful error message to indicate that extraction was attempted on an empty heap."
-        },
-        {
-            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-            "start_line": 50,
-            "end_line": 50,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "The maximum should be saved to a temporary variable before reducing the HeapSize. Additionally, replacing the root with the last element in the heap before calling Heapify can ensure correct behavior."
-        },
-        {
-            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-            "start_line": 32,
-            "end_line": 32,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "The index must be zero-based. IncreaseKey uses incorrect logic since array indexing starts at 0. This could cause the program to fail to heapify correctly."
-        },
-        {
-            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-            "start_line": 55,
-            "end_line": 55,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "The test for 'HeapSize == Heap.Length' should happen before 'HeapSize++' because incrementing HeapSize might lead to accessing out-of-bounds elements."
-        },
-        {
-            "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/Tests.cs",
-            "start_line": 5,
-            "end_line": 5,
-            "original_start_line": 0,
-            "original_end_line": 0,
-            "body": "Tests rely on understanding internal logic such as element order of insertions. Consider adding more varied and comprehensive test cases covering edge cases and error handling."
-        }
-    ]
+  "mark": 70,
+  "comments": [
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 10,
+      "end_line": 14,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "The ResetHeap method doubles the size of the heap but does not handle the case where memory allocation might fail if the array becomes too large. Consider adding bounds checking or using a data structure that dynamically manages memory more efficiently."
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 19,
+      "end_line": 23,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Throwing a generic Exception without a message makes debugging difficult. Consider using a more specific exception type with a descriptive message to indicate why the exception is thrown (e.g., InvalidArgumentException)."
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 33,
+      "end_line": 42,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "There is an off-by-one error when adding elements to the heap. Arrays are zero-indexed, but you are using 1-based logic (e.g., inserting the first element at index 0, and subsequent increases fail because of 0-based indexing mix-up). Correctly manage the 0-based index by adjusting how elements are inserted and managed."
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 46,
+      "end_line": 48,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "ExtractMaximum throws a generic Exception. Use a more specific exception type, and provide a useful error message to indicate that extraction was attempted on an empty heap."
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 50,
+      "end_line": 50,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "The maximum should be saved to a temporary variable before reducing the HeapSize. Additionally, replacing the root with the last element in the heap before calling Heapify can ensure correct behavior."
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 32,
+      "end_line": 32,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "The index must be zero-based. IncreaseKey uses incorrect logic since array indexing starts at 0. This could cause the program to fail to heapify correctly."
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 55,
+      "end_line": 55,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "The test for 'HeapSize == Heap.Length' should happen before 'HeapSize++' because incrementing HeapSize might lead to accessing out-of-bounds elements."
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/Tests.cs",
+      "start_line": 5,
+      "end_line": 5,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Tests rely on understanding internal logic such as element order of insertions. Consider adding more varied and comprehensive test cases covering edge cases and error handling."
+    }
+  ]
 }

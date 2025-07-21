@@ -1,0 +1,61 @@
+{
+    "mark": 78,
+    "comments": [
+        {
+            "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
+            "start_line": 11,
+            "end_line": 11,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Consider using a more specific exception type to improve error handling."
+        },
+        {
+            "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
+            "start_line": 30,
+            "end_line": 30,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Add a check for division by zero to avoid runtime exceptions."
+        },
+        {
+            "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
+            "start_line": 44,
+            "end_line": 44,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Add a check for index overflow to prevent potential exceptions."
+        },
+        {
+            "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
+            "start_line": 37,
+            "end_line": 37,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "ChildIsNullReferenceException is not defined; consider defining this custom exception or using a standard exception."
+        },
+        {
+            "path": "HW6/parseTree/parseTree/parseTree/InvalidLiteralException.cs",
+            "start_line": 5,
+            "end_line": 5,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Define constructors for InvalidLiteralException to support message and inner exceptions."
+        },
+        {
+            "path": "HW6/parseTree/parseTree/parseTree/InvalidOperatorException.cs",
+            "start_line": 1,
+            "end_line": 1,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "Consider consistent namespace casing; change 'parseTree' to 'ParseTree'."
+        },
+        {
+            "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
+            "start_line": 74,
+            "end_line": 76,
+            "original_start_line": 0,
+            "original_end_line": 0,
+            "body": "The default return of 0 could be misleading; provide more context or handling for an uninitialized tree."
+        }
+    ]
+}

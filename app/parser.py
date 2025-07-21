@@ -9,12 +9,16 @@ class Parser:
     def __init__(self) -> None:
         self.MAX_FILE_SIZE = 5 * 1024 * 1024
 
-    def get_directory_from_json(self, path: str) -> DirectoryDto:
+    def get_directory_from_json(self, path: str, enumerate_code_lines: bool = False) -> DirectoryDto:
         """Получает структуру директории из JSON файла"""
         try:
             with open(path, encoding='utf-8') as f:
                 data = json.load(f)
-            return DirectoryDto(content=[FileDto.from_dict(file) for file in data])
+            content = [FileDto.from_dict(file) for file in data]
+            for file in content:
+                if enumerate_code_lines and not file.is_binary:
+                    file.content = self._enumerate_lines(file.content)
+            return DirectoryDto(content=content)
         except Exception as e:
             logging.error(f"Ошибка при чтении JSON файла {path}: {str(e)}")
             raise ValueError(f"Не удалось прочитать JSON файл: {str(e)}") from e
@@ -48,7 +52,19 @@ class Parser:
 
         return directory
 
-    def _parse_file(self, file_path: Path, root_path: Path) -> FileDto:
+    def _enumerate_lines(self, text: str) -> str:
+        lines = text.split('\n')
+        if not lines or len(lines) == 0:
+            return text
+
+        enumerated_lines = []
+        for i in range(len(lines)):
+            enumerated_lines.append(f"{i + 1} {lines[i]}")
+
+        return '\n'.join(enumerated_lines)
+
+
+    def _parse_file(self, file_path: Path, root_path: Path, enumerate_code_lines: bool = False) -> FileDto:
         """Парсит файл и возвращает FileDto"""
         relative_path = str(file_path.relative_to(root_path))
         file_name = file_path.name
@@ -77,6 +93,8 @@ class Parser:
 
         try:
             content = file_path.read_text(encoding='utf-8', errors='replace')
+            if enumerate_code_lines:
+                content = self._enumerate_lines(content)
             return FileDto(
                 path=relative_path,
                 content=content,

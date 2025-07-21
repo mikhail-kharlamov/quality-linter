@@ -13,7 +13,7 @@ class Reviewer:
 
     def review(self, path_to_code: str, criteria: CriteriaDto) -> AutoReviewDto:
         #directory: DirectoryDto = self.parser.parse_directory(path_to_code)
-        directory: DirectoryDto = self.parser.get_directory_from_json(path_to_code)
+        directory: DirectoryDto = self.parser.get_directory_from_json(path_to_code, enumerate_code_lines=True)
         result: AutoReviewDto = self.llm_api_client.get_review(directory=directory, criteria=criteria)
         if not self.__validate(result, criteria):
             raise ValueError("Review does not meet the specified criteria")
