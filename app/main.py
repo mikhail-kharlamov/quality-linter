@@ -57,7 +57,7 @@ def main():
         with open(path + "/auto-review-with-code-lines-enumeration.json", 'w', encoding="utf-8") as f:
             review_result = reviewer.review(path + "/code.json", criteria).to_dict()
             try:
-                #json.dump(review_result, f, ensure_ascii=False, indent=4)
+                json.dump(review_result, f, ensure_ascii=False, indent=4)
                 logging.info(f"Review Result: {review_result}")
             except ValueError as e:
                 logging.error(f"Review Error: {e}")
