@@ -2,8 +2,10 @@
 name = "quality-linter"
 version = "0.0.1"
 dependencies = [
-    "openai",
-    "pytest>=8.0.0"
+    "langchain==0.3.26",
+    "langchain_community==0.3.27",
+    "pytest>=8.0.0",
+    "colorlog==6.9.0"
 ]
 
 [tool.ruff]
