@@ -5,13 +5,20 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 from dtos import AutoReviewDto
+from enum import Enum
+
+
+class Model(Enum):
+    GPT_4_1_mini: str = "gpt-4.1-mini"
+    GPT_4o: str = "gpt-4o"
+    GPT_o3_mini_high: str = "gpt-o3-mini-high"
 
 
 class LlmApiClient:
-    def __init__(self, api_key: str, model_name: str = "gpt-4o") -> None:
+    def __init__(self, api_key: str, model_name: Model = Model.GPT_4o) -> None:
         self.llm = ChatOpenAI(
             api_key=api_key,
-            model=model_name,
+            model=model_name.value,
             temperature=0.5
         )
 
