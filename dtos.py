@@ -7,12 +7,12 @@ from dataclasses_json import dataclass_json
 @dataclass_json
 @dataclass
 class CommentDto:
-    path: str = field(default="")
-    start_line: int = field(default=0)
-    end_line: int = field(default=0)
+    path: str
+    start_line: int
+    end_line: int
+    body: str
     original_start_line: int = field(default=0)
     original_end_line: int = field(default=0)
-    body: str = field(default="")
 
 
 @dataclass_json

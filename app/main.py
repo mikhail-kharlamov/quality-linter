@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+from pathlib import Path
 
 from colorlog import ColoredFormatter
 from load_dotenv import load_dotenv
@@ -47,13 +48,13 @@ def main():
                         parser=parser,
                         prompt_builder=prompt_builder)
 
-    paths_to_code = "/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/dataset/file_"
+    paths_to_code = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/dataset/file_")
     criteria = CriteriaDto(min_mark=0, max_mark=100)
     for i in range(1, 11):
-        path = paths_to_code + str(i)
+        path = paths_to_code / str(i)
 
-        with open(path + "/auto-review-with-code-lines-enumeration.json", 'w', encoding="utf-8") as f:
-            review_result = reviewer.review(path + "/code.json", criteria).to_dict()
+        with open(path / "/auto-review-with-code-lines-enumeration.json", 'w', encoding="utf-8") as f:
+            review_result = reviewer.review(path / "/code.json", criteria).to_dict()
             try:
                 json.dump(review_result, f, ensure_ascii=False, indent=4)
                 logging.info(f"Review Result: {review_result}")

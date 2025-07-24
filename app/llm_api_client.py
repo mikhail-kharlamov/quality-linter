@@ -1,11 +1,11 @@
 import json
 import logging
+from enum import Enum
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 from dtos import AutoReviewDto
-from enum import Enum
 
 
 class Model(Enum):
