@@ -1,7 +1,7 @@
 from jinja2 import Environment, FileSystemLoader
 from langchain_core.prompts import ChatPromptTemplate
 
-from dtos import DirectoryDto, CriteriaDto
+from dtos import CriteriaDto, DirectoryDto
 
 
 class PromptBuilder:

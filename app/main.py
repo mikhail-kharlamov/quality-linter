@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 
 from colorlog import ColoredFormatter
@@ -9,8 +10,6 @@ from app.parser import Parser
 from app.prompt_builder import PromptBuilder
 from app.reviewer import Reviewer
 from dtos import CriteriaDto
-
-import logging
 
 
 def set_logger():
