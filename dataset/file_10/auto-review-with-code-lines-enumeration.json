@@ -1,37 +1,37 @@
 {
-    "mark": 85,
-    "comments": [
-        {
-            "path": "BubbleSort/BubbleSort/BubbleSort.cs",
-            "start_line": 4,
-            "end_line": 4,
-            "body": "Typo in comment: 'buble' should be 'bubble'.",
-            "original_start_line": 0,
-            "original_end_line": 0
-        },
-        {
-            "path": "BubbleSort/BubbleSort/BubbleSort.cs",
-            "start_line": 29,
-            "end_line": 37,
-            "body": "The Bubble Sort algorithm can be optimized by stopping the algorithm if the inner loop didn’t cause any swap, indicating that the array is already sorted.",
-            "original_start_line": 0,
-            "original_end_line": 0
-        },
-        {
-            "path": "BubbleSort/BubbleSortTests/BubbleSortTests.cs",
-            "start_line": 37,
-            "end_line": 37,
-            "body": "Typo in variable name: 'lsit' should be 'list'.",
-            "original_start_line": 0,
-            "original_end_line": 0
-        },
-        {
-            "path": "BubbleSort/BubbleSortTests/BubbleSortTests.cs",
-            "start_line": 43,
-            "end_line": 43,
-            "body": "Missing parentheses in 'Times.AtLeastOnce'. It should be 'Times.AtLeastOnce()'.",
-            "original_start_line": 0,
-            "original_end_line": 0
-        }
-    ]
+  "mark": 85,
+  "comments": [
+    {
+      "path": "BubbleSort/BubbleSort/BubbleSort.cs",
+      "start_line": 4,
+      "end_line": 4,
+      "body": "Typo in comment: 'buble' should be 'bubble'.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "BubbleSort/BubbleSort/BubbleSort.cs",
+      "start_line": 29,
+      "end_line": 37,
+      "body": "The Bubble Sort algorithm can be optimized by stopping the algorithm if the inner loop didn’t cause any swap, indicating that the array is already sorted.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "BubbleSort/BubbleSortTests/BubbleSortTests.cs",
+      "start_line": 37,
+      "end_line": 37,
+      "body": "Typo in variable name: 'lsit' should be 'list'.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "BubbleSort/BubbleSortTests/BubbleSortTests.cs",
+      "start_line": 43,
+      "end_line": 43,
+      "body": "Missing parentheses in 'Times.AtLeastOnce'. It should be 'Times.AtLeastOnce()'.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    }
+  ]
 }

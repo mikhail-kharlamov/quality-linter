@@ -1,6 +1,6 @@
 import logging
 from enum import Enum
-from typing import TypeVar, Generic, Type
+from typing import Generic, TypeVar
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
@@ -22,7 +22,7 @@ class LlmApiClient(Generic[T]):
             temperature=0.5
         )
 
-    def create_response(self, prompt: ChatPromptTemplate, schema: dict, dto_class: Type[T]) -> T:
+    def create_response(self, prompt: ChatPromptTemplate, schema: dict, dto_class: type[T]) -> T:
         try:
             structured_llm = self.llm.with_structured_output(schema=schema)
             chain = prompt | structured_llm
