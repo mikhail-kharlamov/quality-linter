@@ -1,6 +1,6 @@
 import logging
 from enum import Enum
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
