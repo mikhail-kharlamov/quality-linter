@@ -14,7 +14,7 @@ class Model(Enum):
     GPT_o3_mini_high: str = "gpt-o3-mini-high"
 
 
-class LlmApiClient(Generic[T]):
+class LlmApiClient[T]:
     def __init__(self, api_key: str, model_name: Model = Model.GPT_4o) -> None:
         self.llm = ChatOpenAI(
             api_key=api_key,
