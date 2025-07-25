@@ -26,5 +26,9 @@ class Reviewer:
         )
         schema = JsonSchemaLoader.get_schema(criteria)
 
-        result: AutoReviewDto = self.llm_api_client.create_response(prompt=prompt, schema=schema)
+        result: AutoReviewDto = self.llm_api_client.create_response(
+            prompt=prompt,
+            schema=schema,
+            dto_class=AutoReviewDto
+        )
         return result

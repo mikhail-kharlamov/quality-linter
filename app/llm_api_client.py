@@ -1,10 +1,11 @@
 import logging
 from enum import Enum
+from typing import TypeVar, Generic, Type
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
-from dtos import AutoReviewDto
+T = TypeVar('T')
 
 
 class Model(Enum):
@@ -13,7 +14,7 @@ class Model(Enum):
     GPT_o3_mini_high: str = "gpt-o3-mini-high"
 
 
-class LlmApiClient:
+class LlmApiClient(Generic[T]):
     def __init__(self, api_key: str, model_name: Model = Model.GPT_4o) -> None:
         self.llm = ChatOpenAI(
             api_key=api_key,
@@ -21,7 +22,7 @@ class LlmApiClient:
             temperature=0.5
         )
 
-    def create_response(self, prompt: ChatPromptTemplate, schema: dict) -> AutoReviewDto:
+    def create_response(self, prompt: ChatPromptTemplate, schema: dict, dto_class: Type[T]) -> T:
         try:
             structured_llm = self.llm.with_structured_output(schema=schema)
             chain = prompt | structured_llm
@@ -30,4 +31,4 @@ class LlmApiClient:
             logging.error(f"Ошибка при запросе к модели {e}")
             response: dict = {}
 
-        return AutoReviewDto.from_dict(response)
+        return dto_class.from_dict(response)
