@@ -1,4 +1,3 @@
-import json
 import logging
 from enum import Enum
 
@@ -26,10 +25,9 @@ class LlmApiClient:
         try:
             structured_llm = self.llm.with_structured_output(schema=schema)
             chain = prompt | structured_llm
-            response = chain.invoke({})
-            text = json.dumps(response)
+            response: dict = chain.invoke({})
         except Exception as e:
             logging.error(f"Ошибка при запросе к модели {e}")
-            text = "{}"
+            response: dict = {}
 
-        return AutoReviewDto.from_json(text)
+        return AutoReviewDto.from_dict(response)

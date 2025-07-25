@@ -16,7 +16,7 @@ class PromptBuilder:
                      directory: DirectoryDto, criteria: CriteriaDto) -> ChatPromptTemplate:
         system_msg = self.env.get_template(system_prompt_url).render(criteria.to_dict()).replace('{',
                                                                 '{{').replace('}', '}}')
-        human_msg = self.env.get_template(human_prompt_url).render(directory.to_dict()).replace('{',
+        human_msg = self.env.get_template(human_prompt_url).render({"directory_json": directory.to_json()}).replace('{',
                                                                 '{{').replace('}', '}}')
 
         return ChatPromptTemplate.from_messages([

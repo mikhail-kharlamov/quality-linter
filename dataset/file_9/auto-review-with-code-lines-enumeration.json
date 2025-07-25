@@ -1,0 +1,61 @@
+{
+    "mark": 85,
+    "comments": [
+        {
+            "path": "SkipList/SkipList/SkipList.cs",
+            "start_line": 41,
+            "end_line": 41,
+            "body": "Typo in comment: 'whoose' should be 'whose'.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "SkipList/SkipList/SkipList.cs",
+            "start_line": 54,
+            "end_line": 54,
+            "body": "Typo in comment: 'whoose' should be 'whose'.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "SkipList/SkipList/SkipList.cs",
+            "start_line": 116,
+            "end_line": 116,
+            "body": "Typo in comment: 'occurrecne' should be 'occurrence'.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "SkipList/SkipList/SkipList.cs",
+            "start_line": 332,
+            "end_line": 332,
+            "body": "Typo in comment: 'succsessfully' should be 'successfully'.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "SkipList/SkipList/SkipList.cs",
+            "start_line": 308,
+            "end_line": 310,
+            "body": "The check for `current.Key == null` should be refined since `T` is a generic type and might be a value type which cannot be null. Consider using `EqualityComparer<T>.Default.Equals(current.Key, default(T))` for a more reliable null or default value check.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "SkipList/SkipList/SkipList.cs",
+            "start_line": 183,
+            "end_line": 183,
+            "body": "The method parameter `T?[] array` should ensure that `T` is a nullable type. Consider using constraints on `T` if necessary, or handle the potential nullability more explicitly.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "SkipList/SkipListTests/SkipListTests.cs",
+            "start_line": 71,
+            "end_line": 71,
+            "body": "The test assumes that the list will be sorted in a specific way, but the `SkipList` does not guarantee order of elements. This might lead to flaky tests depending on the implementation of `SkipList`. Consider sorting the list before asserting.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        }
+    ]
+}

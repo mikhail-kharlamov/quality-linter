@@ -1,0 +1,61 @@
+{
+    "mark": 85,
+    "comments": [
+        {
+            "path": "MyThreadPool/MyThreadPool/MyThreadPool.cs",
+            "start_line": 31,
+            "end_line": 31,
+            "body": "Typo in exception message: \"postive\" should be \"positive\".",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "MyThreadPool/MyThreadPool/MyThreadPool.cs",
+            "start_line": 115,
+            "end_line": 115,
+            "body": "Consider checking the result of `WaitHandle.WaitAny` to handle spurious wakeups or to determine which handle was signaled.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "MyThreadPool/MyThreadPool/MyThreadPool.cs",
+            "start_line": 200,
+            "end_line": 200,
+            "body": "Consider providing more context in the exception message, such as the task details or identifier, to aid in debugging.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "MyThreadPool/MyThreadPoolTests/MyThreadPoolTests.cs",
+            "start_line": 39,
+            "end_line": 39,
+            "body": "Using `Thread.Sleep` for synchronization in tests can lead to flaky tests. Consider using more reliable synchronization mechanisms.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "MyThreadPool/MyThreadPoolTests/MyThreadPoolTests.cs",
+            "start_line": 94,
+            "end_line": 94,
+            "body": "Using `Thread.Sleep` for synchronization in tests can lead to flaky tests. Consider using more reliable synchronization mechanisms.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "MyThreadPool/MyThreadPoolTests/MyThreadPoolTests.cs",
+            "start_line": 106,
+            "end_line": 106,
+            "body": "Using `Thread.Sleep` for synchronization in tests can lead to flaky tests. Consider using more reliable synchronization mechanisms.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "MyThreadPool/MyThreadPoolTests/MyThreadPoolTests.cs",
+            "start_line": 198,
+            "end_line": 198,
+            "body": "The `try-catch` block catching `OperationCanceledException` is empty except for `Assert.Pass()`. It might be clearer to use `Assert.ThrowsAsync` for expected exceptions.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        }
+    ]
+}
