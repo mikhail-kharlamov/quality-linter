@@ -1,0 +1,66 @@
+[
+  {
+    "path": "Lazy/Lazy/MultiThreadLazy.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 8,
+    "original_end_line": 8,
+    "body": "Лучше Implements. Represents больше подходит для интерфейса, который контракт предоставляет. А здесь он уже реализуется"
+  },
+  {
+    "path": "Lazy/Lazy/MultiThreadLazy.cs",
+    "start_line": 14,
+    "end_line": 14,
+    "original_start_line": 12,
+    "original_end_line": 12,
+    "body": "Здесь надо предупреждение StyleCop отключить, чтобы не мешалось. Если он в primary конструкторы не умеет"
+  },
+  {
+    "path": "Lazy/Lazy/SingleThreadLazy.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 8,
+    "original_end_line": 8,
+    "body": "Здесь аналогично"
+  },
+  {
+    "path": "Lazy/Lazy/SingleThreadLazy.cs",
+    "start_line": 43,
+    "end_line": 43,
+    "original_start_line": 35,
+    "original_end_line": 35,
+    "body": "Supplier всё-таки здесь нужно занулить. Чтобы сборщик мусора мог собрать этот объект и всё, что попало ему в замыкание\r\n\r\nАналогично в многопоточной реализации"
+  },
+  {
+    "path": "Lazy/LazyTests/LazyTests.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 48,
+    "original_end_line": 48,
+    "body": "Надо разнести на два ассерта, чтобы если упадет, сразу было понятно, чьи результаты не совпали"
+  },
+  {
+    "path": "Lazy/LazyTests/LazyTests.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 48,
+    "original_end_line": 48,
+    "body": "И для подобных проверок лучше использовать Is.SameAs или Is.EqualTo"
+  },
+  {
+    "path": "Lazy/LazyTests/LazyTests.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 63,
+    "original_end_line": 63,
+    "body": "Здесь лучше вручную потоков 10 создать. Если Environment.ProcessorCount вдруг 1, тест не показателен"
+  },
+  {
+    "path": "Lazy/LazyTests/LazyTests.cs",
+    "start_line": 0,
+    "end_line": 0,
+    "original_start_line": 68,
+    "original_end_line": 68,
+    "body": "Для симуляции одновременного старта потоков надо добавить ManualResetEvent, который будет все потоки пропускать только, когда все через thread.Start запустили"
+  }
+]

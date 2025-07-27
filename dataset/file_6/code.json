@@ -1,0 +1,30 @@
+[
+  {
+    "name": "PriorityQueue.Tests.csproj",
+    "extension": "csproj",
+    "is_binary": false,
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/PriorityQueue.Tests.csproj",
+    "content": "﻿<Project Sdk=\"Microsoft.NET.Sdk\">\n\n    <PropertyGroup>\n        <TargetFramework>net9.0</TargetFramework>\n        <LangVersion>latest</LangVersion>\n        <ImplicitUsings>enable</ImplicitUsings>\n        <Nullable>enable</Nullable>\n        <IsPackable>false</IsPackable>\n    </PropertyGroup>\n\n    <ItemGroup>\n        <PackageReference Include=\"coverlet.collector\" Version=\"6.0.2\"/>\n        <PackageReference Include=\"Microsoft.NET.Test.Sdk\" Version=\"17.12.0\"/>\n        <PackageReference Include=\"NUnit\" Version=\"4.2.2\"/>\n        <PackageReference Include=\"NUnit.Analyzers\" Version=\"4.4.0\"/>\n        <PackageReference Include=\"NUnit3TestAdapter\" Version=\"4.6.0\"/>\n    </ItemGroup>\n\n    <ItemGroup>\n        <Using Include=\"NUnit.Framework\"/>\n    </ItemGroup>\n\n    <ItemGroup>\n      <ProjectReference Include=\"..\\PriorityQueue\\PriorityQueue.csproj\" />\n    </ItemGroup>\n\n</Project>\n"
+  },
+  {
+    "name": "Tests.cs",
+    "extension": "cs",
+    "is_binary": false,
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/Tests.cs",
+    "content": "﻿namespace PriorityQueue.Tests;\n\npublic class Tests\n{\n    [Test]\n    public void BinaryHeapInsertAndExtractMaximumTest()\n    {\n        var heap = new BinaryHeap();\n        heap.Insert(4, 1);\n        heap.Insert(3, 2);\n        heap.Insert(2, 3);\n        heap.Insert(1, 4);\n        Assert.That(heap.ExtractMaximum(), Is.EqualTo(1));\n    }\n\n    [Test]\n    public void BinaryHeapEmptyExtractMaximumTest()\n    {\n        var heap = new BinaryHeap();\n        Assert.Throws<Exception>(() => heap.ExtractMaximum());\n    }\n}"
+  },
+  {
+    "name": "BinaryHeap.cs",
+    "extension": "cs",
+    "is_binary": false,
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+    "content": "namespace PriorityQueue;\n\npublic class BinaryHeap\n{\n    private (int, int)[] Heap { get; set; } = new (int, int)[10];\n\n    private int HeapSize { get; set; } = 0;\n\n    private void ResetHeap()\n    {\n        var newHeap = new (int, int)[this.Heap.Length * 2];\n        this.Heap.CopyTo(newHeap, 0);\n        this.Heap = newHeap;\n    }\n\n    private void IncreaseKey(int index, (int, int) item)\n    {\n        if (item.Item1 < this.Heap[index].Item1)\n        {\n            throw new Exception(); //TODO!!!!!!!!!\n        }\n        this.Heap[index] = item;\n        while (index > 1 && this.Heap[index / 2].Item1 < this.Heap[index].Item1)\n        {\n            (this.Heap[index], this.Heap[index / 2]) = (this.Heap[index / 2], this.Heap[index]);\n            index /= 2;\n        }\n    }\n\n    public void Insert(int key, int value)\n    {\n        if (this.HeapSize == 0)\n        {\n            this.Heap[0] = (key, value);\n            this.HeapSize = 1;\n            return;\n        }\n        \n        this.HeapSize++;\n        if (this.HeapSize == this.Heap.Length)\n        {\n            this.ResetHeap();\n        }\n        this.Heap[this.HeapSize] = (0, 0);\n        this.IncreaseKey(this.HeapSize, (key, value));\n    }\n\n    public int ExtractMaximum()\n    {\n        if (this.HeapSize < 1)\n        {\n            throw new Exception(); //TODO!!!!!!!!!\n        }\n        var maximum = this.Heap[0];\n        this.HeapSize--;\n        this.Heapify(0);\n        return maximum.Item2;\n    }\n\n    private void Heapify(int index)\n    {\n        var left = index * 2 + 1;\n        var right = index * 2 + 2;\n        var largest = index;\n        if (left < this.HeapSize && this.Heap[left].Item1 > this.Heap[largest].Item1)\n        {\n            largest = left;\n        }\n\n        if (right < this.HeapSize && this.Heap[right].Item1 > this.Heap[largest].Item1)\n        {\n            largest = right;\n        }\n\n        if (largest != index)\n        {\n            (this.Heap[index], this.Heap[largest]) = (this.Heap[largest], this.Heap[index]);\n            this.Heapify(largest);\n        }\n    }\n}"
+  },
+  {
+    "name": "PriorityQueue.cs",
+    "extension": "cs",
+    "is_binary": false,
+    "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/PriorityQueue.cs",
+    "content": "using System.Linq.Expressions;\n\nnamespace PriorityQueue;\n\npublic class PriorityQueue\n{\n    private BinaryHeap Data = new();\n\n    public void Enqueue(int priority, int value)\n    {\n        this.Data.Insert(priority, value);\n    }\n\n    public int Dequeue()\n    {\n        return this.Data.ExtractMaximum();\n    }\n}"
+  }
+]

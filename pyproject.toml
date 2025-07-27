@@ -1,0 +1,32 @@
+[project]
+name = "quality-linter"
+version = "0.0.1"
+dependencies = [
+    "langchain_openai==0.3.28",
+    "langchain_community==0.3.27",
+    "langchain_core==0.3.70",
+    "pytest>=8.0.0",
+    "colorlog==6.9.0",
+    "load_dotenv==0.1.0"
+]
+
+[tool.ruff]
+line-length = 120
+select = [
+    "E",
+    "F",
+    "I",
+    "UP",
+    "B",
+    "C4",
+]
+ignore = ["E501"]
+target-version = "py312"
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"

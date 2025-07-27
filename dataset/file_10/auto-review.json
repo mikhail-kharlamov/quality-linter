@@ -1,0 +1,45 @@
+{
+  "mark": 80,
+  "comments": [
+    {
+      "path": "BubbleSort/BubbleSort/BubbleSort.cs",
+      "start_line": 17,
+      "end_line": 17,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Consider using a more efficient sorting algorithm like QuickSort or MergeSort for better performance on larger datasets."
+    },
+    {
+      "path": "BubbleSort/BubbleSort/BubbleSort.cs",
+      "start_line": 24,
+      "end_line": 24,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Use of tuple deconstruction for swapping elements is a nice touch, but be cautious of its performance implications due to multiple temporary objects created in every swap."
+    },
+    {
+      "path": "BubbleSort/BubbleSortTests/BubbleSortTests.cs",
+      "start_line": 21,
+      "end_line": 21,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Instead of using Order(), which sorts the list for verification, consider manually implementing assertions for better clarity and avoiding potential false positives if Order() is wrong."
+    },
+    {
+      "path": "BubbleSort/BubbleSortTests/BubbleSortTests.cs",
+      "start_line": 31,
+      "end_line": 31,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Typo in variable name: 'lsit' should be 'list' for readability."
+    },
+    {
+      "path": "BubbleSort/BubbleSortTests/BubbleSortTests.cs",
+      "start_line": 42,
+      "end_line": 42,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Missing parentheses in Verify method call. It should be Times.AtLeastOnce(). This may lead to test failures or incorrect verification behavior."
+    }
+  ]
+}

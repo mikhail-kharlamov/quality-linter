@@ -1,0 +1,37 @@
+{
+  "mark": 85,
+  "comments": [
+    {
+      "path": "Lazy/Lazy/MultiThreadLazy.cs",
+      "start_line": 14,
+      "end_line": 14,
+      "body": "The constructor syntax is incorrect. Use constructor initialization syntax instead of parentheses: `public MultiThreadLazy(Func<T> supplier)`. This will cause a compilation error.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "Lazy/Lazy/MultiThreadLazy.cs",
+      "start_line": 16,
+      "end_line": 16,
+      "body": "The `Semaphore` constructor is not using the correct syntax for C#. It should be `new Semaphore(1, 1);` instead of `new (1, 1);`.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "Lazy/Lazy/SingleThreadLazy.cs",
+      "start_line": 14,
+      "end_line": 14,
+      "body": "The constructor syntax is incorrect. Use constructor initialization syntax instead of parentheses: `public SingleThreadLazy(Func<T> supplier)`. This will cause a compilation error.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "Lazy/LazyTests/LazyTests.cs",
+      "start_line": 29,
+      "end_line": 29,
+      "body": "This line will always cause a DivideByZeroException since `Environment.ProcessId - Environment.ProcessId` will always be zero. Consider using a more meaningful exception test case.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    }
+  ]
+}

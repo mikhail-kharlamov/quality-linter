@@ -1,0 +1,69 @@
+{
+  "mark": 82,
+  "comments": [
+    {
+      "path": "MyThreadPool/MyThreadPool/MyThreadPool.cs",
+      "start_line": 60,
+      "end_line": 60,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Consider using ArgumentOutOfRangeException instead of ArgumentException for more precise exception handling."
+    },
+    {
+      "path": "MyThreadPool/MyThreadPool/MyThreadPool.cs",
+      "start_line": 78,
+      "end_line": 82,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Avoid redundant cancellation checks after the first check outside the lock. The double check within the lock is not necessary."
+    },
+    {
+      "path": "MyThreadPool/MyThreadPool/MyThreadPool.cs",
+      "start_line": 105,
+      "end_line": 107,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "The wake-up mechanism using AutoResetEvent may cause missed signals. Consider using a different synchronization primitive or pattern to ensure worker threads are not left waiting unnecessarily."
+    },
+    {
+      "path": "MyThreadPool/MyThreadPool/MyThreadPool.cs",
+      "start_line": 124,
+      "end_line": 126,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "In the exception handling block, catching the base Exception class is too broad. Capture specific exceptions wherever possible to improve error handling and debugging."
+    },
+    {
+      "path": "MyThreadPool/MyThreadPoolTests/MyThreadPoolTests.cs",
+      "start_line": 11,
+      "end_line": 11,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Consider using [TearDown] attribute to ensure thread pool shutdown after each test, preventing potential side effects between tests."
+    },
+    {
+      "path": "MyThreadPool/MyThreadPoolTests/MyThreadPoolTests.cs",
+      "start_line": 14,
+      "end_line": 14,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Replacement of C# 10.0 collection initializers with constructor syntax violates best practices and readability."
+    },
+    {
+      "path": "MyThreadPool/MyThreadPoolTests/MyThreadPoolTests.cs",
+      "start_line": 92,
+      "end_line": 92,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "The test relies on timing using Thread.Sleep, which can make tests non-deterministic. Consider using more reliable synchronization mechanisms for test validation."
+    },
+    {
+      "path": "MyThreadPool/MyThreadPoolTests/MyThreadPoolTests.cs",
+      "start_line": 161,
+      "end_line": 163,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Consider handling individual shutdown tasks by propagating exceptions to ensure proper error reporting."
+    }
+  ]
+}

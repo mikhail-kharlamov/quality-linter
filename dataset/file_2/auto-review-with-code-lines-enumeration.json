@@ -1,0 +1,29 @@
+{
+  "mark": 85,
+  "comments": [
+    {
+      "path": "CW2/Button/MainWindow.axaml.cs",
+      "start_line": 11,
+      "end_line": 11,
+      "body": "Consider initializing 'escapeDistance' as a constant if it is not expected to change.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "CW2/Button/MainWindow.axaml.cs",
+      "start_line": 80,
+      "end_line": 82,
+      "body": "The condition in the while loop appears to be incorrect. The logic seems to be attempting to prevent the button from being placed near the mouse pointer, but the conditions may not work as intended due to incorrect arithmetic operations. Review and correct the conditions for setting new positions based on the mouse location.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "CW2/Button/MainWindow.axaml.cs",
+      "start_line": 77,
+      "end_line": 77,
+      "body": "Consider creating a single instance of Random at the class level to avoid repeated instantiation, which can lead to less randomness due to the same seed being used in quick succession.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    }
+  ]
+}

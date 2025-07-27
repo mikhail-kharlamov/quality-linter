@@ -1,0 +1,42 @@
+[
+  {
+    "path": "BubbleSort/BubbleSort/BubbleSort.cs",
+    "start_line": 1,
+    "end_line": 1,
+    "original_start_line": 1,
+    "original_end_line": 1,
+    "body": " StyleCop справедливо ругается, что шапки с информацией о лицензии нет"
+  },
+  {
+    "path": "BubbleSort/BubbleSort/BubbleSort.cs",
+    "start_line": 29,
+    "end_line": 29,
+    "original_start_line": 29,
+    "original_end_line": 29,
+    "body": "```suggestion\r\n        for (int i = 0; i < size; ++i)\r\n        {\r\n```\r\nStyleCop так и пишет, надо читать предупреждения :)"
+  },
+  {
+    "path": "BubbleSort/BubbleSort/BubbleSort.cs",
+    "start_line": 36,
+    "end_line": 36,
+    "original_start_line": 36,
+    "original_end_line": 36,
+    "body": "Ещё есть известный приём, добавить флажок \"была ли перестановка при проходе внутреннего цикла\", и если не было, массив отсортирован и делается break из внешнего цикла. Это делает пузырёк линейным на отсортированных и почти отсортированных массивах, Ваша реализация же всегда квадратична."
+  },
+  {
+    "path": "BubbleSort/BubbleSortTests/BubbleSortTests.cs",
+    "start_line": 44,
+    "end_line": 44,
+    "original_start_line": 44,
+    "original_end_line": 44,
+    "body": ":+1: "
+  },
+  {
+    "path": "BubbleSort/BubbleSortTests/BubbleSortTests.cs",
+    "start_line": 27,
+    "end_line": 27,
+    "original_start_line": 27,
+    "original_end_line": 27,
+    "body": "TestCaseSource/TestCaseData помогли бы разнообразить тесты и уменьшить копипаст (тут по сути три теста отличаются только данными). И даже моки можно было бы запихать в TestCaseData."
+  }
+]

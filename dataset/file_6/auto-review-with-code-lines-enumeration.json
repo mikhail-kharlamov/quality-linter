@@ -1,0 +1,53 @@
+{
+  "mark": 70,
+  "comments": [
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 20,
+      "end_line": 20,
+      "body": "Throwing a generic Exception is not a good practice. Consider throwing a more specific exception type, such as ArgumentException or InvalidOperationException, with a descriptive error message.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 52,
+      "end_line": 52,
+      "body": "Throwing a generic Exception is not a good practice. Consider throwing a more specific exception type, such as InvalidOperationException, with a descriptive error message.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 5,
+      "end_line": 5,
+      "body": "The initial size of the heap (10) is hardcoded. Consider making this configurable or at least document why this size was chosen.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 56,
+      "end_line": 56,
+      "body": "After extracting the maximum, the heapify operation should replace the root with the last element before heapifying to maintain the heap property.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 44,
+      "end_line": 44,
+      "body": "The initial value (0,0) assigned here seems arbitrary and could be misleading. Consider using a more meaningful default or ensuring this line is necessary.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+      "start_line": 23,
+      "end_line": 23,
+      "body": "Indexing should start from 0 for arrays, but this condition assumes a 1-based index. Adjust the logic to accommodate 0-based indexing.",
+      "original_start_line": 0,
+      "original_end_line": 0
+    }
+  ]
+}

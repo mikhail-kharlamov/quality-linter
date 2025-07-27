@@ -1,0 +1,90 @@
+[
+  {
+    "path": "HW6/parseTree/parseTree/parseTree/obj/project.packagespec.json",
+    "start_line": 1,
+    "end_line": 1,
+    "original_start_line": 1,
+    "original_end_line": 1,
+    "body": "Лишние файлы, которые в .gitignore указываются, нужно из PR удалить"
+  },
+  {
+    "path": "HW6/parseTree/parseTree/parseTree/OperandNode.cs",
+    "start_line": 1,
+    "end_line": 3,
+    "original_start_line": 1,
+    "original_end_line": 3,
+    "body": "Директивы using принято до объявления нэймспейса указывать"
+  },
+  {
+    "path": "HW6/parseTree/parseTree/parseTree/OperandNode.cs",
+    "start_line": 7,
+    "end_line": 7,
+    "original_start_line": 7,
+    "original_end_line": 7,
+    "body": "Set точно нужен? Будет меняться после инициализации?"
+  },
+  {
+    "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
+    "start_line": 1,
+    "end_line": 5,
+    "original_start_line": 1,
+    "original_end_line": 5,
+    "body": "И здесь надо поправить"
+  },
+  {
+    "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
+    "start_line": 24,
+    "end_line": 24,
+    "original_start_line": 24,
+    "original_end_line": 24,
+    "body": "Лучше кидать более специфичное исключение, чтобы вызывающему было хотя бы примерно понятно, что произошло.\r\nМожно использовать https://learn.microsoft.com/ru-ru/dotnet/api/system.argumentnullexception.throwifnull?view=net-9.0"
+  },
+  {
+    "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
+    "start_line": 14,
+    "end_line": 19,
+    "original_start_line": 14,
+    "original_end_line": 19,
+    "body": "Это ведь функциональность конструктора"
+  },
+  {
+    "path": "HW6/parseTree/parseTree/parseTree.Tests/Tests.cs",
+    "start_line": 24,
+    "end_line": 24,
+    "original_start_line": 24,
+    "original_end_line": 24,
+    "body": "Ещё бы тестов на \"проблемные\" деревья с делением на ноль, некорректной строкой и тп\r\nДерево, содержащее отрицательные числа"
+  },
+  {
+    "path": "HW6/parseTree/parseTree/parseTree/InvalidOperatorException.cs",
+    "start_line": 11,
+    "end_line": 11,
+    "original_start_line": 11,
+    "original_end_line": 11,
+    "body": "Точно здесь нужны все конструкторы?"
+  },
+  {
+    "path": "HW6/parseTree/parseTree/parseTree/InvalidLiteralException.cs",
+    "start_line": 5,
+    "end_line": 5,
+    "original_start_line": 5,
+    "original_end_line": 5,
+    "body": "А здесь бы конструктор не помешал"
+  },
+  {
+    "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
+    "start_line": 74,
+    "end_line": 77,
+    "original_start_line": 74,
+    "original_end_line": 77,
+    "body": "```suggestion\r\n    public int Evaluate() => Root?.Evaluate() ?? 0;\r\n```\r\nЛучше не 0, а исключение выбрасывать, если пытаемся несуществующее дерево посчитать"
+  },
+  {
+    "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
+    "start_line": 64,
+    "end_line": 67,
+    "original_start_line": 64,
+    "original_end_line": 67,
+    "body": "То есть чтение из файла пока не работает (Program тоже не нашёл)"
+  }
+]

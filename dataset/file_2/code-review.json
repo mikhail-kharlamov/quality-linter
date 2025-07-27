@@ -1,0 +1,50 @@
+[
+  {
+    "path": "CW2/Button/Button.csproj",
+    "start_line": 15,
+    "end_line": 15,
+    "original_start_line": 15,
+    "original_end_line": 15,
+    "body": "Надо бы StyleCop ещё"
+  },
+  {
+    "path": "CW2/Button/App.axaml.cs",
+    "start_line": 1,
+    "end_line": 1,
+    "original_start_line": 1,
+    "original_end_line": 1,
+    "body": "Надо шапку с информацией о лицензии"
+  },
+  {
+    "path": "CW2/Button/App.axaml.cs",
+    "start_line": 5,
+    "end_line": 5,
+    "original_start_line": 5,
+    "original_end_line": 5,
+    "body": "namespace должно по идее быть первой содержательной строкой файла, using-и под ним (чтобы избегать странных конфликтов имён при импорте в глобальное пространство имён)."
+  },
+  {
+    "path": "CW2/Button/App.axaml.cs",
+    "start_line": 9,
+    "end_line": 12,
+    "original_start_line": 9,
+    "original_end_line": 12,
+    "body": "```suggestion\r\n    public override void Initialize()\r\n        => AvaloniaXamlLoader.Load(this);\r\n```\r\nИ вообще, стоит использовать expression-bodied-методы более активно."
+  },
+  {
+    "path": "CW2/Button/MainWindow.axaml.cs",
+    "start_line": 26,
+    "end_line": 28,
+    "original_start_line": 26,
+    "original_end_line": 28,
+    "body": "Тут полная жесть с тэгами, у кого-то `>` лишняя, у кого-то `\\` ненужная, у кого-то `///` дважды."
+  },
+  {
+    "path": "CW2/Button/MainWindow.axaml.cs",
+    "start_line": 77,
+    "end_line": 77,
+    "original_start_line": 77,
+    "original_end_line": 77,
+    "body": "Так каждый раз создаётся новый Random, хотя нужен только один (и сборщику мусора это всё собирать). Правильнее было бы сделать его статическим полем или вообще использовать Random.Shared"
+  }
+]

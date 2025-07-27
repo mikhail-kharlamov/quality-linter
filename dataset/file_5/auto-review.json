@@ -1,0 +1,53 @@
+{
+  "mark": 80,
+  "comments": [
+    {
+      "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
+      "start_line": 13,
+      "end_line": 13,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Consider validating the 'operation' parameter in SetOperation to ensure it is one of the valid operators before assignment."
+    },
+    {
+      "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
+      "start_line": 18,
+      "end_line": 19,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Avoid using generic exceptions. Specify exception messages to provide more context, or create custom exceptions to improve error handling."
+    },
+    {
+      "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
+      "start_line": 14,
+      "end_line": 15,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "The recursive call to BuildTree doesn't increment the index which may lead to infinite recursion. Consider increasing the index in this case."
+    },
+    {
+      "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
+      "start_line": 39,
+      "end_line": 45,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Add error checking for index bounds during number parsing to prevent IndexOutOfRangeException."
+    },
+    {
+      "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
+      "start_line": 51,
+      "end_line": 51,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "ExtractTreeFromFile is empty. Consider implementing or removing it if not needed."
+    },
+    {
+      "path": "HW6/parseTree/parseTree/parseTree/Tests.cs",
+      "start_line": 3,
+      "end_line": 3,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Consider adding tests for edge cases and invalid inputs to ensure robustness."
+    }
+  ]
+}
