@@ -4,6 +4,7 @@ version = "0.0.1"
 dependencies = [
     "langchain_openai==0.3.28",
     "langchain_community==0.3.27",
+    "langchain_core==0.3.70",
     "pytest>=8.0.0",
     "colorlog==6.9.0",
     "load_dotenv==0.1.0"
