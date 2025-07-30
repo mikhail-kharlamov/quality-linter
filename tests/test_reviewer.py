@@ -1,4 +1,3 @@
-from pathlib import Path
 from unittest.mock import MagicMock
 
 import pytest
@@ -28,8 +27,13 @@ class TestReviewer:
             prompt_builder=mock_prompt_builder
         )
 
-    def test_review(self, reviewer, mock_parser, mock_prompt_builder, mock_models_client):
-        test_dir = Path("test_dir")
+    @pytest.fixture
+    def test_dir(self, tmp_path):
+        test_json = tmp_path / "file.json"
+        test_json.write_text('{"test": "data"}')
+        return tmp_path
+
+    def test_review(self, reviewer, mock_parser, mock_prompt_builder, mock_models_client, test_dir):
         test_file = "file.json"
         test_criteria = CriteriaDto(error_types=["type1", "type2"])
 
