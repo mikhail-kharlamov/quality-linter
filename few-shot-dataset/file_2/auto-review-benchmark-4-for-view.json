@@ -1,0 +1,38 @@
+{
+    "mark": 80,
+    "comments": [
+        {
+            "path": "CW2/Button/MainWindow.axaml.cs",
+            "error_type": "XML Tag Syntax Errors",
+            "start_line": 9,
+            "end_line": 9,
+            "body": "The XML documentation closing tag has an extra '>' (e.g. \"</summary>>\"). Remove the extra character to comply with proper XML syntax.",
+            "prepared_text": "",
+            "embedding": [],
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "CW2/Button/MainWindow.axaml.cs",
+            "error_type": "Incorrect Loop Structure",
+            "start_line": 80,
+            "end_line": 82,
+            "body": "The loop condition in the SetNewPosition method appears flawed. The condition uses 'mouseY > y + EscapeButton.Bounds.Height / 2' where it likely should be 'mouseY > y - EscapeButton.Bounds.Height / 2', otherwise the button repositioning logic might not work as intended.",
+            "prepared_text": "",
+            "embedding": [],
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "CW2/Button/MainWindow.axaml.cs",
+            "error_type": "Naming Convention Violation",
+            "start_line": 13,
+            "end_line": 13,
+            "body": "The private field 'escapeDistance' does not follow typical naming conventions for private members. Consider renaming it to '_escapeDistance' for better clarity and adherence to C# style guidelines.",
+            "prepared_text": "",
+            "embedding": [],
+            "original_start_line": 0,
+            "original_end_line": 0
+        }
+    ]
+}

@@ -1,0 +1,65 @@
+{
+    "mark": 80,
+    "comments": [
+        {
+            "path": "HW8/calculator/calculator/calculator/Calculator.cs",
+            "error_type": "Lack of Input Validation",
+            "start_line": 59,
+            "end_line": 59,
+            "body": "The use of double.Parse(this.buffer) without validating the buffer content may throw a FormatException on unexpected input. Consider adding validation or using TryParse.",
+            "prepared_text": "The use of double.Parse(this.buffer) without validating the buffer content may throw a FormatException on unexpected input. Consider adding validation or using TryParse.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "HW8/calculator/calculator/calculator/Calculator.cs",
+            "error_type": "Lack of Input Validation",
+            "start_line": 76,
+            "end_line": 76,
+            "body": "Division operation lacks a check for division by zero (newNumber), which could lead to a runtime exception. Add a validation check before performing the division.",
+            "prepared_text": "Division operation lacks a check for division by zero (newNumber), which could lead to a runtime exception. Add a validation check before performing the division.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "HW8/calculator/calculator/calculator/Calculator.cs",
+            "error_type": "Algorithm Complexity Issue",
+            "start_line": 130,
+            "end_line": 137,
+            "body": "The percentage operation logic (using SetOperator('/') followed by adding digits of \"100\") is not intuitively clear or mathematically standard. Consider revising this calculation for clarity and correctness.",
+            "prepared_text": "The percentage operation logic (using SetOperator('/') followed by adding digits of \"100\") is not intuitively clear or mathematically standard. Consider revising this calculation for clarity and correctness.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "HW8/calculator/calculator/calculator/MainWindowViewModel.cs",
+            "error_type": "Lack of Input Validation",
+            "start_line": 71,
+            "end_line": 75,
+            "body": "In the DigitCommand lambda, param.ToString()[0] is accessed without checking if the parameter is null or empty. Add proper validation to prevent potential runtime errors.",
+            "prepared_text": "In the DigitCommand lambda, param.ToString()[0] is accessed without checking if the parameter is null or empty. Add proper validation to prevent potential runtime errors.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "HW8/calculator/calculator/сalculator.Tests/Tests.cs",
+            "error_type": "Insufficient Test Coverage",
+            "start_line": 19,
+            "end_line": 44,
+            "body": "Tests cover basic arithmetic operations only. Consider adding tests for edge cases, such as invalid input scenarios and division by zero, to ensure robust behavior.",
+            "prepared_text": "Tests cover basic arithmetic operations only. Consider adding tests for edge cases, such as invalid input scenarios and division by zero, to ensure robust behavior.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "HW8/calculator/calculator/сalculator.Tests/Tests.cs",
+            "error_type": "Naming Convention Violation",
+            "start_line": 1,
+            "end_line": 1,
+            "body": "The project/folder name 'сalculator.Tests' appears to use a non-ASCII character (Cyrillic 'с') inadvertently. This may cause confusion or issues in some environments; consider renaming it using standard ASCII characters.",
+            "prepared_text": "The project/folder name 'сalculator.Tests' appears to use a non-ASCII character (Cyrillic 'с') inadvertently. This may cause confusion or issues in some environments; consider renaming it using standard ASCII characters.",
+            "original_start_line": 0,
+            "original_end_line": 0
+        }
+    ]
+}

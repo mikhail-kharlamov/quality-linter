@@ -65,14 +65,22 @@ class Benchmark:
         for i in range(1, dataset_length + 1):
             path = path_to_dataset / f"file_{i}"
 
-            with open(path / "auto-review-benchmark-3.json", 'w', encoding="utf-8") as f:
-                auto_review_json = self.reviewer.review(path, "code.json",
-                                                        "diffs.txt", criteria).to_dict()
+            with open(path / "partial-1.json", 'w', encoding="utf-8") as f:
+                auto_review_json = self.reviewer.review(path, "partial-code.json", criteria).to_dict()
                 auto_review = self.__code_review_enrichment(auto_review_json, Autor.MODEL)
                 auto_review_enriched_json = auto_review.to_dict()
 
                 try:
                     json.dump(auto_review_enriched_json, f, ensure_ascii=False, indent=4)
+                    logging.info(f"Reviewing {i} file")
+                except ValueError as e:
+                    logging.error(f"Review Error: {e}")
+                except Exception as e:
+                    logging.error(f"An unexpected error occurred: {e}")
+
+            with open(path / "partial-1-for-view.json", 'w', encoding="utf-8") as f:
+                try:
+                    json.dump(auto_review_json, f, ensure_ascii=False, indent=4)
                     logging.info(f"Reviewing {i} file")
                 except ValueError as e:
                     logging.error(f"Review Error: {e}")

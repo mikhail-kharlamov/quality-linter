@@ -1,0 +1,38 @@
+{
+    "mark": 50,
+    "comments": [
+        {
+            "path": "CW2/Button/App.axaml.cs",
+            "error_type": "Missing License Header",
+            "start_line": 1,
+            "end_line": 1,
+            "body": "Missing license header. Please insert the required license header at the beginning of the file to comply with the project's legal standards.",
+            "prepared_text": "",
+            "embedding": [],
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "CW2/Button/Button.csproj",
+            "error_type": "XML Tag Syntax Errors",
+            "start_line": 1,
+            "end_line": 1,
+            "body": "Potential XML tag syntax error in the project file. Ensure that the XML structure in this file is correct and follows the project schema.",
+            "prepared_text": "",
+            "embedding": [],
+            "original_start_line": 0,
+            "original_end_line": 0
+        },
+        {
+            "path": "CW2/Button/MainWindow.axaml.cs",
+            "error_type": "Missing License Header",
+            "start_line": 1,
+            "end_line": 1,
+            "body": "Missing license header. Please add a license header at the start of the file to meet the project compliance requirements.",
+            "prepared_text": "",
+            "embedding": [],
+            "original_start_line": 0,
+            "original_end_line": 0
+        }
+    ]
+}

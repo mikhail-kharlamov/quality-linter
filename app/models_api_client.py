@@ -39,8 +39,9 @@ class ModelsApiClient[T]:
         try:
             if schema:
                 structured_llm = self.llm.with_structured_output(
-                    schema=schema
-                    #method = "function_calling"
+                    schema=schema,
+                    method = "json_schema",
+                    strict=True
                 )
                 chain = prompt | structured_llm
                 response: dict = chain.invoke({})

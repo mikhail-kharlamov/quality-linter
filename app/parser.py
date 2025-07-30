@@ -31,6 +31,18 @@ class Parser:
 
         return PullRequestDiffDto.from_dict({"": prepared_diffs})
 
+    def parse_directory_dto(self, directory: DirectoryDto) -> str:
+        files_content = ""
+
+        for obj in directory.content:
+            if isinstance(obj, DirectoryDto):
+                children_content: str = self.parse_directory_dto(obj)
+                files_content += children_content
+            elif isinstance(obj, FileDto):
+                if not obj.is_binary:
+                    files_content += f"{obj.path}:\n{obj.content}\n\n"
+        return files_content
+
     def get_directory_from_json(self, path: str, enumerate_code_lines: bool = False) -> DirectoryDto:
         """Получает структуру директории из JSON файла"""
         try:

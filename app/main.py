@@ -36,7 +36,7 @@ def set_logger():
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(console_formatter)
 
-    file_handler = logging.FileHandler('application-3.log')
+    file_handler = logging.FileHandler('application-partial.log')
     file_handler.setFormatter(file_formatter)
 
     console_handler.setLevel(logging.INFO)
@@ -73,7 +73,7 @@ def main():
                         parser=parser,
                         prompt_builder=prompt_builder)
 
-    paths_to_code = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/dataset")
+    paths_to_code = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/few-shot-dataset")
     benchmark = Benchmark(
         reviewer=reviewer,
         prompt_builder=prompt_builder,
