@@ -1,0 +1,193 @@
+Example response:
+
+Missing Property Usage: {
+"path": "HW6/parseTree/parseTree/parseTree/OperandNode.cs",
+"start_line": 7,
+"end_line": 7,
+"body": "Consider converting this to a read-only property since the value doesn't change after initialization. Current setter appears unnecessary.",
+"error_type": "Missing Property Usage"
+},
+
+for code:
+
+1 namespace ParseTree;
+2
+3 using Node;
+4
+5 public class OperandNode : Node
+6 {
+7     private int Value { get; set; }
+8
+9     public void SetValue(int value)
+10    {
+11        this.Value = value;
+12    }
+13
+14     public override int Evaluate() => this.Value;
+15
+16     public override string Print() => this.Value.ToString();
+17 }
+
+Naming Convention Violation: {
+"path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+"start_line": 16,
+"end_line": 16,
+"body": "Method name 'IncreaseKey' is unclear. Please use more descriptive naming that reflects both the operation and affected elements (e.g., 'IncreasePriorityOfItem').",
+"error_type": "Naming Convention Violation"
+},
+
+for code:
+
+9     private void ResetHeap()
+10     {
+11         var newHeap = new (int, int)[this.Heap.Length * 2];
+12         this.Heap.CopyTo(newHeap, 0);
+13         this.Heap = newHeap;
+14     }
+15
+16     private void IncreaseKey(int index, (int, int) item)
+17     {
+18         if (item.Item1 < this.Heap[index].Item1)
+19         {
+20             throw new Exception(); //TODO!!!!!!!!!
+21         }
+22         this.Heap[index] = item;
+23         while (index > 1 && this.Heap[index / 2].Item1 < this.Heap[index].Item1)
+24         {
+25             (this.Heap[index], this.Heap[index / 2]) = (this.Heap[index / 2], this.Heap[index]);
+26             index /= 2;
+27         }
+28     }
+
+
+Insufficient Test Coverage: {
+"path": "HW6/parseTree/parseTree/parseTree.Tests/Tests.cs",
+"start_line": 24,
+"end_line": 24,
+"body": "Add test cases for edge conditions: division by zero, invalid string formats, and trees containing negative numbers to achieve complete coverage.",
+"error_type": "Insufficient Test Coverage"
+},
+
+for code:
+
+1 namespace Tests;
+2
+3 using ParseTree;
+4
+5 public class Tests
+6 {
+7     [Test]
+8     public void ParseTreeExtractTreeFromStringAndEvaluateSimpleDataTest()
+9     {
+10         var tree = new ParseTree();
+11         tree.ExtractTreeFromString("(+ 3 (* 2 2))");
+12         var value = tree.Evaluate();
+13         Assert.That(value, Is.EqualTo(7));
+14     }
+15
+16     [Test]
+17     public void ParseTreeExtractTreeFromStringAndEvaluateWithAllOfTheOperatorsTest()
+18     {
+19         var tree = new ParseTree();
+20         tree.ExtractTreeFromString("(+ 3 (* (/ 10 5) (- 12 10)))");
+21         var value = tree.Evaluate();
+22         Assert.That(value, Is.EqualTo(7));
+23     }
+24 }
+
+Missing StyleCop Usage: {
+"path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/PriorityQueue.Tests.csproj",
+"start_line": 17,
+"end_line": 17,
+"body": "Missing StyleCop.Analyzers NuGet package reference. Add StyleCop to enforce consistent code style in test projects.",
+"error_type": "Missing StyleCop Usage"
+},
+
+for code:
+
+1 <Project Sdk="Microsoft.NET.Sdk">
+2     <PropertyGroup>
+3         <TargetFramework>net6.0</TargetFramework>
+4         <IsPackable>false</IsPackable>
+5     </PropertyGroup>
+6     <ItemGroup>
+7         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0"/>
+8         <PackageReference Include="MSTest.TestAdapter" Version="2.2.9"/>
+9         <PackageReference Include="MSTest.TestFramework" Version="2.2.9"/>
+10         <PackageReference Include="Moq" Version="4.18.2"/>
+11         <PackageReference Include="FluentAssertions" Version="6.10.0"/>
+12     </ItemGroup>
+13 </Project>
+
+Missing License Header: {
+"path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
+"start_line": 1,
+"end_line": 1,
+"body": "File is missing required license header. Add standard copyright notice and MIT license header at the top of the file.",
+"error_type": "Missing License Header"
+},
+
+for code:
+
+1 namespace PriorityQueue;
+2
+3 public class BinaryHeap
+4 {
+5     private (int, int)[] Heap { get; set; } = new (int, int)[10];
+6
+7     private int HeapSize { get; set; } = 0;
+
+Namespace Organization Issue: {
+"path": "HW6/parseTree/parseTree/parseTree/OperandNode.cs",
+"start_line": 1,
+"end_line": 3,
+"body":  "Organize using directives properly: place them before namespace declaration to avoid potential naming conflicts.",
+"error_type": "Namespace Organization Issue"
+},
+
+for code:
+
+1 namespace ParseTree;
+2
+3 using Node;
+4
+5 public class OperandNode : Node
+6 {
+
+Expression bodied Method Opportunity: {
+"path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/PriorityQueue.cs",
+"start_line": 12,
+"end_line": 12,
+"body": "This single-line method is a good candidate for conversion to expression-bodied syntax (=>) to improve readability.",
+"error_type": "Expression-bodied Method Opportunity"
+},
+
+for code:
+
+12     public int Dequeue()
+13     {
+14         return this.Data.ExtractMaximum();
+15     }
+
+Resource Management Issue: {
+"path": "Lazy/Lazy/SingleThreadLazy.cs",
+"start_line": 43,
+"end_line": 43,
+"body": "Set supplier field to null after use to allow garbage collection of the delegate and its closure objects.",
+"error_type": "Resource Management Issue"
+}
+
+for code:
+
+7     public T Value
+8     {
+9         get
+10         {
+11             if (!isValueCreated)
+12             {
+13                 value = supplier();
+14                 isValueCreated = true;
+15             }
+16             return value;
+17         }
+18     }

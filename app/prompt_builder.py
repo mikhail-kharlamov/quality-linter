@@ -1,8 +1,6 @@
 from jinja2 import Environment, FileSystemLoader
 from langchain_core.prompts import ChatPromptTemplate
 
-from dtos import CriteriaDto, DirectoryDto
-
 
 class PromptBuilder:
     def __init__(self, templates_dir: str) -> None:
@@ -12,11 +10,15 @@ class PromptBuilder:
             trim_blocks=True
         )
 
-    def build_prompt(self, system_prompt_url: str, human_prompt_url: str,
-                     directory: DirectoryDto, criteria: CriteriaDto) -> ChatPromptTemplate:
-        system_msg = self.env.get_template(system_prompt_url).render(criteria.to_dict()).replace('{',
-                                                                '{{').replace('}', '}}')
-        human_msg = self.env.get_template(human_prompt_url).render({"directory_json": directory.to_json()}).replace('{',
+    def build_prompt(self, system_prompt_url: str, human_prompt_url: str, human_vars: dict,
+                     system_vars: dict = None) -> ChatPromptTemplate:
+        if system_vars:
+            system_msg = self.env.get_template(system_prompt_url).render(system_vars).replace('{',
+                                                                    '{{').replace('}', '}}')
+        else:
+            system_msg = self.env.get_template(system_prompt_url).render()
+
+        human_msg = self.env.get_template(human_prompt_url).render(human_vars).replace('{',
                                                                 '{{').replace('}', '}}')
 
         return ChatPromptTemplate.from_messages([

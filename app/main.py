@@ -1,20 +1,21 @@
-import json
 import logging
 import os
+from logging import Formatter
 from pathlib import Path
 
 from colorlog import ColoredFormatter
 from load_dotenv import load_dotenv
 
-from app.llm_api_client import LlmApiClient, Model
+from app.models_api_client import EmbeddingModel, LlmModel, ModelsApiClient
 from app.parser import Parser
 from app.prompt_builder import PromptBuilder
 from app.reviewer import Reviewer
-from dtos import CriteriaDto
+from benchmark.benchmark import Benchmark
+from dtos import BenchmarkDto
 
 
 def set_logger():
-    formatter = ColoredFormatter(
+    console_formatter = ColoredFormatter(
         "%(log_color)s%(asctime)s - %(levelname)-8s%(reset)s %(blue)s%(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
         reset=True,
@@ -27,12 +28,25 @@ def set_logger():
         }
     )
 
-    handler = logging.StreamHandler()
-    handler.setFormatter(formatter)
+    file_formatter = Formatter(
+        "%(asctime)s - %(levelname)-8s %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
+
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(console_formatter)
+
+    file_handler = logging.FileHandler('application-partial.log')
+    file_handler.setFormatter(file_formatter)
+
+    console_handler.setLevel(logging.INFO)
+    file_handler.setLevel(logging.DEBUG)
 
     logger = logging.getLogger()
-    logger.addHandler(handler)
-    logger.setLevel(logging.INFO)
+
+    logger.addHandler(console_handler)
+    logger.addHandler(file_handler)
+    logger.setLevel(logging.DEBUG)
 
 
 def main():
@@ -41,27 +55,31 @@ def main():
     load_dotenv()
     api_key = os.getenv("OPENAI_API_KEY")
 
-    llm_api_client = LlmApiClient(api_key=api_key, model_name=Model.GPT_4o)
+    models_api_client = ModelsApiClient(api_key=api_key, llm_model_name=LlmModel.GPT_o3_mini,
+                                     embedding_model_name=EmbeddingModel.TEXT_EMB_3_large)
     parser = Parser()
     prompt_builder = PromptBuilder("../prompts")
-    reviewer = Reviewer(llm_api_client=llm_api_client,
+    reviewer = Reviewer(llm_api_client=models_api_client,
                         parser=parser,
                         prompt_builder=prompt_builder)
 
-    paths_to_code = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/dataset")
-    criteria = CriteriaDto(min_mark=0, max_mark=100)
-    for i in range(1, 11):
-        path = paths_to_code / f"file_{i}"
+    paths_to_code = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/few-shot-dataset")
+    benchmark = Benchmark(
+        reviewer=reviewer,
+        prompt_builder=prompt_builder,
+        models_api_client=models_api_client,
+        similarity_threshold=0.6
+    )
 
-        with open(path / "auto-review-with-code-lines-enumeration.json", 'w', encoding="utf-8") as f:
-            review_result = reviewer.review(path / "code.json", criteria).to_dict()
-            try:
-                json.dump(review_result, f, ensure_ascii=False, indent=4)
-                logging.info(f"Review Result: {review_result}")
-            except ValueError as e:
-                logging.error(f"Review Error: {e}")
-            except Exception as e:
-                logging.error(f"An unexpected error occurred: {e}")
+    benchmark_dto: BenchmarkDto = benchmark.evaluate(
+        path_to_dataset=paths_to_code,
+        dataset_length=2
+    )
+
+    logging.info(f"Dataset metrics: recall {benchmark_dto.recall}, precision {benchmark_dto.precision}")
+    for file_metric in benchmark_dto.files_metrics:
+        logging.info(f"File {file_metric.number} metrics: recall {file_metric.recall}, precision {file_metric.precision}")
+
 
 
 if __name__ == "__main__":

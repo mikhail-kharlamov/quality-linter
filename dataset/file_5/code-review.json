@@ -5,7 +5,8 @@
     "end_line": 1,
     "original_start_line": 1,
     "original_end_line": 1,
-    "body": "Лишние файлы, которые в .gitignore указываются, нужно из PR удалить"
+    "body": "Лишние файлы, которые в .gitignore указываются, нужно из PR удалить",
+    "error_type": "Unnecessary Files in PR"
   },
   {
     "path": "HW6/parseTree/parseTree/parseTree/OperandNode.cs",
@@ -13,7 +14,8 @@
     "end_line": 3,
     "original_start_line": 1,
     "original_end_line": 3,
-    "body": "Директивы using принято до объявления нэймспейса указывать"
+    "body": "Директивы using принято до объявления нэймспейса указывать",
+    "error_type": "Using Directive Placement"
   },
   {
     "path": "HW6/parseTree/parseTree/parseTree/OperandNode.cs",
@@ -21,7 +23,8 @@
     "end_line": 7,
     "original_start_line": 7,
     "original_end_line": 7,
-    "body": "Set точно нужен? Будет меняться после инициализации?"
+    "body": "Set точно нужен? Будет меняться после инициализации?",
+    "error_type": "Unnecessary Setter"
   },
   {
     "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
@@ -29,7 +32,8 @@
     "end_line": 5,
     "original_start_line": 1,
     "original_end_line": 5,
-    "body": "И здесь надо поправить"
+    "body": "И здесь надо поправить",
+    "error_type": "Using Directive Placement"
   },
   {
     "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
@@ -37,7 +41,8 @@
     "end_line": 24,
     "original_start_line": 24,
     "original_end_line": 24,
-    "body": "Лучше кидать более специфичное исключение, чтобы вызывающему было хотя бы примерно понятно, что произошло.\r\nМожно использовать https://learn.microsoft.com/ru-ru/dotnet/api/system.argumentnullexception.throwifnull?view=net-9.0"
+    "body": "Лучше кидать более специфичное исключение, чтобы вызывающему было хотя бы примерно понятно, что произошло.\r\nМожно использовать https://learn.microsoft.com/ru-ru/dotnet/api/system.argumentnullexception.throwifnull?view=net-9.0",
+    "error_type": "Non-specific Exception Throwing"
   },
   {
     "path": "HW6/parseTree/parseTree/parseTree/OperatorNode.cs",
@@ -45,7 +50,8 @@
     "end_line": 19,
     "original_start_line": 14,
     "original_end_line": 19,
-    "body": "Это ведь функциональность конструктора"
+    "body": "Это ведь функциональность конструктора",
+    "error_type": "Constructor Logic Placement"
   },
   {
     "path": "HW6/parseTree/parseTree/parseTree.Tests/Tests.cs",
@@ -53,7 +59,8 @@
     "end_line": 24,
     "original_start_line": 24,
     "original_end_line": 24,
-    "body": "Ещё бы тестов на \"проблемные\" деревья с делением на ноль, некорректной строкой и тп\r\nДерево, содержащее отрицательные числа"
+    "body": "Ещё бы тестов на \"проблемные\" деревья с делением на ноль, некорректной строкой и тп\r\nДерево, содержащее отрицательные числа",
+    "error_type": "Insufficient Test Coverage"
   },
   {
     "path": "HW6/parseTree/parseTree/parseTree/InvalidOperatorException.cs",
@@ -61,7 +68,8 @@
     "end_line": 11,
     "original_start_line": 11,
     "original_end_line": 11,
-    "body": "Точно здесь нужны все конструкторы?"
+    "body": "Точно здесь нужны все конструкторы?",
+    "error_type": "Missing Exception Constructors"
   },
   {
     "path": "HW6/parseTree/parseTree/parseTree/InvalidLiteralException.cs",
@@ -69,7 +77,8 @@
     "end_line": 5,
     "original_start_line": 5,
     "original_end_line": 5,
-    "body": "А здесь бы конструктор не помешал"
+    "body": "А здесь бы конструктор не помешал",
+    "error_type": "Missing Exception Constructors"
   },
   {
     "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
@@ -77,7 +86,8 @@
     "end_line": 77,
     "original_start_line": 74,
     "original_end_line": 77,
-    "body": "```suggestion\r\n    public int Evaluate() => Root?.Evaluate() ?? 0;\r\n```\r\nЛучше не 0, а исключение выбрасывать, если пытаемся несуществующее дерево посчитать"
+    "body": "```suggestion\r\n    public int Evaluate() => Root?.Evaluate() ?? 0;\r\n```\r\nЛучше не 0, а исключение выбрасывать, если пытаемся несуществующее дерево посчитать",
+    "error_type": "Non-specific Exception Throwing"
   },
   {
     "path": "HW6/parseTree/parseTree/parseTree/ParseTree.cs",
@@ -85,6 +95,7 @@
     "end_line": 67,
     "original_start_line": 64,
     "original_end_line": 67,
-    "body": "То есть чтение из файла пока не работает (Program тоже не нашёл)"
+    "body": "То есть чтение из файла пока не работает (Program тоже не нашёл)",
+    "error_type": "Code Style Violation"
   }
 ]
