@@ -11,14 +11,14 @@
     "extension": "cs",
     "is_binary": false,
     "path": "HW8/calculator/calculator/calculator/MainWindowViewModel.cs",
-    "content":  "part 1:\n    /// <summary>\n    /// Initializes a new instance of the MainWindowViewModel class.\n    /// </summary>\n    /// <remarks>\n    /// Sets up all command handlers and initializes calculator state.\n    /// </remarks>\n    public MainWindowViewModel()\n    {\n        DigitCommand = new RelayCommand(param =>\n        {\n            this.calculator.AddDigit(param.ToString()[0]); \n          this.Display = calculator.GetDisplay();\n        });\n\n        OperatorCommand = new RelayCommand(param =>\n        {\n            this.calculator.SetOperator(param.ToString()[0]);\n            this.Display = calculator.GetDisplay();\n        });"
+    "content": "part 1:\n    /// <summary>\n    /// Initializes a new instance of the MainWindowViewModel class.\n    /// </summary>\n    /// <remarks>\n    /// Sets up all command handlers and initializes calculator state.\n    /// </remarks>\n    public MainWindowViewModel()\n    {\n        DigitCommand = new RelayCommand(param =>\n        {\n            this.calculator.AddDigit(param.ToString()[0]); \n          this.Display = calculator.GetDisplay();\n        });\n\n        OperatorCommand = new RelayCommand(param =>\n        {\n            this.calculator.SetOperator(param.ToString()[0]);\n            this.Display = calculator.GetDisplay();\n        });"
   },
   {
     "name": "calculator.csproj",
     "extension": "csproj",
     "is_binary": false,
     "path": "HW8/calculator/calculator/calculator/calculator.csproj",
-    "content":  "part 1:\n<Project Sdk=\"Microsoft.NET.Sdk\">\n\n\n    <PropertyGroup>\n        <OutputType>Exe</OutputType>\n        <TargetFramework>net9.0</TargetFramework>\n        <ImplicitUsings>enable</ImplicitUsings>\n        <Nullable>enable</Nullable>\n    </PropertyGroup>"
+    "content": "part 1:\n<Project Sdk=\"Microsoft.NET.Sdk\">\n\n\n    <PropertyGroup>\n        <OutputType>Exe</OutputType>\n        <TargetFramework>net9.0</TargetFramework>\n        <ImplicitUsings>enable</ImplicitUsings>\n        <Nullable>enable</Nullable>\n    </PropertyGroup>"
   },
   {
     "name": "Tests.cs",
@@ -32,6 +32,6 @@
     "extension": "csproj",
     "is_binary": false,
     "path": "HW8/calculator/calculator/сalculator.Tests/сalculator.Tests.csproj",
-    "content":  "part 1:\n<Project Sdk=\"Microsoft.NET.Sdk\">\n\n    <PropertyGroup>\n        <TargetFramework>net9.0</TargetFramework>\n        <LangVersion>latest</LangVersion>\n        <ImplicitUsings>enable</ImplicitUsings>\n        <Nullable>enable</Nullable>\n        <IsPackable>false</IsPackable>\n        <RootNamespace>Calculator.Tests</RootNamespace>\n    </PropertyGroup>\n\n    <ItemGroup>\n        <PackageReference Include=\"Avalonia\" Version=\"11.3.0\" />\n        <PackageReference Include=\"coverlet.collector\" Version=\"6.0.2\"/>\n        <PackageReference Include=\"Microsoft.NET.Test.Sdk\" Version=\"17.12.0\"/>\n        <PackageReference Include=\"NUnit\" Version=\"4.2.2\"/>\n        <PackageReference Include=\"NUnit.Analyzers\" Version=\"4.4.0\"/>\n        <PackageReference Include=\"NUnit3TestAdapter\" Version=\"4.6.0\"/>\n    </ItemGroup>"
+    "content": "part 1:\n<Project Sdk=\"Microsoft.NET.Sdk\">\n\n    <PropertyGroup>\n        <TargetFramework>net9.0</TargetFramework>\n        <LangVersion>latest</LangVersion>\n        <ImplicitUsings>enable</ImplicitUsings>\n        <Nullable>enable</Nullable>\n        <IsPackable>false</IsPackable>\n        <RootNamespace>Calculator.Tests</RootNamespace>\n    </PropertyGroup>\n\n    <ItemGroup>\n        <PackageReference Include=\"Avalonia\" Version=\"11.3.0\" />\n        <PackageReference Include=\"coverlet.collector\" Version=\"6.0.2\"/>\n        <PackageReference Include=\"Microsoft.NET.Test.Sdk\" Version=\"17.12.0\"/>\n        <PackageReference Include=\"NUnit\" Version=\"4.2.2\"/>\n        <PackageReference Include=\"NUnit.Analyzers\" Version=\"4.4.0\"/>\n        <PackageReference Include=\"NUnit3TestAdapter\" Version=\"4.6.0\"/>\n    </ItemGroup>"
   }
 ]

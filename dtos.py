@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Union
 
 from dataclasses_json import dataclass_json
-from enum import Enum
 
 
 class Type(Enum):

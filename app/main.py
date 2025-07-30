@@ -6,7 +6,7 @@ from pathlib import Path
 from colorlog import ColoredFormatter
 from load_dotenv import load_dotenv
 
-from app.models_api_client import ModelsApiClient, LlmModel, EmbeddingModel
+from app.models_api_client import EmbeddingModel, LlmModel, ModelsApiClient
 from app.parser import Parser
 from app.prompt_builder import PromptBuilder
 from app.reviewer import Reviewer

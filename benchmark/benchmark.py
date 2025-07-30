@@ -8,8 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from app.models_api_client import ModelsApiClient
 from app.prompt_builder import PromptBuilder
 from app.reviewer import Reviewer
-from dtos import CriteriaDto, CodeReviewDto, Type, CommentDto, BenchmarkDto, FileMetricDto, \
-    DataPreparingDto
+from dtos import BenchmarkDto, CodeReviewDto, CommentDto, CriteriaDto, DataPreparingDto, FileMetricDto, Type
 
 
 class Autor(Enum):
@@ -79,7 +78,7 @@ class Benchmark:
                 except Exception as e:
                     logging.error(f"An unexpected error occurred: {e}")
 
-            with open(path / "code-review.json", 'r', encoding="utf-8") as f:
+            with open(path / "code-review.json", encoding="utf-8") as f:
                 code_review_comments = json.load(f)
                 code_review_json = {"mark": 50, "comments": code_review_comments}
                 human_review = self.__code_review_enrichment(code_review_json, Autor.HUMAN)

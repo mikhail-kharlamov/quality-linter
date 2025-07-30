@@ -1,38 +1,38 @@
 {
-    "mark": 80,
-    "comments": [
-        {
-            "path": "HW8/calculator/calculator/calculator/Calculator.cs",
-            "error_type": "Lack of Input Validation",
-            "start_line": 59,
-            "end_line": 63,
-            "body": "Using double.Parse on the input buffer without validation can lead to runtime exceptions if the buffer does not contain a valid number. Consider using double.TryParse with proper error handling to improve robustness.",
-            "prepared_text": "",
-            "embedding": [],
-            "original_start_line": 0,
-            "original_end_line": 0
-        },
-        {
-            "path": "HW8/calculator/calculator/calculator/Calculator.cs",
-            "error_type": "Incorrect Loop Structure",
-            "start_line": 130,
-            "end_line": 137,
-            "body": "The percentage operator implementation uses a loop to add each digit of the string \"100\" with AddDigit, which is non-intuitive and error prone. Instead, consider parsing the current display value, performing a division by 100 directly, and then updating the display.",
-            "prepared_text": "",
-            "embedding": [],
-            "original_start_line": 0,
-            "original_end_line": 0
-        },
-        {
-            "path": "HW8/calculator/calculator/calculator/MainWindowViewModel.cs",
-            "error_type": "Lack of Input Validation",
-            "start_line": 71,
-            "end_line": 75,
-            "body": "The RelayCommand for DigitCommand uses param.ToString()[0] without checking if 'param' is null or an empty string, which may cause exceptions. Adding input validation before accessing the character would improve stability.",
-            "prepared_text": "",
-            "embedding": [],
-            "original_start_line": 0,
-            "original_end_line": 0
-        }
-    ]
+  "mark": 80,
+  "comments": [
+    {
+      "path": "HW8/calculator/calculator/calculator/Calculator.cs",
+      "error_type": "Lack of Input Validation",
+      "start_line": 59,
+      "end_line": 63,
+      "body": "Using double.Parse on the input buffer without validation can lead to runtime exceptions if the buffer does not contain a valid number. Consider using double.TryParse with proper error handling to improve robustness.",
+      "prepared_text": "",
+      "embedding": [],
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "HW8/calculator/calculator/calculator/Calculator.cs",
+      "error_type": "Incorrect Loop Structure",
+      "start_line": 130,
+      "end_line": 137,
+      "body": "The percentage operator implementation uses a loop to add each digit of the string \"100\" with AddDigit, which is non-intuitive and error prone. Instead, consider parsing the current display value, performing a division by 100 directly, and then updating the display.",
+      "prepared_text": "",
+      "embedding": [],
+      "original_start_line": 0,
+      "original_end_line": 0
+    },
+    {
+      "path": "HW8/calculator/calculator/calculator/MainWindowViewModel.cs",
+      "error_type": "Lack of Input Validation",
+      "start_line": 71,
+      "end_line": 75,
+      "body": "The RelayCommand for DigitCommand uses param.ToString()[0] without checking if 'param' is null or an empty string, which may cause exceptions. Adding input validation before accessing the character would improve stability.",
+      "prepared_text": "",
+      "embedding": [],
+      "original_start_line": 0,
+      "original_end_line": 0
+    }
+  ]
 }
