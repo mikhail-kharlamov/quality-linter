@@ -55,7 +55,7 @@ class ModelsApiClient[T]:
 
         return dto_class.from_dict(response)
 
-    def get_embed(self, text: str) -> list[float]:
+    def embed(self, text: str) -> list[float]:
         try:
             embedding: list[float] = self.embedding_model.embed_query(text)
         except Exception as e:
