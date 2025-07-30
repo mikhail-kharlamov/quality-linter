@@ -27,7 +27,6 @@ class ModelsApiClient[T]:
         self.llm = ChatOpenAI(
             api_key=api_key,
             model=llm_model_name.value
-            #temperature=0.5
         )
 
         self.embedding_model = OpenAIEmbeddings(
@@ -56,7 +55,7 @@ class ModelsApiClient[T]:
 
         return dto_class.from_dict(response)
 
-    def get_embedding(self, text: str) -> list[float]:
+    def get_embed(self, text: str) -> list[float]:
         try:
             embedding: list[float] = self.embedding_model.embed_query(text)
         except Exception as e:

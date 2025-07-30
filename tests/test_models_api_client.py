@@ -88,7 +88,7 @@ class TestModelsApiClient:
             test_embedding = [0.1, 0.2, 0.3]
             mock_embeddings.embed_query.return_value = test_embedding
 
-            result = client.get_embedding("test text")
+            result = client.get_embed("test text")
 
             assert result == test_embedding
             mock_embeddings.embed_query.assert_called_once_with("test text")
@@ -100,7 +100,7 @@ class TestModelsApiClient:
 
             mock_embeddings.embed_query.side_effect = Exception("test error")
 
-            result = client.get_embedding("test text")
+            result = client.get_embed("test text")
 
             assert result == []
             assert "Ошибка при получении эмбеддингов: test error" in caplog.text

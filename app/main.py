@@ -11,6 +11,7 @@ from app.parser import Parser
 from app.prompt_builder import PromptBuilder
 from app.reviewer import Reviewer
 from benchmark.benchmark import Benchmark
+from dtos import BenchmarkDto
 
 
 def set_logger():
@@ -69,7 +70,16 @@ def main():
         models_api_client=models_api_client,
         similarity_threshold=0.6
     )
-    print(benchmark.evaluate(paths_to_code, 2))
+
+    benchmark_dto: BenchmarkDto = benchmark.evaluate(
+        path_to_dataset=paths_to_code,
+        dataset_length=2
+    )
+
+    logging.info(f"Dataset metrics: recall {benchmark_dto.recall}, precision {benchmark_dto.precision}")
+    for file_metric in benchmark_dto.files_metrics:
+        logging.info(f"File {file_metric.number} metrics: recall {file_metric.recall}, precision {file_metric.precision}")
+
 
 
 if __name__ == "__main__":

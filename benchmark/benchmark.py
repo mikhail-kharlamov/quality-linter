@@ -42,7 +42,7 @@ class Benchmark:
         code_review = CodeReviewDto.from_dict(code_review_json)
         for comment in code_review.comments:
             prepared_text = self.__prepare_human_comment(comment.body) if autor.value == "human" else comment.body
-            comment_embedding: list[float] = self.models_api_client.get_embedding(prepared_text)
+            comment_embedding: list[float] = self.models_api_client.get_embed(prepared_text)
 
             comment.prepared_text = prepared_text
             comment.embedding = comment_embedding
