@@ -3,12 +3,12 @@ from dtos import CriteriaDto
 
 class JsonSchemaLoader:
     @staticmethod
-    def get_schema(criteria: CriteriaDto) -> dict:
+    def get_review_schema(criteria: CriteriaDto) -> dict:
         """
         Returns a JSON schema for automatic code review response.
 
-        :param minimum_mark: Minimum score for the code review.
-        :param maximum_mark: Maximum score for the code review.
+        :param criteria.
+
         :return: JSON schema as a dictionary.
         """
         return {
@@ -46,9 +46,14 @@ class JsonSchemaLoader:
                             "body": {
                                 "description": "The comment text",
                                 "type": "string"
-                            }
+                            },
+                            "error_type": {
+                                "description": "Type of the commented error",
+                                "type": "string",
+                                "enum": criteria.error_types
+                            },
                         },
-                        "required": ["path", "start_line", "end_line", "body"],
+                        "required": ["path", "start_line", "end_line", "body", "error_type"],
                         "additionalProperties": False
                     }
                 }

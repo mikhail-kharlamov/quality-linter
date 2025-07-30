@@ -5,7 +5,8 @@
     "end_line": 3,
     "original_start_line": 3,
     "original_end_line": 3,
-    "body": "Я правильно понимаю, что я могу запустить, увидеть \"Hello World\", и поставить 0, поскольку задание было другое?\r\nЕсли программа просто предоставляет какой-то класс, нужно ставить `<OutputType>Library</OutputType>`. Но, если не умеете, можно было сделать хотя бы какую-нибудь заглушку -- многие, например, здесь запускают тесты (только не надо так делать -- у Вас NUnit, и это хорошо). Либо можно было сделать простенький консольный интерфейс.\r\n"
+    "body": "Я правильно понимаю, что я могу запустить, увидеть \"Hello World\", и поставить 0, поскольку задание было другое?\r\nЕсли программа просто предоставляет какой-то класс, нужно ставить `<OutputType>Library</OutputType>`. Но, если не умеете, можно было сделать хотя бы какую-нибудь заглушку -- многие, например, здесь запускают тесты (только не надо так делать -- у Вас NUnit, и это хорошо). Либо можно было сделать простенький консольный интерфейс.\r\n",
+    "error_type": "Incorrect Project Type"
   },
   {
     "path": "HW2/ConsoleApp1/ConsoleApp1/Trie.cs",
@@ -13,7 +14,8 @@
     "end_line": 64,
     "original_start_line": 64,
     "original_end_line": 64,
-    "body": "nit: вторая переменная нигде не используется. Необязательно давать ей такое сложное имя (ещё и не очень правильное с точки зрения английского языка):\r\n```suggestion\r\n        var (isElementInTree, _) = DeleteRecursively(this._root, element, 0);\r\n```"
+    "body": "nit: вторая переменная нигде не используется. Необязательно давать ей такое сложное имя (ещё и не очень правильное с точки зрения английского языка):\r\n```suggestion\r\n        var (isElementInTree, _) = DeleteRecursively(this._root, element, 0);\r\n```",
+    "error_type": "Unused Variable"
   },
   {
     "path": "HW2/ConsoleApp1/ConsoleApp1/Trie.cs",
@@ -21,7 +23,8 @@
     "end_line": 72,
     "original_start_line": 72,
     "original_end_line": 72,
-    "body": "Если функция фозвращает два `bool`, а называется не `IsAAndIsB`, лучше хоть где-то подписать, что они означают."
+    "body": "Если функция фозвращает два `bool`, а называется не `IsAAndIsB`, лучше хоть где-то подписать, что они означают.",
+    "error_type": "Undocumented Return Values"
   },
   {
     "path": "HW2/ConsoleApp1/ConsoleApp1/Trie.cs",
@@ -29,7 +32,8 @@
     "end_line": 86,
     "original_start_line": 74,
     "original_end_line": 86,
-    "body": "На мой взгляд так будет красивее:\r\n```suggestion\r\n        if (element.Lenght == numberOfLetter) {\r\n            return (node.IsTerminal, node.Children.Count > 0);\r\n        }\r\n```\r\nА куда здесь вставить `node.IsTerminal = false` -- это Вы придумайте."
+    "body": "На мой взгляд так будет красивее:\r\n```suggestion\r\n        if (element.Lenght == numberOfLetter) {\r\n            return (node.IsTerminal, node.Children.Count > 0);\r\n        }\r\n```\r\nА куда здесь вставить `node.IsTerminal = false` -- это Вы придумайте.",
+    "error_type": "Code Style Violation"
   },
   {
     "path": "HW2/ConsoleApp1/ConsoleApp1/Trie.cs",
@@ -37,7 +41,8 @@
     "end_line": 140,
     "original_start_line": 107,
     "original_end_line": 140,
-    "body": "Это будет работать за `O(|prefix|)` только если считать размер бора константой."
+    "body": "Это будет работать за `O(|prefix|)` только если считать размер бора константой.",
+    "error_type": "Algorithm Complexity Issue"
   },
   {
     "path": "HW2/ConsoleApp1/ConsoleApp1/Trie.cs",
@@ -45,6 +50,7 @@
     "end_line": 149,
     "original_start_line": 146,
     "original_end_line": 149,
-    "body": "В условии сказано, что `Size` должен быть свойством. Подсказка: чтобы это было выполнено, строки 142--149 не нужны, надо просто поменять модификаторы доступа у `size`."
+    "body": "В условии сказано, что `Size` должен быть свойством. Подсказка: чтобы это было выполнено, строки 142--149 не нужны, надо просто поменять модификаторы доступа у `size`.",
+    "error_type": "Incorrect Access Modifiers"
   }
 ]

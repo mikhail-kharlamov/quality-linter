@@ -2,12 +2,34 @@ import json
 import logging
 from pathlib import Path
 
-from dtos import DirectoryDto, FileDto
+from dtos import DirectoryDto, FileDto, PullRequestDiffDto
 
 
 class Parser:
     def __init__(self) -> None:
         self.MAX_FILE_SIZE = 5 * 1024 * 1024
+
+    def parse_diffs(self, path: Path) -> PullRequestDiffDto:
+        with path.open('r', encoding='utf-8') as f:
+            data = f.read()
+
+        diffs: list[str] = data.split("diff --git ")[2:]
+        prepared_diffs = []
+        for diff in diffs:
+            diff = diff.strip()
+            if not diff:
+                continue
+            lines = diff.split('\n')
+            if len(lines) < 2:
+                continue
+            file_path = lines[0].split(' ')[-1]
+            file_content = '\n'.join(lines[1:])
+            prepared_diffs.append({
+                "file_path": file_path,
+                "content": file_content
+            })
+
+        return PullRequestDiffDto.from_dict({"": prepared_diffs})
 
     def get_directory_from_json(self, path: str, enumerate_code_lines: bool = False) -> DirectoryDto:
         """Получает структуру директории из JSON файла"""

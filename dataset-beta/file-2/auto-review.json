@@ -1,0 +1,53 @@
+{
+  "mark": 85,
+  "comments": [
+    {
+      "path": "CW2/Button/App.axaml.cs",
+      "start_line": 15,
+      "end_line": 15,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Consider using explicit types instead of `var` for improved readability."
+    },
+    {
+      "path": "CW2/Button/MainWindow.axaml.cs",
+      "start_line": 13,
+      "end_line": 13,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "The XML comment has an extra closing bracket \">\" that should be removed."
+    },
+    {
+      "path": "CW2/Button/MainWindow.axaml.cs",
+      "start_line": 26,
+      "end_line": 26,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "The XML comment has an extra closing bracket \">\" that should be removed."
+    },
+    {
+      "path": "CW2/Button/MainWindow.axaml.cs",
+      "start_line": 22,
+      "end_line": 22,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Using `Math.Sqrt` and `Math.Pow` could be optimized if performance becomes an issue. Consider caching repetitive calculations."
+    },
+    {
+      "path": "CW2/Button/MainWindow.axaml.cs",
+      "start_line": 53,
+      "end_line": 53,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "Random instances should be reused to avoid performance bottlenecks and enhance randomness quality."
+    },
+    {
+      "path": "CW2/Button/MainWindow.axaml.cs",
+      "start_line": 54,
+      "end_line": 58,
+      "original_start_line": 0,
+      "original_end_line": 0,
+      "body": "The condition seems overly complex and might be erroneous (e.g., `mouseY > y + EscapeButton.Bounds.Height / 2` should likely have a `-` in front of `EscapeButton.Bounds.Height`). Consider simplifying this logic."
+    }
+  ]
+}
