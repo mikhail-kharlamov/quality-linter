@@ -1,7 +1,6 @@
-import json
 import logging
-from logging import Formatter, Filter
 import os
+from logging import Formatter
 from pathlib import Path
 
 from colorlog import ColoredFormatter
@@ -67,13 +66,12 @@ def main():
     models_api_client = ModelsApiClient(api_key=api_key, llm_model_name=LlmModel.GPT_o3_mini,
                                      embedding_model_name=EmbeddingModel.TEXT_EMB_3_large)
     parser = Parser()
-    #parser.parse_diffs(Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/dataset/file_1/diffs.txt"))
     prompt_builder = PromptBuilder("../prompts")
     reviewer = Reviewer(llm_api_client=models_api_client,
                         parser=parser,
                         prompt_builder=prompt_builder)
 
-    paths_to_code = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/few-shot-dataset")
+    paths_to_code = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/dataset")
     benchmark = Benchmark(
         reviewer=reviewer,
         prompt_builder=prompt_builder,

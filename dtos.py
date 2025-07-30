@@ -5,7 +5,7 @@ from dataclasses_json import dataclass_json
 from enum import Enum
 
 
-class Type1(Enum):
+class Type(Enum):
     Code_Style_Violation: str = "Code Style Violation"
     Missing_Property_Usage: str = "Missing Property Usage"
     Compiler_Warnings: str = "Compiler Warnings"
@@ -52,18 +52,6 @@ class Type1(Enum):
     Incorrect_Loop_Structure: str = "Incorrect Loop Structure"
     Algorithm_Optimization_Opportunity: str = "Algorithm Optimization Opportunity"
     Test_Data_Organization: str = "Test Data Organization"
-
-
-class Type(Enum):
-    Missing_Property_Usage: str = "Missing Property Usage"
-    Naming_Convention_Violation: str = "Naming Convention Violation"
-    Insufficient_Test_Coverage: str = "Insufficient Test Coverage"
-    Missing_StyleCop_Usage: str = "Missing StyleCop Usage"
-    Missing_License_Header: str = "Missing License Header"
-    Namespace_Organization_Issue: str = "Namespace Organization Issue"
-    Expression_bodied_Method_Opportunity: str = "Expression-bodied Method Opportunity"
-    XML_Tag_Syntax_Errors: str = "XML Tag Syntax Errors"
-    Resource_Management_Issue: str = "Resource Management Issue"
 
 
 @dataclass_json
@@ -115,7 +103,7 @@ class CriteriaDto:
 
 @dataclass_json
 @dataclass
-class GroupedCommentsDto1:
+class GroupedCommentsDto:
     Code_Style_Violation: list[CommentDto] = field(default_factory=list)
     Missing_Property_Usage: list[CommentDto] = field(default_factory=list)
     Compiler_Warnings: list[CommentDto] = field(default_factory=list)
@@ -162,20 +150,6 @@ class GroupedCommentsDto1:
     Incorrect_Loop_Structure: list[CommentDto] = field(default_factory=list)
     Algorithm_Optimization_Opportunity: list[CommentDto] = field(default_factory=list)
     Test_Data_Organization: list[CommentDto] = field(default_factory=list)
-
-
-@dataclass_json
-@dataclass
-class GroupedCommentsDto:
-    Missing_Property_Usage: list[CommentDto] = field(default_factory=list)
-    Naming_Convention_Violation: list[CommentDto] = field(default_factory=list)
-    Insufficient_Test_Coverage: list[CommentDto] = field(default_factory=list)
-    Missing_StyleCop_Usage: list[CommentDto] = field(default_factory=list)
-    Missing_License_Header: list[CommentDto] = field(default_factory=list)
-    Namespace_Organization_Issue: list[CommentDto] = field(default_factory=list)
-    Expression_bodied_Method_Opportunity: list[CommentDto] = field(default_factory=list)
-    XML_Tag_Syntax_Errors: list[CommentDto] = field(default_factory=list)
-    Resource_Management_Issue: list[CommentDto] = field(default_factory=list)
 
 
 @dataclass_json

@@ -15,7 +15,6 @@ class Reviewer:
         self.parser = parser
 
     def review(self, path_to_directory: Path, code_file: str, criteria: CriteriaDto) -> CodeReviewDto:
-        #directory: DirectoryDto = self.parser.parse_directory(path_to_code)
         path_to_code = path_to_directory / code_file
         directory: DirectoryDto = self.parser.get_directory_from_json(str(path_to_code), enumerate_code_lines=True)
 

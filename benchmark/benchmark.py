@@ -8,7 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from app.models_api_client import ModelsApiClient
 from app.prompt_builder import PromptBuilder
 from app.reviewer import Reviewer
-from dtos import CriteriaDto, CodeReviewDto, GroupedCommentsDto, Type, CommentDto, BenchmarkDto, FileMetricDto, \
+from dtos import CriteriaDto, CodeReviewDto, Type, CommentDto, BenchmarkDto, FileMetricDto, \
     DataPreparingDto
 
 
@@ -24,14 +24,6 @@ class Benchmark:
         self.models_api_client = models_api_client
         self.prompt_builder = prompt_builder
         self.similarity_threshold = similarity_threshold
-
-    @staticmethod
-    def __group_comments_by_type(code_review: CodeReviewDto) -> GroupedCommentsDto:
-        groups = dict([(comment_type.name, []) for comment_type in Type])
-        for comment in code_review.comments:
-            groups[comment.error_type.replace(" ", "_").replace("-", "_")].append(comment)
-        return GroupedCommentsDto.from_dict(groups)
-
 
     def __prepare_human_comment(self, comment_text: str) -> str:
         prompt = self.prompt_builder.build_prompt(
@@ -65,8 +57,8 @@ class Benchmark:
         for i in range(1, dataset_length + 1):
             path = path_to_dataset / f"file_{i}"
 
-            with open(path / "partial-1.json", 'w', encoding="utf-8") as f:
-                auto_review_json = self.reviewer.review(path, "partial-code.json", criteria).to_dict()
+            with open(path / "auto-review-benchmark.json", 'w', encoding="utf-8") as f:
+                auto_review_json = self.reviewer.review(path, "code.json", criteria).to_dict()
                 auto_review = self.__code_review_enrichment(auto_review_json, Autor.MODEL)
                 auto_review_enriched_json = auto_review.to_dict()
 
@@ -78,7 +70,7 @@ class Benchmark:
                 except Exception as e:
                     logging.error(f"An unexpected error occurred: {e}")
 
-            with open(path / "partial-1-for-view.json", 'w', encoding="utf-8") as f:
+            with open(path / "auto-review-for-view.json", 'w', encoding="utf-8") as f:
                 try:
                     json.dump(auto_review_json, f, ensure_ascii=False, indent=4)
                     logging.info(f"Reviewing {i} file")
@@ -116,13 +108,9 @@ class Benchmark:
             unused_comments_for_file = auto_review.comments.copy()
             similar = 0
 
-            grouped_auto_review: GroupedCommentsDto = Benchmark.__group_comments_by_type(auto_review)
-
             for human_comment in human_review.comments:
-                group_name = human_comment.error_type.replace(" ", "_").replace("-", "_")
                 logging.debug(f"Обработка комментария: {human_comment.body}")
                 logging.debug(f"Обработанный текст комментария: {human_comment.prepared_text}")
-                #group: list[CommentDto] = getattr(grouped_auto_review, group_name)
                 group: list[CommentDto] = auto_review.comments
                 for model_comment in group:
                     similarity: float = cosine_similarity(
