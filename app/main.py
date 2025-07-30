@@ -48,15 +48,6 @@ def set_logger():
     logger.setLevel(logging.DEBUG)
 
 
-def delete():
-    paths_to_code = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/dataset")
-    for i in range(1, 11):
-        path = paths_to_code / f"file_{i}/auto-review-benchmark-3.json"
-        path.unlink(missing_ok=True)
-    log_path = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/app/application-3.log")
-    log_path.unlink(missing_ok=True)
-
-
 def main():
     set_logger()
 
@@ -71,16 +62,15 @@ def main():
                         parser=parser,
                         prompt_builder=prompt_builder)
 
-    paths_to_code = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/dataset")
+    paths_to_code = Path("/Users/mikhailkharlamov/Documents/Projects/SummerSchool/quality-linter/few-shot-dataset")
     benchmark = Benchmark(
         reviewer=reviewer,
         prompt_builder=prompt_builder,
         models_api_client=models_api_client,
-        similarity_threshold=0.7
+        similarity_threshold=0.6
     )
     print(benchmark.evaluate(paths_to_code, 2))
 
 
 if __name__ == "__main__":
     main()
-    #delete()

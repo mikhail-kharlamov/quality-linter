@@ -56,7 +56,7 @@ class Benchmark:
         for i in range(1, dataset_length + 1):
             path = path_to_dataset / f"file_{i}"
 
-            with open(path / "auto-review-benchmark.json", 'w', encoding="utf-8") as f:
+            with open(path / "auto-review.json", 'w', encoding="utf-8") as f:
                 auto_review_json = self.reviewer.review(path, "code.json", criteria).to_dict()
                 auto_review = self.__code_review_enrichment(auto_review_json, Autor.MODEL)
                 auto_review_enriched_json = auto_review.to_dict()
