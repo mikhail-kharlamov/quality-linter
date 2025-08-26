@@ -2,9 +2,9 @@ import logging
 from enum import Enum
 from typing import TypeVar
 
+from langchain_community.callbacks.manager import get_openai_callback
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_community.callbacks.manager import get_openai_callback
 
 T = TypeVar('T')
 

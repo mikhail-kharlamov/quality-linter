@@ -1,5 +1,3 @@
-import logging
-from pathlib import Path
 
 from app.models_api_client import ModelsApiClient
 from app.parser import Parser

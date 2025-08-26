@@ -1,266 +1,755 @@
 Example response:
 
-**Category Code Style Violation**`:
-  Code: 13         this.Heap = newHeap;
-14     }
-15
-16     private void IncreaseKey(int index, (int, int) item)
-17     {
-18         if (item.Item1 < this.Heap[index].Item1)
-19         {
-20             throw new Exception(); //TODO!!!!!!!!!
-21         }
-22         this.Heap[index] = item;
-23         while (index > 1 && this.Heap[index / 2].Item1 < this.Heap[index].Item1)
-  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs', 'start_line': 18, 'end_line': 18, 'body': 'А как без именованных полей кортежа можно запомнить, кто из них значение, а кто приоритет? :)', 'error_type': '', 'type': 'Code Style Violation', 'prepared_text': '', 'embedding': [], 'original_start_line': 18, 'original_end_line': 18}
+**Missing Property Usage**:
 
-**Category Missing Property Usage**`:
-  Code: 23     /// </summary>
-24     /// <returns>The string representation of the current display value.</returns>
-25     /// <remarks>
-26     /// Returns "0" if the display value is empty.
-27     /// </remarks>
-28     public string GetDisplay() => string.IsNullOrEmpty(this.displayValue) ? "0" : this.displayValue;
-29
-30     /// <summary>
-31     /// Adds a digit to the current input buffer
-32     /// </summary>
-33     /// <param name="digit">The digit character to add (0-9).</param>
-  Comment: {'path': 'HW8/calculator/calculator/calculator/Calculator.cs', 'start_line': 28, 'end_line': 28, 'body': 'Можно было свойством сделать, тут же нет сложной логики', 'error_type': '', 'type': 'Missing Property Usage', 'prepared_text': '', 'embedding': [], 'original_start_line': 28, 'original_end_line': 28}
+Example 1:
+Code: 38
+39     ///
+<summary>
+    40 /// Returns the number of elements added to the vector.
+    41 ///
+</summary>
+42     ///
+<returns>The number of elements.</returns>
+43     public int GetLenght() => this.size;
+44
+45     ///
+<summary>
+    46 /// Checks if an element with the specified index exists in the vector.
+    47 ///
+</summary>
+48     ///
+<param name="key">The index of the element.</param>
 
-**Category Compiler Warnings**`:
-  Code: 68     /// </remarks>
-69     public MainWindowViewModel()
-70     {
-71         DigitCommand = new RelayCommand(param =>
-72         {
-73             this.calculator.AddDigit(param.ToString()[0]);
-74             this.Display = calculator.GetDisplay();
-75         });
-76
-77         OperatorCommand = new RelayCommand(param =>
-78         {
-  Comment: {'path': 'HW8/calculator/calculator/calculator/MainWindowViewModel.cs', 'start_line': 73, 'end_line': 73, 'body': 'Тут компилятор в целом недоволен Вашим кодом, стоило бы проверок навставлять', 'error_type': '', 'type': 'Compiler Warnings', 'prepared_text': '', 'embedding': [], 'original_start_line': 73, 'original_end_line': 73}
+Comment: {'path': 'ControlWork3/ControlWork3/Vector.cs', 'start_line': 43, 'end_line': 43, 'body': 'По-английски "длина" пишется как "length", и это правильнее было бы сделать свойством (оно возвращает состояние объекта и не требует сложных вычислений).', 'error_type': 'Missing Property Usage', 'type': '', 'prepared_text': '', 'embedding': [], 'original_start_line': 43, 'original_end_line': 43}
 
-**Category Naming Convention Violation**`:
-  Code: 1 ﻿<Project Sdk="Microsoft.NET.Sdk">
-2
-3     <PropertyGroup>
-4         <OutputType>Exe</OutputType>
-5         <TargetFramework>net9.0</TargetFramework>
-6         <ImplicitUsings>enable</ImplicitUsings>
-  Comment: {'path': 'HW8/calculator/calculator/calculator/calculator.csproj', 'start_line': 1, 'end_line': 1, 'body': 'Проект и директорию с проектом по стайлгайду называют с заглавной', 'error_type': '', 'type': 'Naming Convention Violation', 'prepared_text': '', 'embedding': [], 'original_start_line': 1, 'original_end_line': 1}
+Example 2:
+Code: 79         }
+80
+81         // Свойства
+82
+83         ///
+<inheritdoc/>
+84         public int Count
+85         {
+86             get { return this.count; }
+87         }
+88
+89         ///
+<inheritdoc/>
+90         public bool IsReadOnly
+91         {
+92             get { return false; }
 
-**Category Insufficient Test Coverage**`:
-  Code: 40         this.calculator.AddDigit('2');
-41         Assert.That(this.calculator.GetDisplay(), Is.EqualTo("2"));
-42         this.calculator.SetOperator('=');
-43         Assert.That(this.calculator.GetDisplay(), Is.EqualTo("14"));
-44     }
-45 }
-  Comment: {'path': 'HW8/calculator/calculator/сalculator.Tests/Tests.cs', 'start_line': 45, 'end_line': 45, 'body': 'Тестов как-то негусто. Деления не 0, например, нет.', 'error_type': '', 'type': 'Insufficient Test Coverage', 'prepared_text': '', 'embedding': [], 'original_start_line': 45, 'original_end_line': 45}
+Comment: {'path': 'HomeWorks/SkipList/SkipListCollection/SkipList.cs', 'start_line': 84, 'end_line': 87, 'body': 'Ну и, наверное, count мог бы быть автоматическим свойством', 'error_type': 'Missing Property Usage', 'type': '', 'prepared_text': '', 'embedding': [], 'original_start_line': 84, 'original_end_line': 87}
 
-**Category Missing StyleCop Usage**`:
-  Code: 14         <PackageReference Include="coverlet.collector" Version="6.0.2"/>
-15         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0"/>
-16         <PackageReference Include="NUnit" Version="4.2.2"/>
-17         <PackageReference Include="NUnit.Analyzers" Version="4.4.0"/>
-18         <PackageReference Include="NUnit3TestAdapter" Version="4.6.0"/>
-19     </ItemGroup>
-20
-21     <ItemGroup>
-22         <Using Include="NUnit.Framework"/>
-23     </ItemGroup>
-24
-  Comment: {'path': 'HW8/calculator/calculator/сalculator.Tests/сalculator.Tests.csproj', 'start_line': 19, 'end_line': 19, 'body': 'И тоже нужен StyleCop в тесты', 'error_type': '', 'type': 'Missing StyleCop Usage', 'prepared_text': '', 'embedding': [], 'original_start_line': 19, 'original_end_line': 19}
 
-**Category Missing License Header**`:
-  Code: 1 using Avalonia;
-2 using Avalonia.Controls.ApplicationLifetimes;
-3 using Avalonia.Markup.Xaml;
-4
-5 namespace Button;
-6
-  Comment: {'path': 'CW2/Button/App.axaml.cs', 'start_line': 1, 'end_line': 1, 'body': 'Надо шапку с информацией о лицензии', 'error_type': '', 'type': 'Missing License Header', 'prepared_text': '', 'embedding': [], 'original_start_line': 1, 'original_end_line': 1}
+**Naming Convention Violation**:
 
-**Category Namespace Organization Issue**`:
-  Code: 1 using Avalonia;
-2 using Avalonia.Controls.ApplicationLifetimes;
-3 using Avalonia.Markup.Xaml;
-4
-5 namespace Button;
-6
-7 public partial class App : Application
-8 {
-9     public override void Initialize()
-10     {
-  Comment: {'path': 'CW2/Button/App.axaml.cs', 'start_line': 5, 'end_line': 5, 'body': 'namespace должно по идее быть первой содержательной строкой файла, using-и под ним (чтобы избегать странных конфликтов имён при импорте в глобальное пространство имён).', 'error_type': '', 'type': 'Namespace Organization Issue', 'prepared_text': '', 'embedding': [], 'original_start_line': 5, 'original_end_line': 5}
+Example 1:
+Code: 3 using UnityEngine;
+4 using UnityEngine.UI;
+5 using UnityEngine.SceneManagement;
+6 public class Menu : MonoBehaviour
+7 {
+8     public Text Chanse;
+9     public Slider slider;
+10
+11     public void NewZnachenie()
+12     {
+13         Chanse.text = (int) slider.value + "%";
 
-**Category Expression-bodied Method Opportunity**`:
-  Code: 4
-5 namespace Button;
-6
-7 public partial class App : Application
-8 {
-9     public override void Initialize()
-10     {
-11         AvaloniaXamlLoader.Load(this);
-12     }
-13
-14     public override void OnFrameworkInitializationCompleted()
-15     {
-16         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-17         {
-  Comment: {'path': 'CW2/Button/App.axaml.cs', 'start_line': 9, 'end_line': 12, 'body': '```suggestion\r\n    public override void Initialize()\r\n        => AvaloniaXamlLoader.Load(this);\r\n```\r\nИ вообще, стоит использовать expression-bodied-методы более активно.', 'error_type': '', 'type': 'Expression-bodied Method Opportunity', 'prepared_text': '', 'embedding': [], 'original_start_line': 9, 'original_end_line': 12}
+Comment: {'path': 'scp-087(3)/Assets/Scripts/Menu.cs', 'start_line': 8, 'end_line': 8, 'body': 'Оно по идее "Chance"', 'error_type': 'Naming Convention Violation', 'type': '', 'prepared_text': '', 'embedding': [], 'original_start_line': 8, 'original_end_line': 8}
 
-**Category XML Tag Syntax Errors**`:
-  Code: 21         this.SizeChanged  = this.WindowSizeChanged;
-22     }
+Example 2:
+Code: 6 public class Menu : MonoBehaviour
+7 {
+8     public Text Chanse;
+9     public Slider slider;
+10
+11     public void NewZnachenie()
+12     {
+13         Chanse.text = (int) slider.value + "%";
+14         PlayerPrefs.SetInt("chance", (int) slider.value);
+15     }
+16
+
+Comment: {'path': 'scp-087(3)/Assets/Scripts/Menu.cs', 'start_line': 11, 'end_line': 11, 'body': 'Транслит нехорошо', 'error_type': 'Naming Convention Violation', 'type': '', 'prepared_text': '', 'embedding': [], 'original_start_line': 11, 'original_end_line': 11}
+
+
+**Insufficient Test Coverage**:
+
+Example 1:
+Code: 20
+21         vector2.Add(1, 1);
+22         vector2.Add(3, 1);
 23
-24     /// <summary>
-25     /// Method for handling actions if cursor near the button.
-26     /// </summary>>
-27     /// <param name="sender">The control that raised the event.</param>\
-28     /// /// <param name="e">Provides data about the pointer movement, including current position.</param>
-29     private void MovedOnButton(object? sender, PointerEventArgs e)
-30     {
-31         var buttonX = Canvas.GetLeft(EscapeButton)   EscapeButton.Bounds.Width / 2;
-32         var buttonY = Canvas.GetTop(EscapeButton)   EscapeButton.Bounds.Height / 2;
-33         var mouse = e.GetPosition(MainCanvas);
-  Comment: {'path': 'CW2/Button/MainWindow.axaml.cs', 'start_line': 26, 'end_line': 28, 'body': 'Тут полная жесть с тэгами, у кого-то `>` лишняя, у кого-то `\\` ненужная, у кого-то `///` дважды.', 'error_type': '', 'type': 'XML Tag Syntax Errors', 'prepared_text': '', 'embedding': [], 'original_start_line': 26, 'original_end_line': 28}
+24         Vector
+<int> newVector = new ();
+    25 }
+    26 }
+    27
 
-**Category Resource Management Issue**`:
-  Code: 72     /// </summary>>
-73     /// <param name="mouseX">The X coordinate of the mouse.</param>\
-74     /// /// <param name="mouseY">The Y coordinate of the mouse.</param>
-75     private void SetNewPosition(double mouseX, double mouseY)
-76     {
-77         var random = new Random();
-78         var x = random.NextDouble() * (MainCanvas.Bounds.Width - EscapeButton.Bounds.Width);
-79         var y = random.NextDouble() * (MainCanvas.Bounds.Height - EscapeButton.Bounds.Height);
-80         while (mouseX < x   EscapeButton.Bounds.Width / 2 && mouseX
-81                > x - EscapeButton.Bounds.Width / 2 && mouseY < y   EscapeButton.Bounds.Height / 2
-82                && mouseY > y   EscapeButton.Bounds.Height / 2)
-  Comment: {'path': 'CW2/Button/MainWindow.axaml.cs', 'start_line': 77, 'end_line': 77, 'body': 'Так каждый раз создаётся новый Random, хотя нужен только один (и сборщику мусора это всё собирать). Правильнее было бы сделать его статическим полем или вообще использовать Random.Shared', 'error_type': '', 'type': 'Resource Management Issue', 'prepared_text': '', 'embedding': [], 'original_start_line': 77, 'original_end_line': 77}
+    Comment: {'path': 'ControlWork3/ControlWork3.Test/UnitTest1.cs', 'start_line': 25, 'end_line': 25, 'body': ':(',
+    'error_type': 'Insufficient Test Coverage', 'type': '', 'prepared_text': '', 'embedding': [], 'original_start_line':
+    25, 'original_end_line': 25}
 
-**Category Test Organization Issue**`:
-  Code: 14     }
-15
-16     [Test]
-17     public void BinaryHeapEmptyExtractMaximumTest()
-18     {
-19         var heap = new BinaryHeap();
-20         Assert.Throws<Exception>(() => heap.ExtractMaximum());
-21     }
-22 }
-  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/Tests.cs', 'start_line': 19, 'end_line': 19, 'body': 'Это делается во всех тестах, можно было бы вынести в SetUp', 'error_type': '', 'type': 'Test Organization Issue', 'prepared_text': '', 'embedding': [], 'original_start_line': 19, 'original_end_line': 19}
+    Example 2:
+    Code: 26 for (var i = 1; i <= 5; ++i)
+    27 {
+    28 Assert.That(list.GetValue(i - 1), Is.EqualTo(i));
+    29 }
+    30 }
+    31 }
+    32
 
-**Category Visibility Modifier Missing**`:
-  Code: 65         /// </summary>
-66         /// <param name="value">The value to add to the skip enumeratedList.</param>
-67         /// <exception cref="ArgumentNullException">
-68         /// Thrown when <paramref name="value"/> is <c>null</c>.
-69         /// Note: This applies only if <typeparamref name="T"/> is a reference type.
-70         /// </exception>
-71         public void Add(T value)
-72         {
-73             if (value is null)
-74             {
-75                 throw new ArgumentNullException(nameof(value));
-  Comment: {'path': 'SkipList/SkipList/SkipList.cs', 'start_line': 70, 'end_line': 70, 'body': 'Здесь и ниже модификаторов видимости не хватает', 'error_type': '', 'type': 'Visibility Modifier Missing', 'prepared_text': '', 'embedding': [], 'original_start_line': 69, 'original_end_line': 69}
+    Comment: {'path': 'ControlWork2/ControlWork2.Tests/UnitTest1.cs', 'start_line': 31, 'end_line': 31, 'body': 'Тестов
+    маловато', 'error_type': 'Insufficient Test Coverage', 'type': '', 'prepared_text': '', 'embedding': [],
+    'original_start_line': 31, 'original_end_line': 31}
 
-**Category Unnecessary Public Type**`:
-  Code: 1 ﻿namespace SkipList
-2 {
-3     using System;
-4     using System.Collections;
-5     using System.Collections.Generic;
-  Comment: {'path': 'SkipList/SkipList/SkipList.cs', 'start_line': 0, 'end_line': 0, 'body': 'Зачем public?\r\nЕсли делать public, то надо в отдельный файл вынести. А если это private-вложенный тип, то ок', 'error_type': '', 'type': 'Unnecessary Public Type', 'prepared_text': '', 'embedding': [], 'original_start_line': 300, 'original_end_line': 300}
 
-**Category Magic Number Usage**`:
-  Code: 1 ﻿namespace SkipList
-2 {
-3     using System;
-4     using System.Collections;
-5     using System.Collections.Generic;
-  Comment: {'path': 'SkipList/SkipList/SkipList.cs', 'start_line': 0, 'end_line': 0, 'body': 'это магическое число надо в константу вынести', 'error_type': '', 'type': 'Magic Number Usage', 'prepared_text': '', 'embedding': [], 'original_start_line': 267, 'original_end_line': 267}
+    **Namespace Organization Issue**:
 
-**Category Incorrect Recursion Usage**`:
-  Code: 100                 {
-101                     newNode.Forward[i] = path[i].Forward[i];
-102                 }
-103
-104                 path[i].Forward[i] = newNode;
-105             }
-106
-107             this.Count  ;
-108             this.version  ;
-109         }
-110
-  Comment: {'path': 'SkipList/SkipList/SkipList.cs', 'start_line': 105, 'end_line': 105, 'body': 'То есть на каждое добавление элемента будет создаваться  1 уровень у skip list?\r\n\r\nЕсли так, то надо какой-нибудь (а лучше умной) константой его размер ограничивать, чтобы производительность не страдала.\r\nДа и глубина рекурсии, используемой в Add, ограничена, так что при большом количестве элементов всё может сломаться', 'error_type': '', 'type': 'Incorrect Recursion Usage', 'prepared_text': '', 'embedding': [], 'original_start_line': 119, 'original_end_line': 119}
+    Example 1:
+    Code: 1 //
+    <copyright file="SkipListTests.cs" company="SPbSU">
+        2 // Copyright (c) SPbSU. All rights reserved.
+        3 //
+    </copyright>
+    4
+    5 namespace SkipListCollection.Tests
+    6 {
+    7 using System;
+    8 using Xunit;
+    9 using SkipListCollection;
+    10
 
-**Category Missing Documentation**`:
-  Code: 1 namespace PriorityQueue;
-2
-3 public class BinaryHeap
-4 {
-5     private (int, int)[] Heap { get; set; } = new (int, int)[10];
-6
-7     private int HeapSize { get; set; } = 0;
-8
-  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs', 'start_line': 3, 'end_line': 3, 'body': 'Надо комментарии к каждому классу и каждому публичному методу/свойству/событию.\r\n\r\nИ надо, чтобы мне не надо было это писать, то есть надо подключить StyleCop', 'error_type': '', 'type': 'Missing Documentation', 'prepared_text': '', 'embedding': [], 'original_start_line': 3, 'original_end_line': 3}
+    Comment: {'path': 'HomeWorks/SkipList/SkipListCollection.Tests/SkipListTests.cs', 'start_line': 5, 'end_line': 5,
+    'body': 'Используйте file-scoped namespaces', 'error_type': 'Namespace Organization Issue', 'type': '',
+    'prepared_text': '', 'embedding': [], 'original_start_line': 5, 'original_end_line': 5}
 
-**Category Private Property Misuse**`:
-  Code: 1 namespace PriorityQueue;
-2
-3 public class BinaryHeap
-4 {
-5     private (int, int)[] Heap { get; set; } = new (int, int)[10];
-6
-7     private int HeapSize { get; set; } = 0;
-8
-9     private void ResetHeap()
-10     {
-  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs', 'start_line': 5, 'end_line': 5, 'body': 'private-свойства — вещь довольно бессмысленная, потому что они ничем не лучше полей, но добавляют уровень косвенности обращения (имеют прямо настоящий геттер-сеттер, не имеют адреса в памяти и т.п.). Короче, это надо было сделать полями просто.', 'error_type': '', 'type': 'Private Property Misuse', 'prepared_text': '', 'embedding': [], 'original_start_line': 5, 'original_end_line': 5}
+    Example 2:
+    Code: 1 ﻿namespace ListTests
+    2 {
+    3 using ListUtils;
+    4 using TList;
+    5
+    6 ///
+    <summary>
 
-**Category Unclear Method Naming**`:
-  Code: 11         var newHeap = new (int, int)[this.Heap.Length * 2];
-12         this.Heap.CopyTo(newHeap, 0);
-13         this.Heap = newHeap;
-14     }
-15
-16     private void IncreaseKey(int index, (int, int) item)
-17     {
-18         if (item.Item1 < this.Heap[index].Item1)
-19         {
-20             throw new Exception(); //TODO!!!!!!!!!
-21         }
-  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs', 'start_line': 16, 'end_line': 16, 'body': 'Метод очень странно называется, я так и не понял, кто из них Key и почему он Increase', 'error_type': '', 'type': 'Unclear Method Naming', 'prepared_text': '', 'embedding': [], 'original_start_line': 16, 'original_end_line': 16}
+        Comment: {'path': 'ListWithUtils/ListTests/ListTests.cs', 'start_line': 1, 'end_line': 1, 'body': 'Используйте
+        file-scoped namespaces', 'error_type': 'Namespace Organization Issue', 'type': '', 'prepared_text': '',
+        'embedding': [], 'original_start_line': 1, 'original_end_line': 1}
 
-**Category Incorrect Exception Type**`:
-  Code: 15
-16     private void IncreaseKey(int index, (int, int) item)
-17     {
-18         if (item.Item1 < this.Heap[index].Item1)
-19         {
-20             throw new Exception(); //TODO!!!!!!!!!
-21         }
-22         this.Heap[index] = item;
-23         while (index > 1 && this.Heap[index / 2].Item1 < this.Heap[index].Item1)
-24         {
-25             (this.Heap[index], this.Heap[index / 2]) = (this.Heap[index / 2], this.Heap[index]);
-  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs', 'start_line': 20, 'end_line': 20, 'body': 'TODO indeed! Просто Exception бросать нельзя, его потом поймать корректно невозможно. Тут бы больше подошло InvalidOperationException.', 'error_type': '', 'type': 'Incorrect Exception Type', 'prepared_text': '', 'embedding': [], 'original_start_line': 20, 'original_end_line': 20}
 
-**Category Unnecessary Class**`:
-  Code: 1 using System.Linq.Expressions;
-2
-3 namespace PriorityQueue;
-4
-5 public class PriorityQueue
-6 {
-7     private BinaryHeap Data = new();
-8
-9     public void Enqueue(int priority, int value)
-10     {
-  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/PriorityQueue.cs', 'start_line': 5, 'end_line': 5, 'body': 'Не уверен, что этот класс даёт что-то сверх BinaryHeap, так что не уверен, что он нужен.', 'error_type': '', 'type': 'Unnecessary Class', 'prepared_text': '', 'embedding': [], 'original_start_line': 5, 'original_end_line': 5}
+        **Expression-bodied Method Opportunity**:
 
+        Example 1:
+        Code: 13 ///
+        <summary>
+            14 /// Method of compression.
+            15 ///
+        </summary>
+        16 ///
+        <param name="path">
+        path of file to be compressed. </param>
+        17 ///
+        <returns> compression efficiency.</returns>
+        18 public static double Compress(string path)
+        19 {
+        20 return CompressData(File.ReadAllBytes(path), path);
+        21 }
+        22
+        23 ///
+        <summary>
+            24 /// Method of decompression.
+            25 ///
+        </summary>
+        26 ///
+        <param name="path">
+        path of file to be decompressed. </param>
+
+        Comment: {'path': 'Hw3/Hw3/LZW.cs', 'start_line': 18, 'end_line': 21, 'body': '```suggestion\r\n public static
+        double Compress(string path)\r\n => CompressData(File.ReadAllBytes(path), path);\r\n```', 'error_type':
+        'Expression-bodied Method Opportunity', 'type': '', 'prepared_text': '', 'embedding': [], 'original_start_line':
+        18, 'original_end_line': 21}
+
+        Example 2:
+        Code: 137 ///
+        <param name="nextElement">
+        specified vertex to check an ability of passing to. </param>
+        138 ///
+        <returns> specified vertex.</returns>
+        139 public Vertex GetFromNext(byte nextElement)
+        140 {
+        141 return this.nextDictionary[nextElement];
+        142 }
+        143 }
+        144 }
+        145
+
+        Comment: {'path': 'Hw3/Hw3/Trie.cs', 'start_line': 142, 'end_line': 142, 'body': 'Тут тоже стоило более
+        агрессивно использовать expression-bodied-методы', 'error_type': 'Expression-bodied Method Opportunity', 'type':
+        '', 'prepared_text': '', 'embedding': [], 'original_start_line': 142, 'original_end_line': 142}
+
+
+        **Resource Management Issue**:
+
+        Example 1:
+        Code: 30
+        31 private int CurrentLevel { get; set; } = 0;
+        32
+        33 private SkipListNode
+        <T> Head { get; set; } = new(default);
+            34
+            35 private Random Random { get; } = new();
+            36
+            37 ///
+            <summary>
+                38 /// Gets or sets the element at the specified index in the
+                <see cref="SkipList{T}"/>
+                .
+                39 ///
+            </summary>
+            40 ///
+            <param name="index">
+            The zero-based index of the element to get or set.</param>
+
+            Comment: {'path': 'SkipList/SkipList/SkipList.cs', 'start_line': 35, 'end_line': 35, 'body': 'Можно
+            использовать Random.Shared, чтобы не создавать лишних объектов на куче. Но за это надо платить
+            синхронизацией потоков при доступе к переменной даже в однопоточной программе, так что можно не переделывать
+            :)', 'error_type': 'Resource Management Issue', 'type': '', 'prepared_text': '', 'embedding': [],
+            'original_start_line': 35, 'original_end_line': 35}
+
+            Example 2:
+            Code: 1 ﻿// Copyright (c) Murat Khamatyanov. All rights reserved.
+            2 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+            3
+            4 namespace Hw8;
+            5
+
+            Comment: {'path': 'Hw8/Hw8/SkipList.cs', 'start_line': 0, 'end_line': 0, 'body': 'Создавать каждый раз
+            Random плохо по двум причинам — во-первых, они друг от друга в плане функциональности ничем не отличаются, а
+            место на куче жрут (следовательно, сборщик мусора должен будет тратить на них время); во-вторых, Random по
+            умолчанию инициализируется текущим временем, так что все объекты, созданные в одну миллисекунду, будут
+            возвращать одинаковые "случайные" числа всегда.', 'error_type': 'Resource Management Issue', 'type': '',
+            'prepared_text': '', 'embedding': [], 'original_start_line': 104, 'original_end_line': 104}
+
+
+            **Test Organization Issue**:
+
+            Example 1:
+            Code: 161 }
+            162
+            163 [Test]
+            164 public void CopyToThrowsExceptionForNullArray()
+            165 {
+            166 var list = new SkipList
+            <int>();
+                167 Assert.Throws
+                <ArgumentNullException>(() => list.CopyTo(null!, 0));
+                    168 }
+                    169
+                    170 [Test]
+                    171 public void CopyToThrowsExceptionForNegativeIndex()
+
+                    Comment: {'path': '2st-semester/SkipList/SkipList.Test/SkipListTest.cs', 'start_line': 166,
+                    'end_line': 166, 'body': 'Можно было вынести в SetUp, чтобы тыщу раз не писать', 'error_type': 'Test
+                    Organization Issue', 'type': '', 'prepared_text': '', 'embedding': [], 'original_start_line': 166,
+                    'original_end_line': 166}
+
+                    Example 2:
+                    Code: 123 if (isDraw)
+                    124 {
+                    125 MessageBox.Show("Íè÷üÿ!", "Èãðà îêîí÷åíà");
+                    126 this.ResetGame();
+                    127 }
+                    128 }
+                    129
+                    130 private void ShowWinner(string winner)
+                    131 {
+                    132 MessageBox.Show($"Ïîáåäèë {winner}!", "Èãðà îêîí÷åíà");
+                    133 this.ResetGame();
+
+                    Comment: {'path': 'test_23_05_2025/TicTacToe/TicTacToe/TicTacToeBoard.cs', 'start_line': 128,
+                    'end_line': 128, 'body': 'Надо было разделить бизнес-логику и UI, иначе тесты писать невозможно',
+                    'error_type': 'Test Organization Issue', 'type': '', 'prepared_text': '', 'embedding': [],
+                    'original_start_line': 128, 'original_end_line': 128}
+
+
+                    **Visibility Modifier Missing**:
+
+                    Example 1:
+                    Code: 4
+                    5 namespace WindowsFormsControlWork;
+                    6
+                    7 public class Game
+                    8 {
+                    9 List
+                    <int> arrayOfButtons;
+                        10 Random random;
+                        11 public object Controls { get; private set; }
+                        12
+                        13 public Game()
+                        14 {
+                        15 for (int i = 1; i <= 9; ++i)
+
+                        Comment: {'path': 'Новая папка/WindowsFormsControlWork/Game.cs', 'start_line': 9, 'end_line':
+                        10, 'body': 'Надо модификаторы видимости', 'error_type': 'Visibility Modifier Missing', 'type':
+                        '', 'prepared_text': '', 'embedding': [], 'original_start_line': 9, 'original_end_line': 10}
+
+                        Example 2:
+                        Code: 3
+                        4 namespace ControlWork.Test
+                        5 {
+                        6 public class Tests
+                        7 {
+                        8 List
+                        <int> list;
+                            9
+                            10 [SetUp]
+                            11 public void Setup()
+                            12 {
+                            13 list = new List
+                            <int>();
+
+                                Comment: {'path': 'Новая папка/ControlWork.Test/UnitTest1.cs', 'start_line': 8,
+                                'end_line': 8, 'body': 'Всегда указывайте явно модификаторы видимости (StyleCop бы
+                                подсказал, кстати)', 'error_type': 'Visibility Modifier Missing', 'type': '',
+                                'prepared_text': '', 'embedding': [], 'original_start_line': 8, 'original_end_line': 8}
+
+
+                                **Unnecessary Public Type**:
+
+                                Example 1:
+                                Code: 4 /// Interface.
+                                5 ///
+    </summary>
+    6 ///
+    <typeparam name="T"> n.</typeparam>
+    7 public interface INullChecker
+    <T>
+        8 {
+        9 ///
+        <summary>
+            10 /// Adds element.
+            11 ///
+        </summary>
+        12 ///
+        <param name="value">
+        null. </param>
+        13 void Add(T value);
+        14
+        15 ///
+        <summary>
+            16 /// Returns IEnumerator.
+            17 ///
+        </summary>
+        18 ///
+        <returns> IEnumerator.</returns>
+        19 IEnumerator
+        <T> GetEnumerator();
+            20
+            21 ///
+            <summary>
+                22 /// Is Null.
+                23 ///
+            </summary>
+            24 ///
+            <param name="item"></param>
+
+            Comment: {'path': 'Новая папка/ControlWork/IsNull.cs', 'start_line': 9, 'end_line': 19, 'body': 'Это не
+            нужно', 'error_type': 'Unnecessary Public Type', 'type': '', 'prepared_text': '', 'embedding': [],
+            'original_start_line': 9, 'original_end_line': 19}
+
+            Example 2:
+            Code: 4
+            5 ///
+            <summary>
+                6 /// the listNode`s class.
+                7 ///
+            </summary>
+            8 ///
+            <typeparam name="T">The type of value.</typeparam>
+            9 public class ListNode
+            <T>
+                10 {
+                11 ///
+                <summary>
+                    12 /// Initializes a new instance of the
+                    <see cref="ListNode{T}"/>
+                    class.
+                    13 ///
+                </summary>
+                14 ///
+                <param name="value">
+                The value.</param>
+
+                Comment: {'path': 'FinalTest/FinalTest/FinalTest/ListNode.cs', 'start_line': 9, 'end_line': 9, 'body':
+                'Я бы этот класс private-вложенным в GenericList сделал, это деталь реализации списка и извне точно
+                никому не нужен (тем более public, а не internal)', 'error_type': 'Unnecessary Public Type', 'type': '',
+                'prepared_text': '', 'embedding': [], 'original_start_line': 9, 'original_end_line': 9}
+
+
+                **Magic Number Usage**:
+
+                Example 1:
+                Code: 101 }
+                102
+                103 [Test]
+                104 public void Test_DimLessThanOne()
+                105 {
+                106 Assert.Throws
+                <InvalidDataException>(() => new Vector(-2));
+                    107 }
+                    108
+                    109 [Test]
+                    110 public void Test_IsZero()
+                    111 {
+
+                    Comment: {'path': 'testReRewrite/TestReRewrite/TestReRewrite.Tests/Tests.cs', 'start_line': 106,
+                    'end_line': 106, 'body': 'Если DimLessThanOne, я бы на 0 проверил, а не на -2.', 'error_type':
+                    'Magic Number Usage', 'type': '', 'prepared_text': '', 'embedding': [], 'original_start_line': 106,
+                    'original_end_line': 106}
+
+                    Example 2:
+                    Code: 10 /// Basic array-backed list.
+                    11 /// </summary>
+                    12 ///
+                    <typeparam name="T">Type of items.</typeparam>
+                    13 public class BasicList
+                    <T> : IEnumerable
+                        <T>
+                            14 {
+                            15 private T[] values = new T[4];
+                            16 private int count = 0;
+                            17 private int version = 0;
+                            18
+                            19 ///
+                            <summary>
+                                20 /// Initializes a new instance of the
+                                <see cref="BasicList{T}"/>
+                                class.
+
+                                Comment: {'path': 'NullElements/NullElements/BasicList.cs', 'start_line': 15,
+                                'end_line': 15, 'body': '4 лучше было в константу вынести', 'error_type': 'Magic Number
+                                Usage', 'type': '', 'prepared_text': '', 'embedding': [], 'original_start_line': 15,
+                                'original_end_line': 15}
+
+                                **Missing Documentation**:
+
+                                Example 1:
+                                Code: 1 ﻿namespace ControlWork2;
+                                2
+                                3 ///
+                                <summary>
+                                    4 /// Defines List.
+                                    5 ///
+                                </summary>
+                                6 ///
+                                <typeparam name="T"> n.</typeparam>
+                                7 public class List
+                                <T>
+                                    8 {
+                                    9 private T[] array;
+                                    10 private int size;
+                                    11
+
+                                    Comment: {'path': 'ControlWork2/ControlWork2/List.cs', 'start_line': 6, 'end_line':
+                                    6, 'body': 'Не очень информативно', 'error_type': 'Missing Documentation', 'type':
+                                    '', 'prepared_text': '', 'embedding': [], 'original_start_line': 6,
+                                    'original_end_line': 6}
+
+                                    Example 2:
+                                    Code: 1 ﻿[*.cs]
+                                    2
+                                    3 # SA1600: Elements should be documented
+                                    4 dotnet_diagnostic.SA1600.severity = none
+                                    5
+
+                                    Comment: {'path': 'NullElements/.editorconfig', 'start_line': 4, 'end_line': 4,
+                                    'body': 'Это стоило выключать только для тестов, для всего проекта не надо',
+                                    'error_type': 'Missing Documentation', 'type': '', 'prepared_text': '', 'embedding':
+                                    [], 'original_start_line': 4, 'original_end_line': 4}
+
+
+                                    **Private Property Misuse**:
+
+                                    Example 1:
+                                    Code: 26 /// Gets a value indicating whether the
+                                    <see cref="SkipList{T}"/>
+                                    is read-only.
+                                    27 /// Always returns
+                                    <c>false</c>
+                                    as the collection is mutable.
+                                    28 ///
+                            </summary>
+                            29 public bool IsReadOnly => false;
+                            30
+                            31 private int CurrentLevel { get; set; } = 0;
+                            32
+                            33 private SkipListNode
+                            <T> Head { get; set; } = new(default);
+                                34
+                                35 private Random Random { get; } = new();
+                                36
+
+                                Comment: {'path': 'SkipList/SkipList/SkipList.cs', 'start_line': 31, 'end_line': 31,
+                                'body': 'private-свойства, кажется, не нужны в принципе, потому что они способствуют
+                                инкапсуляции поля от самого же класса, в котором объявлены. Что излишне — если у вас
+                                класс такого размера, что имеет смысл разные его части защищать друг от друга, просто
+                                разбейте его на два. Тут бы просто поле подошло. То же касается private-свойств ниже',
+                                'error_type': 'Private Property Misuse', 'type': '', 'prepared_text': '', 'embedding':
+                                [], 'original_start_line': 31, 'original_end_line': 31}
+
+                                Example 2:
+                                Code: 1 namespace PriorityQueue;
+                                2
+                                3 public class BinaryHeap
+                                4 {
+                                5 private (int, int)[] Heap { get; set; } = new (int, int)[10];
+                                6
+                                7 private int HeapSize { get; set; } = 0;
+                                8
+                                9 private void ResetHeap()
+                                10 {
+
+                                Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs',
+                                'start_line': 5, 'end_line': 5, 'body': 'private-свойства — вещь довольно бессмысленная,
+                                потому что они ничем не лучше полей, но добавляют уровень косвенности обращения (имеют
+                                прямо настоящий геттер-сеттер, не имеют адреса в памяти и т.п.). Короче, это надо было
+                                сделать полями просто.', 'error_type': 'Private Property Misuse', 'type': '',
+                                'prepared_text': '', 'embedding': [], 'original_start_line': 5, 'original_end_line': 5}
+
+
+                                **Unclear Method Naming**:
+
+                                Example 1:
+                                Code: 33 {
+                                34 ++this.Count;
+                                35 UpdateSize();
+                                36 this.items[this.Count] = item;
+                                37
+                                38 void UpdateSize()
+                                39 {
+                                40 if (this.Count == this.Capacity)
+                                41 {
+                                42 this.Capacity *= 2;
+                                43 var newItems = new T[this.Capacity];
+
+                                Comment: {'path': 'ZeroElements/MyList/List.cs', 'start_line': 38, 'end_line': 38,
+                                'body': 'Я б назвал "UpdateSizeIfNeeded"', 'error_type': 'Unclear Method Naming',
+                                'type': '', 'prepared_text': '', 'embedding': [], 'original_start_line': 38,
+                                'original_end_line': 38}
+
+                                Example 2:
+                                Code: 28 {
+                                29 }
+                                30
+                                31 private void Button_Click(object sender, EventArgs e)
+                                32 {
+                                33 this.calculator.Button_Click(sender, e);
+                                34 }
+                                35 }
+                                36
+
+                                Comment: {'path': 'CalculatorW/Form1.cs', 'start_line': 33, 'end_line': 33, 'body': 'Я
+                                думал, у Calculator Button_Click выглядит как обработчик, потому что Вы прямо его
+                                подписывать будете, но тут Вы его вызываете как обычный метод — тогда можно было бы его
+                                сделать более высокоуровневым', 'error_type': 'Unclear Method Naming', 'type': '',
+                                'prepared_text': '', 'embedding': [], 'original_start_line': 33, 'original_end_line':
+                                33}
+
+
+                                **Incorrect Exception Type**:
+
+                                Example 1:
+                                Code: 163 throw new ArgumentNullException();
+                                164 }
+                                165
+                                166 if (this.dim != vector.GetDim())
+                                167 {
+                                168 throw new Exception();
+                                169 }
+                                170 }
+                                171 }
+
+                                Comment: {'path': 'testReRewrite/TestReRewrite/TestReRewrite/Vector.cs', 'start_line':
+                                168, 'end_line': 168, 'body': 'Нельзя просто Exception кидать. Тут бы
+                                InvalidOperationException или ArgumentException подошли бы', 'error_type': 'Incorrect
+                                Exception Type', 'type': '', 'prepared_text': '', 'embedding': [],
+                                'original_start_line': 168, 'original_end_line': 168}
+
+                                Example 2:
+                                Code: 19 ///
+                                <exception cref="ArgumentException">Thrown when dimension is not positive.</exception>
+                                20 public SparseVector(int dimension)
+                                21 {
+                                22 if (dimension <= 0)
+                                23 {
+                                24 throw new ArgumentException("Vector dimension must be positive", nameof(dimension));
+                                25 }
+                                26
+                                27 this.dimension = dimension;
+                                28 this.elements = new Dictionary
+                                <int
+                                , double>();
+                                29 }
+
+                                Comment: {'path': 'Test11/Test11/SparseVector.cs', 'start_line': 24, 'end_line': 24,
+                                'body': 'ArgumentOutOfRangeException.ThrowIfNegativeOrZero', 'error_type': 'Incorrect
+                                Exception Type', 'type': '', 'prepared_text': '', 'embedding': [],
+                                'original_start_line': 24, 'original_end_line': 24}
+
+
+                                **Algorithm Complexity Issue**:
+
+                                Example 1:
+                                Code: 74 this.textBox1.Text += buttonText;
+                                75 }
+                                76
+                                77 this.textBox2.Text += buttonText;
+                                78 }
+                                79 else if (buttonText == "=")
+                                80 {
+                                81 this.CalculateResult();
+                                82 this.textBox2.Text += "=";
+                                83 }
+                                84 else
+
+                                Comment: {'path': 'CalculatorW/Calculator.cs', 'start_line': 79, 'end_line': 79, 'body':
+                                'Мне кажется в целом плохой идеей длинной цепочкой if-ов разбираться, на какую кнопку
+                                кликнул пользователь, когда мы и так это знаем. Я бы сделал несколько обработчиков (один
+                                на все цифровые кнопки и по одному на каждую из остальных).', 'error_type': 'Algorithm
+                                Complexity Issue', 'type': '', 'prepared_text': '', 'embedding': [],
+                                'original_start_line': 79, 'original_end_line': 79}
+
+                                Example 2:
+                                Code: 320 return index;
+                                321 }
+                                322
+                                323 current = current.Next[0];
+                                324 index++;
+                                325 }
+                                326
+                                327 return -1;
+                                328 }
+                                329
+                                330 private int RandomLevel()
+
+                                Comment: {'path': 'GenericSkipList/GenericSkipList/SkipList.cs', 'start_line': 325,
+                                'end_line': 325, 'body': 'В настоящем списке с пропусками это делается за логарифм, у
+                                Вас за линию.', 'error_type': 'Algorithm Complexity Issue', 'type': '', 'prepared_text':
+                                '', 'embedding': [], 'original_start_line': 325, 'original_end_line': 325}
+
+
+                                **Algorithm Optimization Opportunity**:
+
+                                Example 1:
+                                Code: 50 /// </summary>
+                                51 public int Size => this.size;
+                                52
+                                53 public static SparseVector
+                                <T> operator +(SparseVector
+                                    <T> a, SparseVector
+                                        <T> b)
+                                            54 {
+                                            55 return OperatorInternals(a, b, '+');
+                                            56 }
+                                            57
+                                            58 public static SparseVector
+                                            <T> operator -(SparseVector
+                                                <T> a, SparseVector
+                                                    <T> b)
+                                                        59 {
+                                                        60 return OperatorInternals(a, b, '-');
+
+                                                        Comment: {'path':
+                                                        '2st-semester/SparseVector/SparseVector/SparseVector.cs',
+                                                        'start_line': 55, 'end_line': 55, 'body': 'Передавали бы лямбду
+                                                        вместо знака операции', 'error_type': 'Algorithm Optimization
+                                                        Opportunity', 'type': '', 'prepared_text': '', 'embedding': [],
+                                                        'original_start_line': 55, 'original_end_line': 55}
+
+                                                        Example 2:
+                                                        Code: 40 ///
+                                                        <returns> IEnumerator.</returns>
+                                                        41 public IEnumerator
+                                                        <T> GetEnumerator()
+                                                            42 {
+                                                            43 for (int i = 0; i < this.size; i++)
+                                                            44 {
+                                                            45 yield return this.array[i];
+                                                            46 }
+                                                            47 }
+                                                            48
+                                                            49 ///
+                                                            <summary>
+                                                                50 /// Returns list.
+
+                                                                Comment: {'path': 'Новая папка/ControlWork/List.cs',
+                                                                'start_line': 45, 'end_line': 45, 'body': 'Так оно не
+                                                                будет проверять на то, что список не поменялся. Можно
+                                                                было просто запомнить count в локальной переменной и на
+                                                                каждой итерации сравнивать её с текущим count',
+                                                                'error_type': 'Algorithm Optimization Opportunity',
+                                                                'type': '', 'prepared_text': '', 'embedding': [],
+                                                                'original_start_line': 45, 'original_end_line': 45}
+
+
+                                                                **Incorrect Loop Structure**:
+
+                                                                Example 1:
+                                                                Code: 52 else
+                                                                53 {
+                                                                54 this.tail.Next = newNode;
+                                                                55 this.tail = newNode;
+                                                                56 }
+                                                                57 }
+                                                                58
+                                                                59 private class Enumerator(ListState state, ListNode?
+                                                                headList) : IEnumerator
+                                                                <T>
+                                                                    60 {
+                                                                    61 private readonly int initialNumberOfChanges =
+                                                                    state.CurrentVersion;
+                                                                    62 private ListNode? head = headList;
+
+                                                                    Comment: {'path':
+                                                                    'test_23_05_25/NullElements/NullElements/MyList.cs',
+                                                                    'start_line': 57, 'end_line': 57, 'body': 'А вот
+                                                                    что-то Вы тут state не продвигаете', 'error_type':
+                                                                    'Incorrect Loop Structure', 'type': '',
+                                                                    'prepared_text': '', 'embedding': [],
+                                                                    'original_start_line': 57, 'original_end_line': 57}
+
+                                                                    Example 2:
+                                                                    Code: 62 ///
+                                                                    <returns>An enumerator that can be used to iterate
+                                                                        through the collection.
+                                                                    </returns>
+                                                                    63 public IEnumerator
+                                                                    <T> GetEnumerator()
+                                                                        64 {
+                                                                        65 for (int i = 0; i < this.count; i++)
+                                                                        66 {
+                                                                        67 yield return this.items[i];
+                                                                        68 }
+                                                                        69 }
+                                                                        70
+                                                                        71 ///
+                                                                        <summary>
+                                                                            72 /// Returns an enumerator that iterates
+                                                                            through the collection.
+
+                                                                            Comment: {'path':
+                                                                            'test2/test2/CustomList.cs', 'start_line':
+                                                                            67, 'end_line': 67, 'body': 'Так оно не
+                                                                            будет проверять на то, что список не
+                                                                            поменялся. Можно было просто запомнить count
+                                                                            в локальной переменной и на каждой итерации
+                                                                            сравнивать её с текущим count',
+                                                                            'error_type': 'Incorrect Loop Structure',
+                                                                            'type': '', 'prepared_text': '',
+                                                                            'embedding': [], 'original_start_line': 67,
+                                                                            'original_end_line': 67}

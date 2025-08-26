@@ -12,7 +12,27 @@ from app.parser import Parser
 from app.prompt_builder import PromptBuilder
 from app.reviewer import Reviewer
 from benchmark.benchmark import Benchmark
-from dtos import BenchmarkDto, PullRequestDto, FileDto, DirectoryDto, CriteriaDto
+from dtos import BenchmarkDto, CriteriaDto, DirectoryDto, FileDto, PullRequestDto
+
+ERROR_TYPES = [
+    'Missing Property Usage',
+    'Naming Convention Violation',
+    'Insufficient Test Coverage',
+    'Namespace Organization Issue',
+    'Expression-bodied Method Opportunity',
+    'Resource Management Issue',
+    'Test Organization Issue',
+    'Visibility Modifier Missing',
+    'Unnecessary Public Type',
+    'Magic Number Usage',
+    'Missing Documentation',
+    'Private Property Misuse',
+    'Unclear Method Naming',
+    'Incorrect Exception Type',
+    'Algorithm Complexity Issue',
+    'Algorithm Optimization Opportunity',
+    'Incorrect Loop Structure'
+]
 
 
 def set_logger() -> None:
@@ -102,7 +122,7 @@ def main() -> None:
     directory = DirectoryDto(
         content=files
     )
-    criteria = CriteriaDto(min_mark=0, max_mark=100, error_types=error_types)
+    criteria = CriteriaDto(min_mark=0, max_mark=100, error_types=ERROR_TYPES)
 
     code_review = reviewer.review(directory, criteria)
 

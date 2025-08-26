@@ -9,7 +9,7 @@ from app.models_api_client import ModelsApiClient
 from app.parser import Parser
 from app.prompt_builder import PromptBuilder
 from app.reviewer import Reviewer
-from dtos import BenchmarkDto, CodeReviewDto, CommentDto, CriteriaDto, DataPreparingDto, FileMetricDto, Type
+from dtos import BenchmarkDto, CodeReviewDto, CommentDto, CriteriaDto, DataPreparingDto, FileMetricDto
 
 
 class Autor(Enum):
@@ -112,10 +112,10 @@ class Benchmark:
         self.prompt_builder = prompt_builder
         self.similarity_threshold = similarity_threshold
 
-        self.type_recall = dict(zip(error_types, [0] * len(error_types)))
-        self.type_precision = dict(zip(error_types, [[[i, 0] for i in range(1, 101)] for _ in error_types]))
+        self.type_recall = dict(zip(error_types, [0] * len(error_types), strict=False))
+        self.type_precision = dict(zip(error_types, [[[i, 0] for i in range(1, 101)] for _ in error_types], strict=False))
         self.type_other_types = dict(
-            zip(error_types, [dict([[error_type, 0] for error_type in error_types]) for _ in error_types]))
+            zip(error_types, [dict([[error_type, 0] for error_type in error_types]) for _ in error_types], strict=False))
 
     def __prepare_human_comment(self, comment_text: str) -> str:
         prompt = self.prompt_builder.build_system_and_human_prompt(
