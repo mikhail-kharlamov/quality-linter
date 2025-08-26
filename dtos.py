@@ -21,10 +21,11 @@ class Type(Enum):
 @dataclass
 class CommentDto:
     path: str
-    error_type: str
     start_line: int
     end_line: int
     body: str
+    error_type: str = field(default="")
+    type: str = field(default="")
     prepared_text: str = field(default="")
     embedding: list[float] = field(default_factory=list)
     original_start_line: int = field(default=0)
@@ -84,3 +85,23 @@ class BenchmarkDto:
 @dataclass
 class DataPreparingDto:
     content: str
+
+
+@dataclass_json
+@dataclass
+class TypesDto:
+    error_types: list[str] = field(default_factory=list)
+
+
+@dataclass_json
+@dataclass
+class ErrorTypeDto:
+    error_type: str = field(default="Unknown")
+
+
+@dataclass
+class PullRequestDto:
+    owner: str = field(default="")
+    repo: str = field(default="")
+    pull_number: int = field(default=0)
+

@@ -1,48 +1,7 @@
 Example response:
 
-Missing Property Usage: {
-"path": "HW6/parseTree/parseTree/parseTree/OperandNode.cs",
-"start_line": 7,
-"end_line": 7,
-"body": "Consider converting this to a read-only property since the value doesn't change after initialization. Current setter appears unnecessary.",
-"error_type": "Missing Property Usage"
-},
-
-for code:
-
-1 namespace ParseTree;
-2
-3 using Node;
-4
-5 public class OperandNode : Node
-6 {
-7     private int Value { get; set; }
-8
-9     public void SetValue(int value)
-10    {
-11        this.Value = value;
-12    }
-13
-14     public override int Evaluate() => this.Value;
-15
-16     public override string Print() => this.Value.ToString();
-17 }
-
-Naming Convention Violation: {
-"path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-"start_line": 16,
-"end_line": 16,
-"body": "Method name 'IncreaseKey' is unclear. Please use more descriptive naming that reflects both the operation and affected elements (e.g., 'IncreasePriorityOfItem').",
-"error_type": "Naming Convention Violation"
-},
-
-for code:
-
-9     private void ResetHeap()
-10     {
-11         var newHeap = new (int, int)[this.Heap.Length * 2];
-12         this.Heap.CopyTo(newHeap, 0);
-13         this.Heap = newHeap;
+**Category Code Style Violation**`:
+  Code: 13         this.Heap = newHeap;
 14     }
 15
 16     private void IncreaseKey(int index, (int, int) item)
@@ -53,141 +12,255 @@ for code:
 21         }
 22         this.Heap[index] = item;
 23         while (index > 1 && this.Heap[index / 2].Item1 < this.Heap[index].Item1)
-24         {
-25             (this.Heap[index], this.Heap[index / 2]) = (this.Heap[index / 2], this.Heap[index]);
-26             index /= 2;
-27         }
-28     }
+  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs', 'start_line': 18, 'end_line': 18, 'body': 'А как без именованных полей кортежа можно запомнить, кто из них значение, а кто приоритет? :)', 'error_type': '', 'type': 'Code Style Violation', 'prepared_text': '', 'embedding': [], 'original_start_line': 18, 'original_end_line': 18}
 
+**Category Missing Property Usage**`:
+  Code: 23     /// </summary>
+24     /// <returns>The string representation of the current display value.</returns>
+25     /// <remarks>
+26     /// Returns "0" if the display value is empty.
+27     /// </remarks>
+28     public string GetDisplay() => string.IsNullOrEmpty(this.displayValue) ? "0" : this.displayValue;
+29
+30     /// <summary>
+31     /// Adds a digit to the current input buffer
+32     /// </summary>
+33     /// <param name="digit">The digit character to add (0-9).</param>
+  Comment: {'path': 'HW8/calculator/calculator/calculator/Calculator.cs', 'start_line': 28, 'end_line': 28, 'body': 'Можно было свойством сделать, тут же нет сложной логики', 'error_type': '', 'type': 'Missing Property Usage', 'prepared_text': '', 'embedding': [], 'original_start_line': 28, 'original_end_line': 28}
 
-Insufficient Test Coverage: {
-"path": "HW6/parseTree/parseTree/parseTree.Tests/Tests.cs",
-"start_line": 24,
-"end_line": 24,
-"body": "Add test cases for edge conditions: division by zero, invalid string formats, and trees containing negative numbers to achieve complete coverage.",
-"error_type": "Insufficient Test Coverage"
-},
+**Category Compiler Warnings**`:
+  Code: 68     /// </remarks>
+69     public MainWindowViewModel()
+70     {
+71         DigitCommand = new RelayCommand(param =>
+72         {
+73             this.calculator.AddDigit(param.ToString()[0]);
+74             this.Display = calculator.GetDisplay();
+75         });
+76
+77         OperatorCommand = new RelayCommand(param =>
+78         {
+  Comment: {'path': 'HW8/calculator/calculator/calculator/MainWindowViewModel.cs', 'start_line': 73, 'end_line': 73, 'body': 'Тут компилятор в целом недоволен Вашим кодом, стоило бы проверок навставлять', 'error_type': '', 'type': 'Compiler Warnings', 'prepared_text': '', 'embedding': [], 'original_start_line': 73, 'original_end_line': 73}
 
-for code:
-
-1 namespace Tests;
+**Category Naming Convention Violation**`:
+  Code: 1 ﻿<Project Sdk="Microsoft.NET.Sdk">
 2
-3 using ParseTree;
+3     <PropertyGroup>
+4         <OutputType>Exe</OutputType>
+5         <TargetFramework>net9.0</TargetFramework>
+6         <ImplicitUsings>enable</ImplicitUsings>
+  Comment: {'path': 'HW8/calculator/calculator/calculator/calculator.csproj', 'start_line': 1, 'end_line': 1, 'body': 'Проект и директорию с проектом по стайлгайду называют с заглавной', 'error_type': '', 'type': 'Naming Convention Violation', 'prepared_text': '', 'embedding': [], 'original_start_line': 1, 'original_end_line': 1}
+
+**Category Insufficient Test Coverage**`:
+  Code: 40         this.calculator.AddDigit('2');
+41         Assert.That(this.calculator.GetDisplay(), Is.EqualTo("2"));
+42         this.calculator.SetOperator('=');
+43         Assert.That(this.calculator.GetDisplay(), Is.EqualTo("14"));
+44     }
+45 }
+  Comment: {'path': 'HW8/calculator/calculator/сalculator.Tests/Tests.cs', 'start_line': 45, 'end_line': 45, 'body': 'Тестов как-то негусто. Деления не 0, например, нет.', 'error_type': '', 'type': 'Insufficient Test Coverage', 'prepared_text': '', 'embedding': [], 'original_start_line': 45, 'original_end_line': 45}
+
+**Category Missing StyleCop Usage**`:
+  Code: 14         <PackageReference Include="coverlet.collector" Version="6.0.2"/>
+15         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0"/>
+16         <PackageReference Include="NUnit" Version="4.2.2"/>
+17         <PackageReference Include="NUnit.Analyzers" Version="4.4.0"/>
+18         <PackageReference Include="NUnit3TestAdapter" Version="4.6.0"/>
+19     </ItemGroup>
+20
+21     <ItemGroup>
+22         <Using Include="NUnit.Framework"/>
+23     </ItemGroup>
+24
+  Comment: {'path': 'HW8/calculator/calculator/сalculator.Tests/сalculator.Tests.csproj', 'start_line': 19, 'end_line': 19, 'body': 'И тоже нужен StyleCop в тесты', 'error_type': '', 'type': 'Missing StyleCop Usage', 'prepared_text': '', 'embedding': [], 'original_start_line': 19, 'original_end_line': 19}
+
+**Category Missing License Header**`:
+  Code: 1 using Avalonia;
+2 using Avalonia.Controls.ApplicationLifetimes;
+3 using Avalonia.Markup.Xaml;
 4
-5 public class Tests
-6 {
-7     [Test]
-8     public void ParseTreeExtractTreeFromStringAndEvaluateSimpleDataTest()
-9     {
-10         var tree = new ParseTree();
-11         tree.ExtractTreeFromString("(+ 3 (* 2 2))");
-12         var value = tree.Evaluate();
-13         Assert.That(value, Is.EqualTo(7));
-14     }
+5 namespace Button;
+6
+  Comment: {'path': 'CW2/Button/App.axaml.cs', 'start_line': 1, 'end_line': 1, 'body': 'Надо шапку с информацией о лицензии', 'error_type': '', 'type': 'Missing License Header', 'prepared_text': '', 'embedding': [], 'original_start_line': 1, 'original_end_line': 1}
+
+**Category Namespace Organization Issue**`:
+  Code: 1 using Avalonia;
+2 using Avalonia.Controls.ApplicationLifetimes;
+3 using Avalonia.Markup.Xaml;
+4
+5 namespace Button;
+6
+7 public partial class App : Application
+8 {
+9     public override void Initialize()
+10     {
+  Comment: {'path': 'CW2/Button/App.axaml.cs', 'start_line': 5, 'end_line': 5, 'body': 'namespace должно по идее быть первой содержательной строкой файла, using-и под ним (чтобы избегать странных конфликтов имён при импорте в глобальное пространство имён).', 'error_type': '', 'type': 'Namespace Organization Issue', 'prepared_text': '', 'embedding': [], 'original_start_line': 5, 'original_end_line': 5}
+
+**Category Expression-bodied Method Opportunity**`:
+  Code: 4
+5 namespace Button;
+6
+7 public partial class App : Application
+8 {
+9     public override void Initialize()
+10     {
+11         AvaloniaXamlLoader.Load(this);
+12     }
+13
+14     public override void OnFrameworkInitializationCompleted()
+15     {
+16         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+17         {
+  Comment: {'path': 'CW2/Button/App.axaml.cs', 'start_line': 9, 'end_line': 12, 'body': '```suggestion\r\n    public override void Initialize()\r\n        => AvaloniaXamlLoader.Load(this);\r\n```\r\nИ вообще, стоит использовать expression-bodied-методы более активно.', 'error_type': '', 'type': 'Expression-bodied Method Opportunity', 'prepared_text': '', 'embedding': [], 'original_start_line': 9, 'original_end_line': 12}
+
+**Category XML Tag Syntax Errors**`:
+  Code: 21         this.SizeChanged  = this.WindowSizeChanged;
+22     }
+23
+24     /// <summary>
+25     /// Method for handling actions if cursor near the button.
+26     /// </summary>>
+27     /// <param name="sender">The control that raised the event.</param>\
+28     /// /// <param name="e">Provides data about the pointer movement, including current position.</param>
+29     private void MovedOnButton(object? sender, PointerEventArgs e)
+30     {
+31         var buttonX = Canvas.GetLeft(EscapeButton)   EscapeButton.Bounds.Width / 2;
+32         var buttonY = Canvas.GetTop(EscapeButton)   EscapeButton.Bounds.Height / 2;
+33         var mouse = e.GetPosition(MainCanvas);
+  Comment: {'path': 'CW2/Button/MainWindow.axaml.cs', 'start_line': 26, 'end_line': 28, 'body': 'Тут полная жесть с тэгами, у кого-то `>` лишняя, у кого-то `\\` ненужная, у кого-то `///` дважды.', 'error_type': '', 'type': 'XML Tag Syntax Errors', 'prepared_text': '', 'embedding': [], 'original_start_line': 26, 'original_end_line': 28}
+
+**Category Resource Management Issue**`:
+  Code: 72     /// </summary>>
+73     /// <param name="mouseX">The X coordinate of the mouse.</param>\
+74     /// /// <param name="mouseY">The Y coordinate of the mouse.</param>
+75     private void SetNewPosition(double mouseX, double mouseY)
+76     {
+77         var random = new Random();
+78         var x = random.NextDouble() * (MainCanvas.Bounds.Width - EscapeButton.Bounds.Width);
+79         var y = random.NextDouble() * (MainCanvas.Bounds.Height - EscapeButton.Bounds.Height);
+80         while (mouseX < x   EscapeButton.Bounds.Width / 2 && mouseX
+81                > x - EscapeButton.Bounds.Width / 2 && mouseY < y   EscapeButton.Bounds.Height / 2
+82                && mouseY > y   EscapeButton.Bounds.Height / 2)
+  Comment: {'path': 'CW2/Button/MainWindow.axaml.cs', 'start_line': 77, 'end_line': 77, 'body': 'Так каждый раз создаётся новый Random, хотя нужен только один (и сборщику мусора это всё собирать). Правильнее было бы сделать его статическим полем или вообще использовать Random.Shared', 'error_type': '', 'type': 'Resource Management Issue', 'prepared_text': '', 'embedding': [], 'original_start_line': 77, 'original_end_line': 77}
+
+**Category Test Organization Issue**`:
+  Code: 14     }
 15
 16     [Test]
-17     public void ParseTreeExtractTreeFromStringAndEvaluateWithAllOfTheOperatorsTest()
+17     public void BinaryHeapEmptyExtractMaximumTest()
 18     {
-19         var tree = new ParseTree();
-20         tree.ExtractTreeFromString("(+ 3 (* (/ 10 5) (- 12 10)))");
-21         var value = tree.Evaluate();
-22         Assert.That(value, Is.EqualTo(7));
-23     }
-24 }
+19         var heap = new BinaryHeap();
+20         Assert.Throws<Exception>(() => heap.ExtractMaximum());
+21     }
+22 }
+  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/Tests.cs', 'start_line': 19, 'end_line': 19, 'body': 'Это делается во всех тестах, можно было бы вынести в SetUp', 'error_type': '', 'type': 'Test Organization Issue', 'prepared_text': '', 'embedding': [], 'original_start_line': 19, 'original_end_line': 19}
 
-Missing StyleCop Usage: {
-"path": "CW1/priorityQueue/PriorityQueue/PriorityQueue.Tests/PriorityQueue.Tests.csproj",
-"start_line": 17,
-"end_line": 17,
-"body": "Missing StyleCop.Analyzers NuGet package reference. Add StyleCop to enforce consistent code style in test projects.",
-"error_type": "Missing StyleCop Usage"
-},
+**Category Visibility Modifier Missing**`:
+  Code: 65         /// </summary>
+66         /// <param name="value">The value to add to the skip enumeratedList.</param>
+67         /// <exception cref="ArgumentNullException">
+68         /// Thrown when <paramref name="value"/> is <c>null</c>.
+69         /// Note: This applies only if <typeparamref name="T"/> is a reference type.
+70         /// </exception>
+71         public void Add(T value)
+72         {
+73             if (value is null)
+74             {
+75                 throw new ArgumentNullException(nameof(value));
+  Comment: {'path': 'SkipList/SkipList/SkipList.cs', 'start_line': 70, 'end_line': 70, 'body': 'Здесь и ниже модификаторов видимости не хватает', 'error_type': '', 'type': 'Visibility Modifier Missing', 'prepared_text': '', 'embedding': [], 'original_start_line': 69, 'original_end_line': 69}
 
-for code:
+**Category Unnecessary Public Type**`:
+  Code: 1 ﻿namespace SkipList
+2 {
+3     using System;
+4     using System.Collections;
+5     using System.Collections.Generic;
+  Comment: {'path': 'SkipList/SkipList/SkipList.cs', 'start_line': 0, 'end_line': 0, 'body': 'Зачем public?\r\nЕсли делать public, то надо в отдельный файл вынести. А если это private-вложенный тип, то ок', 'error_type': '', 'type': 'Unnecessary Public Type', 'prepared_text': '', 'embedding': [], 'original_start_line': 300, 'original_end_line': 300}
 
-1 <Project Sdk="Microsoft.NET.Sdk">
-2     <PropertyGroup>
-3         <TargetFramework>net6.0</TargetFramework>
-4         <IsPackable>false</IsPackable>
-5     </PropertyGroup>
-6     <ItemGroup>
-7         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0"/>
-8         <PackageReference Include="MSTest.TestAdapter" Version="2.2.9"/>
-9         <PackageReference Include="MSTest.TestFramework" Version="2.2.9"/>
-10         <PackageReference Include="Moq" Version="4.18.2"/>
-11         <PackageReference Include="FluentAssertions" Version="6.10.0"/>
-12     </ItemGroup>
-13 </Project>
+**Category Magic Number Usage**`:
+  Code: 1 ﻿namespace SkipList
+2 {
+3     using System;
+4     using System.Collections;
+5     using System.Collections.Generic;
+  Comment: {'path': 'SkipList/SkipList/SkipList.cs', 'start_line': 0, 'end_line': 0, 'body': 'это магическое число надо в константу вынести', 'error_type': '', 'type': 'Magic Number Usage', 'prepared_text': '', 'embedding': [], 'original_start_line': 267, 'original_end_line': 267}
 
-Missing License Header: {
-"path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs",
-"start_line": 1,
-"end_line": 1,
-"body": "File is missing required license header. Add standard copyright notice and MIT license header at the top of the file.",
-"error_type": "Missing License Header"
-},
+**Category Incorrect Recursion Usage**`:
+  Code: 100                 {
+101                     newNode.Forward[i] = path[i].Forward[i];
+102                 }
+103
+104                 path[i].Forward[i] = newNode;
+105             }
+106
+107             this.Count  ;
+108             this.version  ;
+109         }
+110
+  Comment: {'path': 'SkipList/SkipList/SkipList.cs', 'start_line': 105, 'end_line': 105, 'body': 'То есть на каждое добавление элемента будет создаваться  1 уровень у skip list?\r\n\r\nЕсли так, то надо какой-нибудь (а лучше умной) константой его размер ограничивать, чтобы производительность не страдала.\r\nДа и глубина рекурсии, используемой в Add, ограничена, так что при большом количестве элементов всё может сломаться', 'error_type': '', 'type': 'Incorrect Recursion Usage', 'prepared_text': '', 'embedding': [], 'original_start_line': 119, 'original_end_line': 119}
 
-for code:
-
-1 namespace PriorityQueue;
+**Category Missing Documentation**`:
+  Code: 1 namespace PriorityQueue;
 2
 3 public class BinaryHeap
 4 {
 5     private (int, int)[] Heap { get; set; } = new (int, int)[10];
 6
 7     private int HeapSize { get; set; } = 0;
+8
+  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs', 'start_line': 3, 'end_line': 3, 'body': 'Надо комментарии к каждому классу и каждому публичному методу/свойству/событию.\r\n\r\nИ надо, чтобы мне не надо было это писать, то есть надо подключить StyleCop', 'error_type': '', 'type': 'Missing Documentation', 'prepared_text': '', 'embedding': [], 'original_start_line': 3, 'original_end_line': 3}
 
-Namespace Organization Issue: {
-"path": "HW6/parseTree/parseTree/parseTree/OperandNode.cs",
-"start_line": 1,
-"end_line": 3,
-"body":  "Organize using directives properly: place them before namespace declaration to avoid potential naming conflicts.",
-"error_type": "Namespace Organization Issue"
-},
-
-for code:
-
-1 namespace ParseTree;
+**Category Private Property Misuse**`:
+  Code: 1 namespace PriorityQueue;
 2
-3 using Node;
+3 public class BinaryHeap
+4 {
+5     private (int, int)[] Heap { get; set; } = new (int, int)[10];
+6
+7     private int HeapSize { get; set; } = 0;
+8
+9     private void ResetHeap()
+10     {
+  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs', 'start_line': 5, 'end_line': 5, 'body': 'private-свойства — вещь довольно бессмысленная, потому что они ничем не лучше полей, но добавляют уровень косвенности обращения (имеют прямо настоящий геттер-сеттер, не имеют адреса в памяти и т.п.). Короче, это надо было сделать полями просто.', 'error_type': '', 'type': 'Private Property Misuse', 'prepared_text': '', 'embedding': [], 'original_start_line': 5, 'original_end_line': 5}
+
+**Category Unclear Method Naming**`:
+  Code: 11         var newHeap = new (int, int)[this.Heap.Length * 2];
+12         this.Heap.CopyTo(newHeap, 0);
+13         this.Heap = newHeap;
+14     }
+15
+16     private void IncreaseKey(int index, (int, int) item)
+17     {
+18         if (item.Item1 < this.Heap[index].Item1)
+19         {
+20             throw new Exception(); //TODO!!!!!!!!!
+21         }
+  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs', 'start_line': 16, 'end_line': 16, 'body': 'Метод очень странно называется, я так и не понял, кто из них Key и почему он Increase', 'error_type': '', 'type': 'Unclear Method Naming', 'prepared_text': '', 'embedding': [], 'original_start_line': 16, 'original_end_line': 16}
+
+**Category Incorrect Exception Type**`:
+  Code: 15
+16     private void IncreaseKey(int index, (int, int) item)
+17     {
+18         if (item.Item1 < this.Heap[index].Item1)
+19         {
+20             throw new Exception(); //TODO!!!!!!!!!
+21         }
+22         this.Heap[index] = item;
+23         while (index > 1 && this.Heap[index / 2].Item1 < this.Heap[index].Item1)
+24         {
+25             (this.Heap[index], this.Heap[index / 2]) = (this.Heap[index / 2], this.Heap[index]);
+  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/BinaryHeap.cs', 'start_line': 20, 'end_line': 20, 'body': 'TODO indeed! Просто Exception бросать нельзя, его потом поймать корректно невозможно. Тут бы больше подошло InvalidOperationException.', 'error_type': '', 'type': 'Incorrect Exception Type', 'prepared_text': '', 'embedding': [], 'original_start_line': 20, 'original_end_line': 20}
+
+**Category Unnecessary Class**`:
+  Code: 1 using System.Linq.Expressions;
+2
+3 namespace PriorityQueue;
 4
-5 public class OperandNode : Node
+5 public class PriorityQueue
 6 {
+7     private BinaryHeap Data = new();
+8
+9     public void Enqueue(int priority, int value)
+10     {
+  Comment: {'path': 'CW1/priorityQueue/PriorityQueue/PriorityQueue/PriorityQueue.cs', 'start_line': 5, 'end_line': 5, 'body': 'Не уверен, что этот класс даёт что-то сверх BinaryHeap, так что не уверен, что он нужен.', 'error_type': '', 'type': 'Unnecessary Class', 'prepared_text': '', 'embedding': [], 'original_start_line': 5, 'original_end_line': 5}
 
-Expression bodied Method Opportunity: {
-"path": "CW1/priorityQueue/PriorityQueue/PriorityQueue/PriorityQueue.cs",
-"start_line": 12,
-"end_line": 12,
-"body": "This single-line method is a good candidate for conversion to expression-bodied syntax (=>) to improve readability.",
-"error_type": "Expression-bodied Method Opportunity"
-},
-
-for code:
-
-12     public int Dequeue()
-13     {
-14         return this.Data.ExtractMaximum();
-15     }
-
-Resource Management Issue: {
-"path": "Lazy/Lazy/SingleThreadLazy.cs",
-"start_line": 43,
-"end_line": 43,
-"body": "Set supplier field to null after use to allow garbage collection of the delegate and its closure objects.",
-"error_type": "Resource Management Issue"
-}
-
-for code:
-
-7     public T Value
-8     {
-9         get
-10         {
-11             if (!isValueCreated)
-12             {
-13                 value = supplier();
-14                 isValueCreated = true;
-15             }
-16             return value;
-17         }
-18     }

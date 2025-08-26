@@ -6,8 +6,44 @@ from dtos import DirectoryDto, FileDto
 
 
 class Parser:
-    def __init__(self) -> None:
-        self.MAX_FILE_SIZE = 5 * 1024 * 1024
+    @staticmethod
+    def enumerate_lines(text: str) -> str:
+        lines = text.split('\n')
+        if not lines or len(lines) == 0:
+            return text
+
+        enumerated_lines = []
+        for i in range(len(lines)):
+            enumerated_lines.append(f"{i + 1} {lines[i]}")
+
+        return '\n'.join(enumerated_lines)
+
+    @staticmethod
+    def enumerate_lines_separately(text: str) -> list[tuple[int, str]]:
+        lines = text.split('\n')
+        if not lines or len(lines) == 0:
+            return []
+
+        enumerated_lines = []
+        for i in range(len(lines)):
+            enumerated_lines.append((i + 1, lines[i]))
+
+        return enumerated_lines
+
+    @staticmethod
+    def get_directory_from_json(path: str, enumerate_code_lines: bool = False) -> DirectoryDto:
+        """Получает структуру директории из JSON файла"""
+        try:
+            with open(path, encoding='utf-8') as f:
+                data = json.load(f)
+            content = [FileDto.from_dict(file) for file in data]
+            for file in content:
+                if enumerate_code_lines and not file.is_binary:
+                    file.content = Parser.enumerate_lines(file.content)
+            return DirectoryDto(content=content)
+        except Exception as e:
+            logging.error(f"Ошибка при чтении JSON файла {path}: {str(e)}")
+            raise ValueError(f"Не удалось прочитать JSON файл: {str(e)}") from e
 
     def parse_directory_dto(self, directory: DirectoryDto) -> str:
         files_content = ""
@@ -20,20 +56,6 @@ class Parser:
                 if not obj.is_binary:
                     files_content += f"{obj.path}:\n{obj.content}\n\n"
         return files_content
-
-    def get_directory_from_json(self, path: str, enumerate_code_lines: bool = False) -> DirectoryDto:
-        """Получает структуру директории из JSON файла"""
-        try:
-            with open(path, encoding='utf-8') as f:
-                data = json.load(f)
-            content = [FileDto.from_dict(file) for file in data]
-            for file in content:
-                if enumerate_code_lines and not file.is_binary:
-                    file.content = self._enumerate_lines(file.content)
-            return DirectoryDto(content=content)
-        except Exception as e:
-            logging.error(f"Ошибка при чтении JSON файла {path}: {str(e)}")
-            raise ValueError(f"Не удалось прочитать JSON файл: {str(e)}") from e
 
     def parse_directory(self, root_path: str) -> DirectoryDto:
         """Парсит локальную директорию и возвращает её структуру в виде DirectoryDto"""
@@ -64,18 +86,6 @@ class Parser:
 
         return directory
 
-    def _enumerate_lines(self, text: str) -> str:
-        lines = text.split('\n')
-        if not lines or len(lines) == 0:
-            return text
-
-        enumerated_lines = []
-        for i in range(len(lines)):
-            enumerated_lines.append(f"{i + 1} {lines[i]}")
-
-        return '\n'.join(enumerated_lines)
-
-
     def _parse_file(self, file_path: Path, root_path: Path, enumerate_code_lines: bool = False) -> FileDto:
         """Парсит файл и возвращает FileDto"""
         relative_path = str(file_path.relative_to(root_path))
@@ -84,15 +94,6 @@ class Parser:
 
         file_size = file_path.stat().st_size
         is_binary = self._is_binary_file(file_path)
-
-        if file_size > self.MAX_FILE_SIZE:
-            return FileDto(
-                path=relative_path,
-                content=f"[LARGE FILE {file_size // 1024} KB]",
-                name=file_name,
-                extension=extension,
-                is_binary=True
-            )
 
         if is_binary:
             return FileDto(
@@ -106,7 +107,7 @@ class Parser:
         try:
             content = file_path.read_text(encoding='utf-8', errors='replace')
             if enumerate_code_lines:
-                content = self._enumerate_lines(content)
+                content = Parser.enumerate_lines(content)
             return FileDto(
                 path=relative_path,
                 content=content,

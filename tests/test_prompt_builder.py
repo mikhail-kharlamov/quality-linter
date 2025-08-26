@@ -38,7 +38,7 @@ class TestPromptBuilder:
             )
 
     def test_build_prompt_with_vars(self, builder):
-        prompt = builder.build_prompt(
+        prompt = builder.build_system_and_human_prompt(
             system_prompt_url="system.j2",
             human_prompt_url="human.j2",
             human_vars={"var2": "value2"},
@@ -48,7 +48,7 @@ class TestPromptBuilder:
         assert isinstance(prompt, ChatPromptTemplate)
 
     def test_build_prompt_without_system_vars(self, builder):
-        prompt = builder.build_prompt(
+        prompt = builder.build_system_and_human_prompt(
             system_prompt_url="system.j2",
             human_prompt_url="human.j2",
             human_vars={"var2": "value2"}

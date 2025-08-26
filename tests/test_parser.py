@@ -30,7 +30,7 @@ class TestParser:
         assert "file1.txt:\ncontent1" in result
         assert "sub/file2.txt:\ncontent2" in result
 
-    def test_get_directory_from_json(self, parser):
+    def test_get_directory_from_json(self):
         test_data = [
             {"path": "file1.txt", "content": "test", "is_binary": False},
             {"path": "file2.txt", "content": "test2", "is_binary": True}
@@ -38,16 +38,16 @@ class TestParser:
 
         m = mock_open(read_data=json.dumps(test_data))
         with patch('builtins.open', m):
-            result = parser.get_directory_from_json("test.json")
+            result = Parser.get_directory_from_json("test.json")
 
             assert len(result.content) == 2
             assert isinstance(result.content[0], FileDto)
             assert result.content[0].path == "file1.txt"
             assert result.content[1].is_binary
 
-    def test_enumerate_lines(self, parser):
+    def test_enumerate_lines(self):
         text = "line1\nline2\nline3"
-        result = parser._enumerate_lines(text)
+        result = Parser._enumerate_lines(text)
 
         assert result == "1 line1\n2 line2\n3 line3"
 
