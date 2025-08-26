@@ -63,6 +63,7 @@ class GitHubApiClient:
                     else:
                         try:
                             if item.size > MAX_FILE_SIZE:
+                                file_name = item_path.name
                                 extension = item_path.suffix[1:].lower() if item_path.suffix else ""
 
                                 root_dir.content.append(
@@ -90,7 +91,8 @@ class GitHubApiClient:
                             )
                         except Exception as e:
                             logging.warning(f"Не удалось обработать файл {item_path}: {str(e)}")
-                            extension =item_path.suffix[1:].lower() if item_path.suffix else ""
+                            extension = item_path.suffix[1:].lower() if item_path.suffix else ""
+                            file_name = item_path.name
 
                             root_dir.content.append(
                                 FileDto(
